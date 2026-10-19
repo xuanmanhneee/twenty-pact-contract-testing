@@ -1,0 +1,284 @@
+{
+  "consumer": {
+    "name": "twenty-front"
+  },
+  "interactions": [
+    {
+      "description": "I-01 FindManyPeople với access token hợp lệ",
+      "providerStates": [
+        {
+          "name": "workspace có ít nhất 1 Person"
+        }
+      ],
+      "request": {
+        "body": {
+          "operationName": "FindManyPeople",
+          "query": "query FindManyPeople($filter: PersonFilterInput, $orderBy: [PersonOrderByInput], $lastCursor: String, $limit: Int, $offset: Int) {\n  people(\n    filter: $filter\n    orderBy: $orderBy\n    first: $limit\n    after: $lastCursor\n    offset: $offset\n  ) {\n    edges {\n      node {\n        __typename\n        avatarFile {\n          fileId\n          label\n          extension\n          url\n          __typename\n        }\n        company {\n          __typename\n          domainName {\n            primaryLinkUrl\n            primaryLinkLabel\n            secondaryLinks {\n              label\n              url\n              __typename\n            }\n            __typename\n          }\n          id\n          name\n        }\n        companyId\n        createdAt\n        createdBy {\n          source\n          workspaceMemberId\n          name\n          context {\n            provider\n            __typename\n          }\n          __typename\n        }\n        deletedAt\n        emails {\n          primaryEmail\n          additionalEmails\n          __typename\n        }\n        id\n        jobTitle\n        linkedinLink {\n          primaryLinkUrl\n          primaryLinkLabel\n          secondaryLinks {\n            label\n            url\n            __typename\n          }\n          __typename\n        }\n        name {\n          firstName\n          lastName\n          __typename\n        }\n        phones {\n          primaryPhoneNumber\n          primaryPhoneCountryCode\n          primaryPhoneCallingCode\n          additionalPhones {\n            number\n            callingCode\n            countryCode\n            __typename\n          }\n          __typename\n        }\n        position\n        updatedAt\n      }\n      cursor\n      __typename\n    }\n    pageInfo {\n      hasNextPage\n      hasPreviousPage\n      startCursor\n      endCursor\n      __typename\n    }\n    totalCount\n    __typename\n  }\n}",
+          "variables": {
+            "filter": {},
+            "limit": 60,
+            "orderBy": [
+              {
+                "position": "AscNullsFirst"
+              }
+            ]
+          }
+        },
+        "headers": {
+          "Content-Type": "application/json",
+          "Cookie": "twenty-session=valid-session",
+          "Origin": "http://localhost:3000",
+          "x-app-version": "v2.46.0"
+        },
+        "matchingRules": {
+          "body": {
+            "$.query": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "^query FindManyPeople[\\s\\S]*$"
+                }
+              ]
+            }
+          }
+        },
+        "method": "POST",
+        "path": "/graphql"
+      },
+      "response": {
+        "body": {
+          "data": {
+            "people": {
+              "edges": [
+                {
+                  "cursor": "abc",
+                  "node": {
+                    "emails": {
+                      "primaryEmail": "a@example.com"
+                    },
+                    "id": "20202020-b000-4485-94de-70c2a98daef2",
+                    "jobTitle": "CEO",
+                    "name": {
+                      "firstName": "Jeffery",
+                      "lastName": "Griffin"
+                    }
+                  }
+                }
+              ],
+              "pageInfo": {
+                "endCursor": "abc",
+                "hasNextPage": true
+              },
+              "totalCount": 1200
+            }
+          }
+        },
+        "headers": {
+          "Content-Type": "application/json; charset=utf-8"
+        },
+        "matchingRules": {
+          "body": {
+            "$.data.people.edges": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type",
+                  "min": 1
+                }
+              ]
+            },
+            "$.data.people.edges[*].cursor": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.data.people.edges[*].node.emails.primaryEmail": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.data.people.edges[*].node.id": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.data.people.edges[*].node.jobTitle": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.data.people.edges[*].node.name.firstName": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.data.people.edges[*].node.name.lastName": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.data.people.pageInfo.endCursor": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.data.people.pageInfo.hasNextPage": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.data.people.totalCount": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "integer"
+                }
+              ]
+            }
+          },
+          "header": {
+            "Content-Type": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "^application/json.*$"
+                }
+              ]
+            }
+          }
+        },
+        "status": 200
+      }
+    },
+    {
+      "description": "I-06 FindManyPeople với access token sai",
+      "providerStates": [
+        {
+          "name": "token không hợp lệ"
+        }
+      ],
+      "request": {
+        "body": {
+          "operationName": "FindManyPeople",
+          "query": "query FindManyPeople($filter: PersonFilterInput, $orderBy: [PersonOrderByInput], $lastCursor: String, $limit: Int, $offset: Int) {\n  people(\n    filter: $filter\n    orderBy: $orderBy\n    first: $limit\n    after: $lastCursor\n    offset: $offset\n  ) {\n    edges {\n      node {\n        __typename\n        avatarFile {\n          fileId\n          label\n          extension\n          url\n          __typename\n        }\n        company {\n          __typename\n          domainName {\n            primaryLinkUrl\n            primaryLinkLabel\n            secondaryLinks {\n              label\n              url\n              __typename\n            }\n            __typename\n          }\n          id\n          name\n        }\n        companyId\n        createdAt\n        createdBy {\n          source\n          workspaceMemberId\n          name\n          context {\n            provider\n            __typename\n          }\n          __typename\n        }\n        deletedAt\n        emails {\n          primaryEmail\n          additionalEmails\n          __typename\n        }\n        id\n        jobTitle\n        linkedinLink {\n          primaryLinkUrl\n          primaryLinkLabel\n          secondaryLinks {\n            label\n            url\n            __typename\n          }\n          __typename\n        }\n        name {\n          firstName\n          lastName\n          __typename\n        }\n        phones {\n          primaryPhoneNumber\n          primaryPhoneCountryCode\n          primaryPhoneCallingCode\n          additionalPhones {\n            number\n            callingCode\n            countryCode\n            __typename\n          }\n          __typename\n        }\n        position\n        updatedAt\n      }\n      cursor\n      __typename\n    }\n    pageInfo {\n      hasNextPage\n      hasPreviousPage\n      startCursor\n      endCursor\n      __typename\n    }\n    totalCount\n    __typename\n  }\n}",
+          "variables": {
+            "filter": {},
+            "limit": 60,
+            "orderBy": [
+              {
+                "position": "AscNullsFirst"
+              }
+            ]
+          }
+        },
+        "headers": {
+          "Content-Type": "application/json",
+          "Cookie": "twenty-session=session-sai",
+          "Origin": "http://localhost:3000",
+          "x-app-version": "v2.46.0"
+        },
+        "matchingRules": {
+          "body": {
+            "$.query": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "^query FindManyPeople[\\s\\S]*$"
+                }
+              ]
+            }
+          }
+        },
+        "method": "POST",
+        "path": "/graphql"
+      },
+      "response": {
+        "body": {
+          "errors": [
+            {
+              "message": "Cannot query field \"people\" on type \"Query\"."
+            }
+          ]
+        },
+        "headers": {
+          "Content-Type": "application/json; charset=utf-8"
+        },
+        "matchingRules": {
+          "body": {
+            "$.errors": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type",
+                  "min": 1
+                }
+              ]
+            },
+            "$.errors[*].message": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            }
+          },
+          "header": {
+            "Content-Type": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "^application/json.*$"
+                }
+              ]
+            }
+          }
+        },
+        "status": 200
+      }
+    }
+  ],
+  "metadata": {
+    "pact-js": {
+      "version": "16.5.0"
+    },
+    "pactRust": {
+      "ffi": "0.5.4",
+      "models": "1.3.11"
+    },
+    "pactSpecification": {
+      "version": "3.0.0"
+    }
+  },
+  "provider": {
+    "name": "twenty-server"
+  }
+}

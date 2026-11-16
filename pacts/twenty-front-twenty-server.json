@@ -177,6 +177,491 @@
       }
     },
     {
+      "description": "I-02 FindManyCompanies với phiên hợp lệ",
+      "providerStates": [
+        {
+          "name": "workspace có ít nhất 1 Company"
+        }
+      ],
+      "request": {
+        "body": {
+          "operationName": "FindManyCompanies",
+          "query": "query FindManyCompanies($filter: CompanyFilterInput, $orderBy: [CompanyOrderByInput], $lastCursor: String, $limit: Int, $offset: Int) {\n  companies(\n    filter: $filter\n    orderBy: $orderBy\n    first: $limit\n    after: $lastCursor\n    offset: $offset\n  ) {\n    edges {\n      node {\n        __typename\n        accountOwner {\n          __typename\n          avatarUrl\n          id\n          name {\n            firstName\n            lastName\n            __typename\n          }\n        }\n        accountOwnerId\n        address {\n          addressStreet1\n          addressStreet2\n          addressCity\n          addressState\n          addressCountry\n          addressPostcode\n          addressLat\n          addressLng\n          __typename\n        }\n        createdAt\n        createdBy {\n          source\n          workspaceMemberId\n          name\n          context {\n            provider\n            __typename\n          }\n          __typename\n        }\n        deletedAt\n        domainName {\n          primaryLinkUrl\n          primaryLinkLabel\n          secondaryLinks {\n            label\n            url\n            __typename\n          }\n          __typename\n        }\n        id\n        linkedinLink {\n          primaryLinkUrl\n          primaryLinkLabel\n          secondaryLinks {\n            label\n            url\n            __typename\n          }\n          __typename\n        }\n        name\n        position\n        updatedAt\n      }\n      cursor\n      __typename\n    }\n    pageInfo {\n      hasNextPage\n      hasPreviousPage\n      startCursor\n      endCursor\n      __typename\n    }\n    totalCount\n    __typename\n  }\n}",
+          "variables": {
+            "filter": {},
+            "limit": 60,
+            "orderBy": [
+              {
+                "position": "AscNullsFirst"
+              }
+            ]
+          }
+        },
+        "headers": {
+          "Content-Type": "application/json",
+          "Cookie": "twenty-session=valid-session",
+          "Origin": "http://localhost:3000",
+          "x-app-version": "v2.46.0"
+        },
+        "matchingRules": {
+          "body": {
+            "$.query": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "^query FindManyCompanies[\\s\\S]*$"
+                }
+              ]
+            }
+          }
+        },
+        "method": "POST",
+        "path": "/graphql"
+      },
+      "response": {
+        "body": {
+          "data": {
+            "companies": {
+              "edges": [
+                {
+                  "cursor": "abc",
+                  "node": {
+                    "domainName": {
+                      "primaryLinkUrl": "airbnb.com"
+                    },
+                    "id": "c776ee49-f608-4a77-8cc8-6fe96ae1e43f",
+                    "name": "Airbnb"
+                  }
+                }
+              ],
+              "pageInfo": {
+                "endCursor": "abc",
+                "hasNextPage": false
+              },
+              "totalCount": 5
+            }
+          }
+        },
+        "headers": {
+          "Content-Type": "application/json; charset=utf-8"
+        },
+        "matchingRules": {
+          "body": {
+            "$.data.companies.edges": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type",
+                  "min": 1
+                }
+              ]
+            },
+            "$.data.companies.edges[*].cursor": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.data.companies.edges[*].node.domainName.primaryLinkUrl": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.data.companies.edges[*].node.id": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.data.companies.edges[*].node.name": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.data.companies.pageInfo.endCursor": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.data.companies.pageInfo.hasNextPage": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.data.companies.totalCount": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "integer"
+                }
+              ]
+            }
+          },
+          "header": {
+            "Content-Type": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "^application/json.*$"
+                }
+              ]
+            }
+          }
+        },
+        "status": 200
+      }
+    },
+    {
+      "description": "I-04 FindManyOpportunities với phiên hợp lệ",
+      "providerStates": [
+        {
+          "name": "workspace có ít nhất 1 Opportunity"
+        }
+      ],
+      "request": {
+        "body": {
+          "operationName": "FindManyOpportunities",
+          "query": "query FindManyOpportunities($filter: OpportunityFilterInput, $orderBy: [OpportunityOrderByInput], $lastCursor: String, $limit: Int, $offset: Int) {\n  opportunities(\n    filter: $filter\n    orderBy: $orderBy\n    first: $limit\n    after: $lastCursor\n    offset: $offset\n  ) {\n    edges {\n      node {\n        __typename\n        amount {\n          amountMicros\n          currencyCode\n          __typename\n        }\n        closeDate\n        company {\n          __typename\n          domainName {\n            primaryLinkUrl\n            primaryLinkLabel\n            secondaryLinks {\n              label\n              url\n              __typename\n            }\n            __typename\n          }\n          id\n          name\n        }\n        companyId\n        createdAt\n        createdBy {\n          source\n          workspaceMemberId\n          name\n          context {\n            provider\n            __typename\n          }\n          __typename\n        }\n        deletedAt\n        id\n        name\n        pointOfContact {\n          __typename\n          avatarFile {\n            fileId\n            label\n            extension\n            url\n            __typename\n          }\n          id\n          name {\n            firstName\n            lastName\n            __typename\n          }\n        }\n        pointOfContactId\n        position\n        updatedAt\n      }\n      cursor\n      __typename\n    }\n    pageInfo {\n      hasNextPage\n      hasPreviousPage\n      startCursor\n      endCursor\n      __typename\n    }\n    totalCount\n    __typename\n  }\n}",
+          "variables": {
+            "filter": {},
+            "limit": 60,
+            "orderBy": [
+              {
+                "position": "AscNullsFirst"
+              }
+            ]
+          }
+        },
+        "headers": {
+          "Content-Type": "application/json",
+          "Cookie": "twenty-session=valid-session",
+          "Origin": "http://localhost:3000",
+          "x-app-version": "v2.46.0"
+        },
+        "matchingRules": {
+          "body": {
+            "$.query": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "^query FindManyOpportunities[\\s\\S]*$"
+                }
+              ]
+            }
+          }
+        },
+        "method": "POST",
+        "path": "/graphql"
+      },
+      "response": {
+        "body": {
+          "data": {
+            "opportunities": {
+              "edges": [
+                {
+                  "cursor": "abc",
+                  "node": {
+                    "amount": {
+                      "amountMicros": 60000000000,
+                      "currencyCode": "USD"
+                    },
+                    "closeDate": "2026-01-31T16:25:00.000Z",
+                    "company": {
+                      "id": "c776ee49-f608-4a77-8cc8-6fe96ae1e43f",
+                      "name": "Stripe"
+                    },
+                    "id": "f5d3a6a6-0000-4000-8000-000000000001",
+                    "name": "Platform Migration"
+                  }
+                }
+              ],
+              "pageInfo": {
+                "endCursor": "abc",
+                "hasNextPage": false
+              },
+              "totalCount": 6
+            }
+          }
+        },
+        "headers": {
+          "Content-Type": "application/json; charset=utf-8"
+        },
+        "matchingRules": {
+          "body": {
+            "$.data.opportunities.edges": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type",
+                  "min": 1
+                }
+              ]
+            },
+            "$.data.opportunities.edges[*].cursor": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.data.opportunities.edges[*].node.amount.amountMicros": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "integer"
+                }
+              ]
+            },
+            "$.data.opportunities.edges[*].node.amount.currencyCode": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.data.opportunities.edges[*].node.closeDate": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.data.opportunities.edges[*].node.company.id": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.data.opportunities.edges[*].node.company.name": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.data.opportunities.edges[*].node.id": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.data.opportunities.edges[*].node.name": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.data.opportunities.pageInfo.endCursor": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.data.opportunities.pageInfo.hasNextPage": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.data.opportunities.totalCount": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "integer"
+                }
+              ]
+            }
+          },
+          "header": {
+            "Content-Type": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "^application/json.*$"
+                }
+              ]
+            }
+          }
+        },
+        "status": 200
+      }
+    },
+    {
+      "description": "I-05 GetCurrentUser với phiên hợp lệ",
+      "providerStates": [
+        {
+          "name": "người dùng đã đăng nhập vào workspace"
+        }
+      ],
+      "request": {
+        "body": {
+          "operationName": "GetCurrentUser",
+          "query": "query GetCurrentUser {\n  currentUser {\n    ...UserQueryFragment\n    __typename\n  }\n}\n\nfragment WorkspaceMemberQueryFragment on WorkspaceMember {\n  id\n  name {\n    firstName\n    lastName\n    __typename\n  }\n  colorScheme\n  uiScale\n  openRecordIn\n  avatarUrl\n  locale\n  userEmail\n  userId\n  userWorkspaceId\n  timeZone\n  dateFormat\n  timeFormat\n  calendarStartDay\n  numberFormat\n  __typename\n}\n\nfragment PartialWorkspaceMemberQueryFragment on WorkspaceMember {\n  id\n  name {\n    firstName\n    lastName\n    __typename\n  }\n  avatarUrl\n  userEmail\n  userId\n  userWorkspaceId\n  __typename\n}\n\nfragment DeletedWorkspaceMemberQueryFragment on DeletedWorkspaceMember {\n  id\n  name {\n    firstName\n    lastName\n    __typename\n  }\n  avatarUrl\n  userEmail\n  __typename\n}\n\nfragment ObjectPermissionFragment on ObjectPermission {\n  objectMetadataId\n  canReadObjectRecords\n  canUpdateObjectRecords\n  canSoftDeleteObjectRecords\n  canDestroyObjectRecords\n  restrictedFields\n  __typename\n}\n\nfragment RowLevelPermissionPredicateFragment on RowLevelPermissionPredicate {\n  id\n  fieldMetadataId\n  objectMetadataId\n  operand\n  subFieldName\n  workspaceMemberFieldMetadataId\n  workspaceMemberSubFieldName\n  rowLevelPermissionPredicateGroupId\n  positionInRowLevelPermissionPredicateGroup\n  roleId\n  value\n  __typename\n}\n\nfragment RowLevelPermissionPredicateGroupFragment on RowLevelPermissionPredicateGroup {\n  id\n  parentRowLevelPermissionPredicateGroupId\n  logicalOperator\n  positionInRowLevelPermissionPredicateGroup\n  roleId\n  objectMetadataId\n  __typename\n}\n\nfragment WorkspaceUrlsFragment on WorkspaceUrls {\n  subdomainUrl\n  customUrl\n  __typename\n}\n\nfragment BillingSubscriptionSchedulePhaseItemFragment on BillingSubscriptionSchedulePhaseItem {\n  price\n  quantity\n  __typename\n}\n\nfragment BillingSubscriptionSchedulePhaseFragment on BillingSubscriptionSchedulePhase {\n  start_date\n  end_date\n  items {\n    ...BillingSubscriptionSchedulePhaseItemFragment\n    __typename\n  }\n  __typename\n}\n\nfragment CurrentBillingSubscriptionFragment on BillingSubscription {\n  id\n  status\n  interval\n  metadata\n  currentPeriodEnd\n  cancelAt\n  phases {\n    ...BillingSubscriptionSchedulePhaseFragment\n    __typename\n  }\n  billingSubscriptionItems {\n    id\n    hasReachedCurrentPeriodCap\n    quantity\n    stripePriceId\n    unitAmount\n    creditAmount\n    billingProduct {\n      name\n      description\n      images\n      metadata {\n        productKey\n        planKey\n        priceUsageBased\n        isLegacy\n        __typename\n      }\n      __typename\n    }\n    __typename\n  }\n  __typename\n}\n\nfragment BillingSubscriptionFragment on BillingSubscription {\n  id\n  status\n  metadata\n  cancelAt\n  phases {\n    ...BillingSubscriptionSchedulePhaseFragment\n    __typename\n  }\n  __typename\n}\n\nfragment RoleFragment on Role {\n  id\n  label\n  description\n  icon\n  canUpdateAllSettings\n  canAccessAllTools\n  isEditable\n  canReadAllObjectRecords\n  canUpdateAllObjectRecords\n  canSoftDeleteAllObjectRecords\n  canDestroyAllObjectRecords\n  canBeAssignedToUsers\n  canBeAssignedToAgents\n  canBeAssignedToApiKeys\n  __typename\n}\n\nfragment AvailableWorkspaceFragment on AvailableWorkspace {\n  id\n  displayName\n  loginToken\n  inviteHash\n  personalInviteToken\n  workspaceUrls {\n    subdomainUrl\n    customUrl\n    __typename\n  }\n  logo\n  sso {\n    type\n    id\n    issuer\n    name\n    status\n    __typename\n  }\n  __typename\n}\n\nfragment AvailableWorkspacesFragment on AvailableWorkspaces {\n  availableWorkspacesForSignIn {\n    ...AvailableWorkspaceFragment\n    __typename\n  }\n  availableWorkspacesForSignUp {\n    ...AvailableWorkspaceFragment\n    __typename\n  }\n  __typename\n}\n\nfragment UserQueryFragment on User {\n  id\n  firstName\n  lastName\n  email\n  hasPassword\n  canAccessFullAdminPanel\n  canImpersonate\n  supportUserHash\n  onboardingStatus\n  previousOnboardingStatus\n  isWorkspaceCreator\n  workspaceMember {\n    ...WorkspaceMemberQueryFragment\n    __typename\n  }\n  workspaceMembers {\n    ...PartialWorkspaceMemberQueryFragment\n    __typename\n  }\n  deletedWorkspaceMembers {\n    ...DeletedWorkspaceMemberQueryFragment\n    __typename\n  }\n  currentUserWorkspace {\n    id\n    permissionFlags\n    isImpersonating\n    objectsPermissions {\n      ...ObjectPermissionFragment\n      rowLevelPermissionPredicates {\n        ...RowLevelPermissionPredicateFragment\n        __typename\n      }\n      rowLevelPermissionPredicateGroups {\n        ...RowLevelPermissionPredicateGroupFragment\n        __typename\n      }\n      __typename\n    }\n    twoFactorAuthenticationMethodSummary {\n      twoFactorAuthenticationMethodId\n      status\n      strategy\n      __typename\n    }\n    __typename\n  }\n  currentWorkspace {\n    id\n    displayName\n    logo\n    inviteHash\n    allowImpersonation\n    activationStatus\n    isPublicInviteLinkEnabled\n    isCampaignClickTrackingEnabled\n    workspaceDiscoverability\n    isGoogleAuthEnabled\n    isMicrosoftAuthEnabled\n    isPasswordAuthEnabled\n    isGoogleAuthBypassEnabled\n    isMicrosoftAuthBypassEnabled\n    isPasswordAuthBypassEnabled\n    subdomain\n    customDomain\n    hasValidSignedEnterpriseKey\n    hasValidEnterpriseValidityToken\n    workspaceCustomApplication {\n      id\n      __typename\n    }\n    installedApplications {\n      id\n      name\n      universalIdentifier\n      logoUrl\n      __typename\n    }\n    isCustomDomainEnabled\n    workspaceUrls {\n      ...WorkspaceUrlsFragment\n      __typename\n    }\n    featureFlags {\n      key\n      value\n      __typename\n    }\n    currentBillingSubscription {\n      ...CurrentBillingSubscriptionFragment\n      __typename\n    }\n    billingCustomer {\n      id\n      hasPaymentMethod\n      __typename\n    }\n    billingSubscriptions {\n      ...BillingSubscriptionFragment\n      __typename\n    }\n    billingEntitlements {\n      key\n      value\n      __typename\n    }\n    workspaceMembersCount\n    defaultRole {\n      ...RoleFragment\n      __typename\n    }\n    aiChatModelTier\n    aiAgentModelTier\n    isAutoModelSelectionEnabled\n    aiModelIdByTier\n    aiAdditionalInstructions\n    isTwoFactorAuthenticationEnforced\n    trashRetentionDays\n    eventLogRetentionDays\n    editableProfileFields\n    isInternalMessagesImportEnabled\n    __typename\n  }\n  availableWorkspaces {\n    ...AvailableWorkspacesFragment\n    __typename\n  }\n  userVars\n  __typename\n}",
+          "variables": {}
+        },
+        "headers": {
+          "Content-Type": "application/json",
+          "Cookie": "twenty-session=valid-session",
+          "Origin": "http://localhost:3000",
+          "x-app-version": "v2.46.0"
+        },
+        "matchingRules": {
+          "body": {
+            "$.query": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "^query GetCurrentUser[\\s\\S]*$"
+                }
+              ]
+            }
+          }
+        },
+        "method": "POST",
+        "path": "/metadata"
+      },
+      "response": {
+        "body": {
+          "data": {
+            "currentUser": {
+              "currentWorkspace": {
+                "displayName": "dlu-qa",
+                "id": "def8ac74-4230-4016-849f-2137475f5b66"
+              },
+              "email": "member@example.com",
+              "id": "bfe5fb2c-45d0-45c0-b178-04d0b5e109aa",
+              "onboardingStatus": "COMPLETED",
+              "workspaceMember": {
+                "id": "7d3f4c9b-0000-4000-8000-000000000001",
+                "name": {
+                  "firstName": "Phước",
+                  "lastName": "Mai"
+                }
+              }
+            }
+          }
+        },
+        "headers": {
+          "Content-Type": "application/json; charset=utf-8"
+        },
+        "matchingRules": {
+          "body": {
+            "$.data.currentUser.currentWorkspace.displayName": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.data.currentUser.currentWorkspace.id": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.data.currentUser.email": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.data.currentUser.id": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.data.currentUser.onboardingStatus": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.data.currentUser.workspaceMember.id": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.data.currentUser.workspaceMember.name.firstName": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.data.currentUser.workspaceMember.name.lastName": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            }
+          },
+          "header": {
+            "Content-Type": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "^application/json.*$"
+                }
+              ]
+            }
+          }
+        },
+        "status": 200
+      }
+    },
+    {
       "description": "I-06 FindManyPeople với access token sai",
       "providerStates": [
         {
@@ -263,6 +748,110 @@
           }
         },
         "status": 200
+      }
+    },
+    {
+      "description": "I-07 FindManyPeople thiếu Origin",
+      "providerStates": [
+        {
+          "name": "phiên hợp lệ nhưng request thiếu Origin"
+        }
+      ],
+      "request": {
+        "body": {
+          "operationName": "FindManyPeople",
+          "query": "query FindManyPeople($filter: PersonFilterInput, $orderBy: [PersonOrderByInput], $lastCursor: String, $limit: Int, $offset: Int) {\n  people(\n    filter: $filter\n    orderBy: $orderBy\n    first: $limit\n    after: $lastCursor\n    offset: $offset\n  ) {\n    edges {\n      node {\n        __typename\n        avatarFile {\n          fileId\n          label\n          extension\n          url\n          __typename\n        }\n        company {\n          __typename\n          domainName {\n            primaryLinkUrl\n            primaryLinkLabel\n            secondaryLinks {\n              label\n              url\n              __typename\n            }\n            __typename\n          }\n          id\n          name\n        }\n        companyId\n        createdAt\n        createdBy {\n          source\n          workspaceMemberId\n          name\n          context {\n            provider\n            __typename\n          }\n          __typename\n        }\n        deletedAt\n        emails {\n          primaryEmail\n          additionalEmails\n          __typename\n        }\n        id\n        jobTitle\n        linkedinLink {\n          primaryLinkUrl\n          primaryLinkLabel\n          secondaryLinks {\n            label\n            url\n            __typename\n          }\n          __typename\n        }\n        name {\n          firstName\n          lastName\n          __typename\n        }\n        phones {\n          primaryPhoneNumber\n          primaryPhoneCountryCode\n          primaryPhoneCallingCode\n          additionalPhones {\n            number\n            callingCode\n            countryCode\n            __typename\n          }\n          __typename\n        }\n        position\n        updatedAt\n      }\n      cursor\n      __typename\n    }\n    pageInfo {\n      hasNextPage\n      hasPreviousPage\n      startCursor\n      endCursor\n      __typename\n    }\n    totalCount\n    __typename\n  }\n}",
+          "variables": {
+            "filter": {},
+            "limit": 60,
+            "orderBy": [
+              {
+                "position": "AscNullsFirst"
+              }
+            ]
+          }
+        },
+        "headers": {
+          "Content-Type": "application/json",
+          "Cookie": "twenty-session=valid-session",
+          "x-app-version": "v2.46.0"
+        },
+        "matchingRules": {
+          "body": {
+            "$.query": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "^query FindManyPeople[\\s\\S]*$"
+                }
+              ]
+            }
+          }
+        },
+        "method": "POST",
+        "path": "/graphql"
+      },
+      "response": {
+        "body": {
+          "error": "CSRF_ORIGIN_MISMATCH",
+          "messages": [
+            "Request origin is not allowed for cookie-authenticated requests"
+          ],
+          "statusCode": 403
+        },
+        "headers": {
+          "Content-Type": "application/json; charset=utf-8"
+        },
+        "matchingRules": {
+          "body": {
+            "$.error": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.messages": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type",
+                  "min": 1
+                }
+              ]
+            },
+            "$.messages[*]": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.statusCode": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "integer"
+                }
+              ]
+            }
+          },
+          "header": {
+            "Content-Type": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "^application/json.*$"
+                }
+              ]
+            }
+          }
+        },
+        "status": 403
       }
     }
   ],

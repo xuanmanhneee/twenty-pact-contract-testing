@@ -103,6 +103,256 @@ export const FIND_MANY_PEOPLE_VARIABLES = {
   orderBy: [{ position: 'AscNullsFirst' }],
 };
 
+export const CREATE_ONE_PERSON_QUERY = `mutation CreateOnePerson($input: PersonCreateInput!) {
+  createPerson(data: $input) {
+    __typename
+    agentChatThreadTargets {
+      edges {
+        node {
+          __typename
+          id
+          thread {
+            __typename
+            id
+            title
+          }
+        }
+        __typename
+      }
+      __typename
+    }
+    attachments {
+      edges {
+        node {
+          __typename
+          id
+          name
+        }
+        __typename
+      }
+      __typename
+    }
+    avatarFile {
+      fileId
+      label
+      extension
+      url
+      __typename
+    }
+    avatarUrl
+    calendarEventParticipants {
+      edges {
+        node {
+          __typename
+          calendarEvent {
+            __typename
+            id
+            title
+          }
+          handle
+          id
+        }
+        __typename
+      }
+      __typename
+    }
+    calendarEventTargets {
+      edges {
+        node {
+          __typename
+          calendarEvent {
+            __typename
+            id
+            title
+          }
+          id
+        }
+        __typename
+      }
+      __typename
+    }
+    company {
+      __typename
+      domainName {
+        primaryLinkUrl
+        primaryLinkLabel
+        secondaryLinks {
+          label
+          url
+          __typename
+        }
+        __typename
+      }
+      id
+      name
+    }
+    companyId
+    createdAt
+    createdBy {
+      source
+      workspaceMemberId
+      name
+      context {
+        provider
+        __typename
+      }
+      __typename
+    }
+    deletedAt
+    emails {
+      primaryEmail
+      additionalEmails
+      __typename
+    }
+    id
+    jobTitle
+    linkedinLink {
+      primaryLinkUrl
+      primaryLinkLabel
+      secondaryLinks {
+        label
+        url
+        __typename
+      }
+      __typename
+    }
+    listMemberships {
+      edges {
+        node {
+          __typename
+          id
+          list {
+            __typename
+            id
+            name
+          }
+        }
+        __typename
+      }
+      __typename
+    }
+    messageParticipants {
+      edges {
+        node {
+          __typename
+          handle
+          id
+          message {
+            __typename
+            id
+            subject
+          }
+        }
+        __typename
+      }
+      __typename
+    }
+    messageThreadTargets {
+      edges {
+        node {
+          __typename
+          id
+          messageThread {
+            __typename
+            id
+            subject
+          }
+        }
+        __typename
+      }
+      __typename
+    }
+    name {
+      firstName
+      lastName
+      __typename
+    }
+    noteTargets {
+      edges {
+        node {
+          __typename
+          id
+          note {
+            __typename
+            id
+            title
+          }
+        }
+        __typename
+      }
+      __typename
+    }
+    phones {
+      primaryPhoneNumber
+      primaryPhoneCountryCode
+      primaryPhoneCallingCode
+      additionalPhones {
+        number
+        callingCode
+        countryCode
+        __typename
+      }
+      __typename
+    }
+    pointOfContactForOpportunities {
+      edges {
+        node {
+          __typename
+          id
+          name
+        }
+        __typename
+      }
+      __typename
+    }
+    position
+    taskTargets {
+      edges {
+        node {
+          __typename
+          id
+          task {
+            __typename
+            id
+            title
+          }
+        }
+        __typename
+      }
+      __typename
+    }
+    timelineActivities {
+      edges {
+        node {
+          __typename
+          id
+          linkedRecordCachedName
+        }
+        __typename
+      }
+      __typename
+    }
+    updatedAt
+    updatedBy {
+      source
+      workspaceMemberId
+      name
+      context {
+        provider
+        __typename
+      }
+      __typename
+    }
+  }
+}`;
+
+export const CREATE_ONE_PERSON_VARIABLES = {
+  input: {
+    id: 'd05b3c0b-1da6-4a73-852b-6ad2b77f7d9e',
+    position: 'first',
+  },
+};
+
 // I-02: request FindManyCompanies thật của twenty-front (trang /objects/companies, v2.46.0).
 export const FIND_MANY_COMPANIES_QUERY = `query FindManyCompanies($filter: CompanyFilterInput, $orderBy: [CompanyOrderByInput], $lastCursor: String, $limit: Int, $offset: Int) {
   companies(

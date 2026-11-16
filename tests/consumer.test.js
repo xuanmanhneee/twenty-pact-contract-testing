@@ -4,6 +4,8 @@ import { PactV3, MatchersV3 } from '@pact-foundation/pact';
 import {
   FIND_MANY_PEOPLE_QUERY,
   FIND_MANY_PEOPLE_VARIABLES,
+  CREATE_ONE_PERSON_QUERY,
+  CREATE_ONE_PERSON_VARIABLES,
   FIND_MANY_COMPANIES_QUERY,
   FIND_MANY_COMPANIES_VARIABLES,
   FIND_MANY_OPPORTUNITIES_QUERY,
@@ -57,6 +59,13 @@ const findManyCompanies = (baseUrl, token) => postJson(baseUrl, {
   query: FIND_MANY_COMPANIES_QUERY,
 });
 
+const createOnePerson = (baseUrl, token) => postJson(baseUrl, {
+  token,
+  operationName: 'CreateOnePerson',
+  variables: CREATE_ONE_PERSON_VARIABLES,
+  query: CREATE_ONE_PERSON_QUERY,
+});
+
 const findManyOpportunities = (baseUrl, token) => postJson(baseUrl, {
   token,
   operationName: 'FindManyOpportunities',
@@ -85,6 +94,7 @@ const findManyPeopleWithoutOrigin = (baseUrl, token) => postJson(baseUrl, {
 const request = (token, options = {}) => {
   const {
     operationName = 'FindManyPeople',
+    operationType = 'query',
     variables = FIND_MANY_PEOPLE_VARIABLES,
     query = FIND_MANY_PEOPLE_QUERY,
     path = '/graphql',
@@ -99,7 +109,7 @@ const request = (token, options = {}) => {
     body: {
       operationName,
       variables, // chặt: khớp đúng như front gửi
-      query: regex(`^query ${operationName}[\\s\\S]*$`, query), // lỏng
+      query: regex(`^${operationType} ${operationName}[\\s\\S]*$`, query), // lỏng
     },
   };
 };
@@ -135,6 +145,40 @@ describe('twenty-front → twenty-server', () => {
         },
       });
     await pact.executeTest(async (mock) => { await findManyPeople(mock.url, 'valid-session'); });
+  });
+
+  it('I-03 CreateOnePerson với phiên hợp lệ', async () => {
+    pact
+      .given('workspace sẵn sàng tạo Person I-03')
+      .uponReceiving('I-03 CreateOnePerson với phiên hợp lệ')
+      .withRequest(request('valid-session', {
+        operationName: 'CreateOnePerson',
+        operationType: 'mutation',
+        variables: CREATE_ONE_PERSON_VARIABLES,
+        query: CREATE_ONE_PERSON_QUERY,
+      }))
+      .willRespondWith({
+        status: 200,
+        headers: jsonHeader,
+        body: {
+          data: {
+            createPerson: {
+              id: string('d05b3c0b-1da6-4a73-852b-6ad2b77f7d9e'),
+              name: { firstName: string(''), lastName: string('') },
+              emails: { primaryEmail: string(''), additionalEmails: [] },
+              jobTitle: string(''),
+              position: integer(-1),
+              createdAt: string('2026-11-16T13:04:20.620Z'),
+              createdBy: {
+                source: string('MANUAL'),
+                workspaceMemberId: string('5f4390f3-c72f-44b5-9961-24af4a3e8f3f'),
+                name: string('phuoc mai'),
+              },
+            },
+          },
+        },
+      });
+    await pact.executeTest(async (mock) => { await createOnePerson(mock.url, 'valid-session'); });
   });
 
   it('I-02 FindManyCompanies với phiên hợp lệ', async () => {

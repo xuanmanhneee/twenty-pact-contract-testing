@@ -1,0 +1,138 @@
+[
+  {
+    "request": {
+      "method": "POST",
+      "url": "http://localhost:3000/graphql",
+      "headers": {
+        "content-type": "application/json",
+        "x-app-version": "v2.46.0"
+      },
+      "body": {
+        "operationName": "CreateOnePerson",
+        "variables": {
+          "input": {
+            "id": "d05b3c0b-1da6-4a73-852b-6ad2b77f7d9e",
+            "position": "first"
+          }
+        },
+        "query": "mutation CreateOnePerson($input: PersonCreateInput!) {\n  createPerson(data: $input) {\n    __typename\n    agentChatThreadTargets {\n      edges {\n        node {\n          __typename\n          id\n          thread {\n            __typename\n            id\n            title\n          }\n        }\n        __typename\n      }\n      __typename\n    }\n    attachments {\n      edges {\n        node {\n          __typename\n          id\n          name\n        }\n        __typename\n      }\n      __typename\n    }\n    avatarFile {\n      fileId\n      label\n      extension\n      url\n      __typename\n    }\n    avatarUrl\n    calendarEventParticipants {\n      edges {\n        node {\n          __typename\n          calendarEvent {\n            __typename\n            id\n            title\n          }\n          handle\n          id\n        }\n        __typename\n      }\n      __typename\n    }\n    calendarEventTargets {\n      edges {\n        node {\n          __typename\n          calendarEvent {\n            __typename\n            id\n            title\n          }\n          id\n        }\n        __typename\n      }\n      __typename\n    }\n    company {\n      __typename\n      domainName {\n        primaryLinkUrl\n        primaryLinkLabel\n        secondaryLinks {\n          label\n          url\n          __typename\n        }\n        __typename\n      }\n      id\n      name\n    }\n    companyId\n    createdAt\n    createdBy {\n      source\n      workspaceMemberId\n      name\n      context {\n        provider\n        __typename\n      }\n      __typename\n    }\n    deletedAt\n    emails {\n      primaryEmail\n      additionalEmails\n      __typename\n    }\n    id\n    jobTitle\n    linkedinLink {\n      primaryLinkUrl\n      primaryLinkLabel\n      secondaryLinks {\n        label\n        url\n        __typename\n      }\n      __typename\n    }\n    listMemberships {\n      edges {\n        node {\n          __typename\n          id\n          list {\n            __typename\n            id\n            name\n          }\n        }\n        __typename\n      }\n      __typename\n    }\n    messageParticipants {\n      edges {\n        node {\n          __typename\n          handle\n          id\n          message {\n            __typename\n            id\n            subject\n          }\n        }\n        __typename\n      }\n      __typename\n    }\n    messageThreadTargets {\n      edges {\n        node {\n          __typename\n          id\n          messageThread {\n            __typename\n            id\n            subject\n          }\n        }\n        __typename\n      }\n      __typename\n    }\n    name {\n      firstName\n      lastName\n      __typename\n    }\n    noteTargets {\n      edges {\n        node {\n          __typename\n          id\n          note {\n            __typename\n            id\n            title\n          }\n        }\n        __typename\n      }\n      __typename\n    }\n    phones {\n      primaryPhoneNumber\n      primaryPhoneCountryCode\n      primaryPhoneCallingCode\n      additionalPhones {\n        number\n        callingCode\n        countryCode\n        __typename\n      }\n      __typename\n    }\n    pointOfContactForOpportunities {\n      edges {\n        node {\n          __typename\n          id\n          name\n        }\n        __typename\n      }\n      __typename\n    }\n    position\n    taskTargets {\n      edges {\n        node {\n          __typename\n          id\n          task {\n            __typename\n            id\n            title\n          }\n        }\n        __typename\n      }\n      __typename\n    }\n    timelineActivities {\n      edges {\n        node {\n          __typename\n          id\n          linkedRecordCachedName\n        }\n        __typename\n      }\n      __typename\n    }\n    updatedAt\n    updatedBy {\n      source\n      workspaceMemberId\n      name\n      context {\n        provider\n        __typename\n      }\n      __typename\n    }\n  }\n}"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "data": {
+          "createPerson": {
+            "__typename": "Person",
+            "agentChatThreadTargets": {
+              "edges": [],
+              "__typename": "AgentChatThreadTargetConnection"
+            },
+            "attachments": {
+              "edges": [],
+              "__typename": "AttachmentConnection"
+            },
+            "avatarFile": null,
+            "avatarUrl": "",
+            "calendarEventParticipants": {
+              "edges": [],
+              "__typename": "CalendarEventParticipantConnection"
+            },
+            "calendarEventTargets": {
+              "edges": [],
+              "__typename": "CalendarEventTargetConnection"
+            },
+            "company": null,
+            "companyId": null,
+            "createdAt": "2026-11-16T13:04:20.620Z",
+            "createdBy": {
+              "source": "MANUAL",
+              "workspaceMemberId": "5f4390f3-c72f-44b5-9961-24af4a3e8f3f",
+              "name": "phuoc mai",
+              "context": {
+                "provider": null,
+                "__typename": "ActorContext"
+              },
+              "__typename": "Actor"
+            },
+            "deletedAt": null,
+            "emails": {
+              "primaryEmail": "",
+              "additionalEmails": [],
+              "__typename": "Emails"
+            },
+            "id": "d05b3c0b-1da6-4a73-852b-6ad2b77f7d9e",
+            "jobTitle": "",
+            "linkedinLink": {
+              "primaryLinkUrl": "",
+              "primaryLinkLabel": "",
+              "secondaryLinks": [],
+              "__typename": "Links"
+            },
+            "listMemberships": {
+              "edges": [],
+              "__typename": "MessageListMemberConnection"
+            },
+            "messageParticipants": {
+              "edges": [],
+              "__typename": "MessageParticipantConnection"
+            },
+            "messageThreadTargets": {
+              "edges": [],
+              "__typename": "MessageThreadTargetConnection"
+            },
+            "name": {
+              "firstName": "",
+              "lastName": "",
+              "__typename": "FullName"
+            },
+            "noteTargets": {
+              "edges": [],
+              "__typename": "NoteTargetConnection"
+            },
+            "phones": {
+              "primaryPhoneNumber": "",
+              "primaryPhoneCountryCode": "",
+              "primaryPhoneCallingCode": "",
+              "additionalPhones": [],
+              "__typename": "Phones"
+            },
+            "pointOfContactForOpportunities": {
+              "edges": [],
+              "__typename": "OpportunityConnection"
+            },
+            "position": -1,
+            "taskTargets": {
+              "edges": [],
+              "__typename": "TaskTargetConnection"
+            },
+            "timelineActivities": {
+              "edges": [
+                {
+                  "node": {
+                    "__typename": "TimelineActivity",
+                    "id": "e90e9070-69d1-45a0-9c46-3fd9cd616f21",
+                    "linkedRecordCachedName": ""
+                  },
+                  "__typename": "TimelineActivityEdge"
+                }
+              ],
+              "__typename": "TimelineActivityConnection"
+            },
+            "updatedAt": "2026-11-16T13:04:20.620Z",
+            "updatedBy": {
+              "source": "MANUAL",
+              "workspaceMemberId": "5f4390f3-c72f-44b5-9961-24af4a3e8f3f",
+              "name": "phuoc mai",
+              "context": {
+                "provider": null,
+                "__typename": "ActorContext"
+              },
+              "__typename": "Actor"
+            }
+          }
+        }
+      }
+    }
+  }
+]

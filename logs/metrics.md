@@ -17,6 +17,10 @@ Ngày chạy: 16/11/2026. Không ghi token/phiên vào log.
 | Consumer sau review (I-07 khóa giá trị thật, gom helper) | 6 | 6 | 0 | `logs/consumer-run-review-fix.log` |
 | Provider qua 4002 sau review | 6 | 5 | 1 | Vẫn I-07 do proxy chèn Origin (blocker chờ Mạnh) |
 | Provider chẩn đoán qua 4003 sau review | 6 | 6 | 0 | I-07 khớp chính xác `statusCode/error/messages` |
+| Consumer sau khi thêm I-03 | 7 | 7 | 0 | I-01…I-07, gồm mutation; `logs/consumer-run-i03.log` |
+| Provider qua 4002 sau khi thêm I-03 | 7 | 6 | 1 | I-03 pass (92 ms); I-07 vẫn fail do proxy chèn Origin |
+
+Ghi chú: các lượt trước dòng "sau khi thêm I-03" chạy trên bộ 6 interaction; từ đó về sau là 7 interaction.
 
 ## 2. Thời gian chạy
 
@@ -31,6 +35,8 @@ Ngày chạy: 16/11/2026. Không ghi token/phiên vào log.
 | Consumer sau review (khóa giá trị I-07) | 6,87 s | 9,2 s |
 | Provider qua 4002 sau review | 1,52 s | 2,45 s |
 | Provider chẩn đoán qua 4003 sau review | — (script trực tiếp) | 1,65 s |
+| Consumer sau khi thêm I-03 | 1,26 s | — |
+| Provider qua 4002 sau khi thêm I-03 | 1,82 s | — |
 
 Thời gian verify từng interaction (lượt provider cuối):
 
@@ -38,6 +44,7 @@ Thời gian verify từng interaction (lượt provider cuối):
 |---|---|
 | I-01 FindManyPeople | 131 ms |
 | I-02 FindManyCompanies | 41 ms |
+| I-03 CreateOnePerson | 92 ms |
 | I-04 FindManyOpportunities | 52 ms |
 | I-05 GetCurrentUser | 128 ms |
 | I-06 FindManyPeople (token sai) | 40 ms |
@@ -56,6 +63,12 @@ Thời gian verify từng interaction (lượt provider cuối):
 - `logs/consumer-run-review-fix.log` — consumer sau review (khóa giá trị I-07): 6/6 pass.
 - `logs/provider-run-review-fix.log` — verify qua 4002 sau review: 5/6 (I-07 chờ Mạnh).
 - `logs/provider-run-review-fix-diagnostic.log` — verify qua 4003 sau review: 6/6 OK.
+- `logs/consumer-run-i03.log` — consumer sau khi thêm I-03: 7/7 pass.
+- `logs/provider-run-i03.log` — verify qua 4002 sau khi thêm I-03: 6/7 (I-03 pass, I-07 chờ Mạnh).
+- `logs/probe-i03-mutation.json` — request/response `CreateOnePerson` thật của twenty-front v2.46.0.
+- `logs/probe-i03-query.graphql` — query mutation tách từ capture để đối chiếu byte.
+- `logs/probe-i03-page.json`, `logs/probe-i03-people.png` — ngữ cảnh trang People và nút Create.
+- `logs/probe-i03-cleanup.json`, `logs/provider-run-i03-cleanup.json` — bằng chứng xóa vĩnh viễn fixture I-03.
 - `logs/probe-i07-body.json` — body 403 thật của Twenty v2.46.0 (không có `extensions`).
 - `logs/f3-companies.png` — bằng chứng F3: trang Companies thật (5 company mẫu).
 - `logs/f4-current-user.png` — bằng chứng F4: trang Profile người dùng hiện tại.

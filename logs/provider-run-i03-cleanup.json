@@ -1,0 +1,26 @@
+[
+  {
+    "id": "d05b3c0b-1da6-4a73-852b-6ad2b77f7d9e",
+    "operationName": "DeleteOnePerson",
+    "status": 200,
+    "body": {
+      "data": {
+        "deletePerson": {
+          "id": "d05b3c0b-1da6-4a73-852b-6ad2b77f7d9e"
+        }
+      }
+    }
+  },
+  {
+    "id": "d05b3c0b-1da6-4a73-852b-6ad2b77f7d9e",
+    "operationName": "DestroyOnePerson",
+    "status": 200,
+    "body": {
+      "data": {
+        "destroyPerson": {
+          "id": "d05b3c0b-1da6-4a73-852b-6ad2b77f7d9e"
+        }
+      }
+    }
+  }
+]

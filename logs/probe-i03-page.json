@@ -1,0 +1,533 @@
+{
+  "details": {
+    "title": "All People - People",
+    "url": "http://localhost:3000/objects/people?panel=%2Fobject%2Fperson%2Fd05b3c0b-1da6-4a73-852b-6ad2b77f7d9e",
+    "text": "P\nphuoc\nHome\nAI\nSettings\nWorkspace\nCompanies\nPeople\nOpportunities\nTasks\nNotes\nDashboards\nWorkflows\nPeople\nCreate\nAll People\n· 7\nFilter\nSort\nOptions\nName\nEmails\nCreated by\nCompany\nPhones\nCreation date\nJob Title\nLinkedin\n-\nP\nphuoc mai\nless than a minute ago\n-\nP\nphuoc mai\n1 minute ago\nB\nBrian Chesky\nchesky@airbnb.com\nSystem\nAirbnb\n+1 123456789\nabout 5 hours ago\nD\nDario Amodei\namodei@anthropic.com\nSystem\nAnthropic\n+1 555123456\nabout 5 hours ago\nP\nPatrick Collison\ncollison@stripe.com\nSystem\nStripe\n+1 987625341\nabout 5 hours ago\nD\nDylan Field\nfield@figma.com\nSystem\nFigma\n+1 098822619\nabout 5 hours ago\nI\nIvan Zhao\nzhao@notion.com\nSystem\nNotion\n+1 882261739\nabout 5 hours ago\nAdd New\nCalculate\nUnique of Emails\n5\nEmpty of Phones\n29%\nEarliest of Creation date\nabout 5 hours ago\n-\nHome\nTimeline\nTasks\n+4 More\nFields\nGeneral\nEmails\nEmails\nPhones\nPhones\nWork\nCompany\nCompany\nJob Title\nJob Title\nSocial\nLinkedin\nLinkedin\nSystem\nCreation date\nless than a minute ago\nCreated by\nP\nphuoc mai\nCompany\nOpportunities\nLists\nSend Email",
+    "buttons": [
+      {
+        "text": "",
+        "aria": "Search",
+        "title": null
+      },
+      {
+        "text": "",
+        "aria": "Collapse sidebar",
+        "title": null
+      },
+      {
+        "text": "Home",
+        "aria": "Home",
+        "title": null
+      },
+      {
+        "text": "AI",
+        "aria": "AI",
+        "title": null
+      },
+      {
+        "text": "Settings",
+        "aria": "Settings",
+        "title": null
+      },
+      {
+        "text": "",
+        "aria": "Edit navigation",
+        "title": null
+      },
+      {
+        "text": "",
+        "aria": "Create Person",
+        "title": null
+      },
+      {
+        "text": "",
+        "aria": "Ask AI",
+        "title": null
+      },
+      {
+        "text": "",
+        "aria": "Ask AI",
+        "title": null
+      },
+      {
+        "text": "Create",
+        "aria": "Create Person",
+        "title": null
+      },
+      {
+        "text": "",
+        "aria": "Command Menu",
+        "title": null
+      },
+      {
+        "text": "Filter",
+        "aria": null,
+        "title": null
+      },
+      {
+        "text": "Sort",
+        "aria": null,
+        "title": null
+      },
+      {
+        "text": "Options",
+        "aria": null,
+        "title": null
+      },
+      {
+        "text": "-",
+        "aria": "Avatar",
+        "title": null
+      },
+      {
+        "text": "",
+        "aria": "Expand record",
+        "title": null
+      },
+      {
+        "text": "",
+        "aria": "Close side panel",
+        "title": null
+      },
+      {
+        "text": "",
+        "aria": null,
+        "title": null
+      },
+      {
+        "text": "",
+        "aria": null,
+        "title": null
+      },
+      {
+        "text": "",
+        "aria": null,
+        "title": null
+      },
+      {
+        "text": "",
+        "aria": null,
+        "title": null
+      },
+      {
+        "text": "",
+        "aria": null,
+        "title": null
+      },
+      {
+        "text": "",
+        "aria": null,
+        "title": null
+      },
+      {
+        "text": "",
+        "aria": null,
+        "title": null
+      },
+      {
+        "text": "",
+        "aria": null,
+        "title": null
+      },
+      {
+        "text": "Home",
+        "aria": null,
+        "title": null
+      },
+      {
+        "text": "Timeline",
+        "aria": null,
+        "title": null
+      },
+      {
+        "text": "Tasks",
+        "aria": null,
+        "title": null
+      },
+      {
+        "text": "+4 More",
+        "aria": null,
+        "title": null
+      },
+      {
+        "text": "",
+        "aria": "Edit relation",
+        "title": null
+      },
+      {
+        "text": "",
+        "aria": "Add relation",
+        "title": null
+      },
+      {
+        "text": "",
+        "aria": "Add relation",
+        "title": null
+      },
+      {
+        "text": "",
+        "aria": "Options",
+        "title": null
+      },
+      {
+        "text": "",
+        "aria": "Add to Favorites",
+        "title": null
+      },
+      {
+        "text": "",
+        "aria": "Send Email",
+        "title": null
+      },
+      {
+        "text": "",
+        "aria": "Add to Favorites",
+        "title": null
+      },
+      {
+        "text": "Send Email",
+        "aria": "Send Email",
+        "title": null
+      }
+    ],
+    "inputs": [
+      {
+        "name": "",
+        "placeholder": "",
+        "type": "checkbox"
+      },
+      {
+        "name": "",
+        "placeholder": "",
+        "type": "checkbox"
+      },
+      {
+        "name": "",
+        "placeholder": "",
+        "type": "checkbox"
+      },
+      {
+        "name": "",
+        "placeholder": "",
+        "type": "checkbox"
+      },
+      {
+        "name": "",
+        "placeholder": "",
+        "type": "checkbox"
+      },
+      {
+        "name": "",
+        "placeholder": "",
+        "type": "checkbox"
+      },
+      {
+        "name": "",
+        "placeholder": "",
+        "type": "checkbox"
+      },
+      {
+        "name": "",
+        "placeholder": "",
+        "type": "checkbox"
+      },
+      {
+        "name": "",
+        "placeholder": "F‌‌irst name",
+        "type": "text"
+      },
+      {
+        "name": "",
+        "placeholder": "L‌‌ast name",
+        "type": "text"
+      },
+      {
+        "name": "",
+        "placeholder": "",
+        "type": "file"
+      },
+      {
+        "name": "",
+        "placeholder": "",
+        "type": "file"
+      }
+    ]
+  },
+  "operations": [
+    {
+      "operationName": "GetCurrentUser",
+      "url": "http://localhost:3000/metadata"
+    },
+    {
+      "operationName": "GetPublicWorkspaceDataByDomain",
+      "url": "http://localhost:3000/metadata"
+    },
+    {
+      "operationName": "GetCurrentUser",
+      "url": "http://localhost:3000/metadata"
+    },
+    {
+      "operationName": "FindMinimalMetadata",
+      "url": "http://localhost:3000/metadata"
+    },
+    {
+      "operationName": "FindManyApplications",
+      "url": "http://localhost:3000/metadata"
+    },
+    {
+      "operationName": "ObjectMetadataItems",
+      "url": "http://localhost:3000/metadata"
+    },
+    {
+      "operationName": "FindAllViews",
+      "url": "http://localhost:3000/metadata"
+    },
+    {
+      "operationName": "FindFieldsWidgetViews",
+      "url": "http://localhost:3000/metadata"
+    },
+    {
+      "operationName": "FindTableWidgetViews",
+      "url": "http://localhost:3000/metadata"
+    },
+    {
+      "operationName": "FindAllRecordPageLayouts",
+      "url": "http://localhost:3000/metadata"
+    },
+    {
+      "operationName": "FindAllRecordFormPageLayouts",
+      "url": "http://localhost:3000/metadata"
+    },
+    {
+      "operationName": "FindManyLogicFunctions",
+      "url": "http://localhost:3000/metadata"
+    },
+    {
+      "operationName": "FindManyNavigationMenuItems",
+      "url": "http://localhost:3000/metadata"
+    },
+    {
+      "operationName": "FindManyCommandMenuItems",
+      "url": "http://localhost:3000/metadata"
+    },
+    {
+      "operationName": "FindManyFrontComponents",
+      "url": "http://localhost:3000/metadata"
+    },
+    {
+      "operationName": "TrackAnalytics",
+      "url": "http://localhost:3000/metadata"
+    },
+    {
+      "operationName": "FindManyAgentChatThreads",
+      "url": "http://localhost:3000/graphql"
+    },
+    {
+      "operationName": "GetRecordPermissions",
+      "url": "http://localhost:3000/metadata"
+    },
+    {
+      "operationName": "AddQueryToEventStream",
+      "url": "http://localhost:3000/metadata"
+    },
+    {
+      "operationName": "AddQueryToEventStream",
+      "url": "http://localhost:3000/metadata"
+    },
+    {
+      "operationName": "MyConnectedAccounts",
+      "url": "http://localhost:3000/metadata"
+    },
+    {
+      "operationName": "MyMessageChannels",
+      "url": "http://localhost:3000/metadata"
+    },
+    {
+      "operationName": "MyCalendarChannels",
+      "url": "http://localhost:3000/metadata"
+    },
+    {
+      "operationName": "AggregatePeople",
+      "url": "http://localhost:3000/graphql"
+    },
+    {
+      "operationName": "FindManyPeople",
+      "url": "http://localhost:3000/graphql"
+    },
+    {
+      "operationName": "MyConnectedAccounts",
+      "url": "http://localhost:3000/metadata"
+    },
+    {
+      "operationName": "FindOneWorkspaceMember",
+      "url": "http://localhost:3000/graphql"
+    },
+    {
+      "operationName": "AggregatePeople",
+      "url": "http://localhost:3000/graphql"
+    },
+    {
+      "operationName": "AggregatePeople",
+      "url": "http://localhost:3000/graphql"
+    },
+    {
+      "operationName": "AggregatePeople",
+      "url": "http://localhost:3000/graphql"
+    },
+    {
+      "operationName": "MyConnectedAccounts",
+      "url": "http://localhost:3000/metadata"
+    },
+    {
+      "operationName": "FindOneWorkspaceMember",
+      "url": "http://localhost:3000/graphql"
+    },
+    {
+      "operationName": "AggregatePeople",
+      "url": "http://localhost:3000/graphql"
+    },
+    {
+      "operationName": "AggregatePeople",
+      "url": "http://localhost:3000/graphql"
+    },
+    {
+      "operationName": "AggregatePeople",
+      "url": "http://localhost:3000/graphql"
+    },
+    {
+      "operationName": "AggregatePeople",
+      "url": "http://localhost:3000/graphql"
+    },
+    {
+      "operationName": "AggregatePeople",
+      "url": "http://localhost:3000/graphql"
+    },
+    {
+      "operationName": "AggregatePeople",
+      "url": "http://localhost:3000/graphql"
+    },
+    {
+      "operationName": "AddQueryToEventStream",
+      "url": "http://localhost:3000/metadata"
+    },
+    {
+      "operationName": "AddQueryToEventStream",
+      "url": "http://localhost:3000/metadata"
+    },
+    {
+      "operationName": "CreateOnePerson",
+      "url": "http://localhost:3000/graphql"
+    },
+    {
+      "operationName": "FindOneWorkspaceMember",
+      "url": "http://localhost:3000/graphql"
+    },
+    {
+      "operationName": "AggregatePeople",
+      "url": "http://localhost:3000/graphql"
+    },
+    {
+      "operationName": "AggregatePeople",
+      "url": "http://localhost:3000/graphql"
+    },
+    {
+      "operationName": "AggregatePeople",
+      "url": "http://localhost:3000/graphql"
+    },
+    {
+      "operationName": "AggregatePeople",
+      "url": "http://localhost:3000/graphql"
+    },
+    {
+      "operationName": "AggregatePeople",
+      "url": "http://localhost:3000/graphql"
+    },
+    {
+      "operationName": "AggregatePeople",
+      "url": "http://localhost:3000/graphql"
+    },
+    {
+      "operationName": "AggregatePeople",
+      "url": "http://localhost:3000/graphql"
+    },
+    {
+      "operationName": "AggregatePeople",
+      "url": "http://localhost:3000/graphql"
+    },
+    {
+      "operationName": "FindManyPeople",
+      "url": "http://localhost:3000/graphql"
+    },
+    {
+      "operationName": "AggregatePeople",
+      "url": "http://localhost:3000/graphql"
+    },
+    {
+      "operationName": "AggregatePeople",
+      "url": "http://localhost:3000/graphql"
+    },
+    {
+      "operationName": "AggregatePeople",
+      "url": "http://localhost:3000/graphql"
+    },
+    {
+      "operationName": "AggregatePeople",
+      "url": "http://localhost:3000/graphql"
+    },
+    {
+      "operationName": "AggregatePeople",
+      "url": "http://localhost:3000/graphql"
+    },
+    {
+      "operationName": "FindManyPeople",
+      "url": "http://localhost:3000/graphql"
+    },
+    {
+      "operationName": "MyConnectedAccounts",
+      "url": "http://localhost:3000/metadata"
+    },
+    {
+      "operationName": "FindOnePerson",
+      "url": "http://localhost:3000/graphql"
+    },
+    {
+      "operationName": "AddQueryToEventStream",
+      "url": "http://localhost:3000/metadata"
+    },
+    {
+      "operationName": "FindOneWorkspaceMember",
+      "url": "http://localhost:3000/graphql"
+    }
+  ],
+  "errors": [
+    {
+      "type": "console",
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "requestfailed",
+      "url": "http://localhost:3000/metadata",
+      "text": "net::ERR_ABORTED"
+    },
+    {
+      "type": "requestfailed",
+      "url": "http://localhost:3000/graphql",
+      "text": "net::ERR_ABORTED"
+    },
+    {
+      "type": "requestfailed",
+      "url": "http://localhost:3000/graphql",
+      "text": "net::ERR_ABORTED"
+    },
+    {
+      "type": "requestfailed",
+      "url": "http://localhost:3000/graphql",
+      "text": "net::ERR_ABORTED"
+    },
+    {
+      "type": "requestfailed",
+      "url": "http://localhost:3000/graphql",
+      "text": "net::ERR_ABORTED"
+    }
+  ]
+}

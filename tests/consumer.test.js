@@ -32,7 +32,7 @@ const headers = (session) => ({
   'x-app-version': 'v2.46.0',
 });
 
-async function postGraphql(baseUrl, { token, operationName, variables, query, path = '/graphql', origin = true }) {
+async function postJson(baseUrl, { token, operationName, variables, query, path = '/graphql', origin = true }) {
   const requestHeaders = headers(token);
   if (!origin) delete requestHeaders.Origin;
   const res = await fetch(`${baseUrl}${path}`, {
@@ -43,21 +43,21 @@ async function postGraphql(baseUrl, { token, operationName, variables, query, pa
   return res.json();
 }
 
-const findManyPeople = (baseUrl, token) => postGraphql(baseUrl, {
+const findManyPeople = (baseUrl, token) => postJson(baseUrl, {
   token,
   operationName: 'FindManyPeople',
   variables: FIND_MANY_PEOPLE_VARIABLES,
   query: FIND_MANY_PEOPLE_QUERY,
 });
 
-const findManyCompanies = (baseUrl, token) => postGraphql(baseUrl, {
+const findManyCompanies = (baseUrl, token) => postJson(baseUrl, {
   token,
   operationName: 'FindManyCompanies',
   variables: FIND_MANY_COMPANIES_VARIABLES,
   query: FIND_MANY_COMPANIES_QUERY,
 });
 
-const findManyOpportunities = (baseUrl, token) => postGraphql(baseUrl, {
+const findManyOpportunities = (baseUrl, token) => postJson(baseUrl, {
   token,
   operationName: 'FindManyOpportunities',
   variables: FIND_MANY_OPPORTUNITIES_VARIABLES,
@@ -65,7 +65,7 @@ const findManyOpportunities = (baseUrl, token) => postGraphql(baseUrl, {
 });
 
 // GetCurrentUser thuộc schema /metadata (không phải /graphql) trên cùng host:port.
-const getCurrentUser = (baseUrl, token) => postGraphql(baseUrl, {
+const getCurrentUser = (baseUrl, token) => postJson(baseUrl, {
   token,
   operationName: 'GetCurrentUser',
   variables: GET_CURRENT_USER_VARIABLES,
@@ -74,7 +74,7 @@ const getCurrentUser = (baseUrl, token) => postGraphql(baseUrl, {
 });
 
 // I-07: lặp lại đúng request I-01 nhưng bỏ header Origin.
-const findManyPeopleWithoutOrigin = (baseUrl, token) => postGraphql(baseUrl, {
+const findManyPeopleWithoutOrigin = (baseUrl, token) => postJson(baseUrl, {
   token,
   operationName: 'FindManyPeople',
   variables: FIND_MANY_PEOPLE_VARIABLES,
@@ -107,10 +107,10 @@ const request = (token, options = {}) => {
 const jsonHeader = { 'Content-Type': regex('^application/json.*$', 'application/json; charset=utf-8') };
 
 describe('twenty-front → twenty-server', () => {
-  it('I-01 FindManyPeople với access token hợp lệ', async () => {
+  it('I-01 FindManyPeople với phiên hợp lệ', async () => {
     pact
       .given('workspace có ít nhất 1 Person')
-      .uponReceiving('I-01 FindManyPeople với access token hợp lệ')
+      .uponReceiving('I-01 FindManyPeople với phiên hợp lệ')
       .withRequest(request('valid-session'))
       .willRespondWith({
         status: 200,
@@ -240,10 +240,10 @@ describe('twenty-front → twenty-server', () => {
     await pact.executeTest(async (mock) => { await getCurrentUser(mock.url, 'valid-session'); });
   });
 
-  it('I-06 FindManyPeople với access token sai', async () => {
+  it('I-06 FindManyPeople với phiên sai', async () => {
     pact
       .given('token không hợp lệ')
-      .uponReceiving('I-06 FindManyPeople với access token sai')
+      .uponReceiving('I-06 FindManyPeople với phiên sai')
       .withRequest(request('session-sai'))
       .willRespondWith({
         status: 200, // đã kiểm chứng bằng probe: phiên sai vẫn trả HTTP 200

@@ -4,7 +4,7 @@
   },
   "interactions": [
     {
-      "description": "I-01 FindManyPeople với access token hợp lệ",
+      "description": "I-01 FindManyPeople với phiên hợp lệ",
       "providerStates": [
         {
           "name": "workspace có ít nhất 1 Person"
@@ -662,7 +662,7 @@
       }
     },
     {
-      "description": "I-06 FindManyPeople với access token sai",
+      "description": "I-06 FindManyPeople với phiên sai",
       "providerStates": [
         {
           "name": "token không hợp lệ"

@@ -11,7 +11,8 @@ Cập nhật lần cuối: 16/11/2026 (mã số sinh viên theo yêu cầu: 2312
 - [x] `npm install`, `npm run test:consumer`: 6/6 pass
 - [x] `npm run test:provider` (qua auth-proxy): 5/6 pass, riêng I-07 fail do proxy chèn Origin (xem mục 4)
 - [ ] Workspace đặt tên `dlu-qa`, có dữ liệu mẫu People/Companies (hỏi Mạnh cách nạp, nếu chưa có)
-      Hiện workspace tên `phuoc`, có 5 People, 5 Companies, 6 Opportunities.
+      Quy ước hợp đồng dùng `dlu-qa`; workspace Docker hiện tên `phuoc` (cần Mạnh xác nhận cấp/đổi tên, xem mục 4),
+      có 5 People, 5 Companies, 6 Opportunities.
 
 ## 1. Thiết kế scenario (bảng E.1 trong báo cáo)
 Mỗi interaction cần ghi rõ: precondition, input, expected.
@@ -52,7 +53,8 @@ Ghi chú kỹ thuật:
 - I-07 khóa đúng giá trị thật (không dùng matcher kiểu): `statusCode: 403`, `error: CSRF_ORIGIN_MISMATCH`,
   `messages` nguyên văn. Twenty v2.46.0 **không** trả `extensions.code`; bằng chứng probe:
   `logs/probe-i07-body.json` (403, `{"statusCode":403,"messages":[...],"error":"CSRF_ORIGIN_MISMATCH"}`).
-- Đã gom 4 helper fetch trùng cấu trúc về `postGraphql` (review 16/11).
+- Đã gom 4 helper fetch trùng cấu trúc về `postJson` (review 16/11); tên cũ `postGraphql` không còn vì
+  helper dùng chung cho cả `/graphql` và `/metadata`.
 
 ## 3. Thu thập log/metrics (mục G.2)
 - [x] Số interaction pass/fail mỗi lượt chạy
@@ -105,7 +107,8 @@ Tóm tắt (chi tiết trong `logs/metrics.md`):
 ### Câu hỏi cho Mạnh
 1. Đồng ý sửa `requestFilter` + `auth-proxy` theo hướng "chỉ đặt Origin khi request có Origin" chứ?
    Nếu không, có thể cấu hình verifier chạy I-07 trực tiếp cổng 3000 (không proxy) không?
-2. Workspace chuẩn của nhóm đặt tên `dlu-qa` hay giữ `phuoc`? Có cần nạp thêm People/Companies không
+2. Thống nhất dùng `dlu-qa` làm tên chuẩn trong hợp đồng: Mạnh đổi tên workspace Docker hiện tại
+   (`phuoc`) hay cấp workspace `dlu-qa` riêng? Có cần nạp thêm People/Companies không
    (hiện 5/5, Opportunities 6)?
 3. I-03 CreatePerson có nằm trong phạm vi báo cáo không? Nếu có, ai làm provider state dọn dẹp?
 4. Báo cáo có cần ghi rõ I-05 dùng `/metadata` (khác `/graphql`) không? (Phước đã ghi trong scenario.)
@@ -114,3 +117,6 @@ Tóm tắt (chi tiết trong `logs/metrics.md`):
 - 16/11: dựng xong môi trường, baseline 2 interaction pass cả consumer và provider.
 - 16/11: bắt request thật bằng Chromium; thêm I-02, I-04, I-05, I-07; consumer 6/6 pass;
   provider 5/6 pass (I-07 chờ Mạnh sửa Origin/proxy); log + ảnh F3/F4 đã lưu trong `logs/`.
+- 16/11: dọn nợ review trong phạm vi Phước: đổi `postGraphql` → `postJson` (dùng chung cho
+  `/graphql` và `/metadata`), sửa tiêu đề I-01/I-06 từ "access token" thành "phiên" cho đúng
+  cơ chế cookie `twenty-session`, thống nhất tên chuẩn `dlu-qa` trong hợp đồng/tài liệu.

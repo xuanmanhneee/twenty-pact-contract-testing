@@ -32,73 +32,55 @@ const headers = (session) => ({
   'x-app-version': 'v2.46.0',
 });
 
-async function findManyPeople(baseUrl, token) {
-  const res = await fetch(`${baseUrl}/graphql`, {
+async function postGraphql(baseUrl, { token, operationName, variables, query, path = '/graphql', origin = true }) {
+  const requestHeaders = headers(token);
+  if (!origin) delete requestHeaders.Origin;
+  const res = await fetch(`${baseUrl}${path}`, {
     method: 'POST',
-    headers: headers(token),
-    body: JSON.stringify({
-      operationName: 'FindManyPeople',
-      variables: FIND_MANY_PEOPLE_VARIABLES,
-      query: FIND_MANY_PEOPLE_QUERY,
-    }),
+    headers: requestHeaders,
+    body: JSON.stringify({ operationName, variables, query }),
   });
   return res.json();
 }
 
-async function findManyCompanies(baseUrl, token) {
-  const res = await fetch(`${baseUrl}/graphql`, {
-    method: 'POST',
-    headers: headers(token),
-    body: JSON.stringify({
-      operationName: 'FindManyCompanies',
-      variables: FIND_MANY_COMPANIES_VARIABLES,
-      query: FIND_MANY_COMPANIES_QUERY,
-    }),
-  });
-  return res.json();
-}
+const findManyPeople = (baseUrl, token) => postGraphql(baseUrl, {
+  token,
+  operationName: 'FindManyPeople',
+  variables: FIND_MANY_PEOPLE_VARIABLES,
+  query: FIND_MANY_PEOPLE_QUERY,
+});
 
-async function findManyOpportunities(baseUrl, token) {
-  const res = await fetch(`${baseUrl}/graphql`, {
-    method: 'POST',
-    headers: headers(token),
-    body: JSON.stringify({
-      operationName: 'FindManyOpportunities',
-      variables: FIND_MANY_OPPORTUNITIES_VARIABLES,
-      query: FIND_MANY_OPPORTUNITIES_QUERY,
-    }),
-  });
-  return res.json();
-}
+const findManyCompanies = (baseUrl, token) => postGraphql(baseUrl, {
+  token,
+  operationName: 'FindManyCompanies',
+  variables: FIND_MANY_COMPANIES_VARIABLES,
+  query: FIND_MANY_COMPANIES_QUERY,
+});
+
+const findManyOpportunities = (baseUrl, token) => postGraphql(baseUrl, {
+  token,
+  operationName: 'FindManyOpportunities',
+  variables: FIND_MANY_OPPORTUNITIES_VARIABLES,
+  query: FIND_MANY_OPPORTUNITIES_QUERY,
+});
 
 // GetCurrentUser thuộc schema /metadata (không phải /graphql) trên cùng host:port.
-async function getCurrentUser(baseUrl, token) {
-  const res = await fetch(`${baseUrl}/metadata`, {
-    method: 'POST',
-    headers: headers(token),
-    body: JSON.stringify({
-      operationName: 'GetCurrentUser',
-      variables: GET_CURRENT_USER_VARIABLES,
-      query: GET_CURRENT_USER_QUERY,
-    }),
-  });
-  return res.json();
-}
+const getCurrentUser = (baseUrl, token) => postGraphql(baseUrl, {
+  token,
+  operationName: 'GetCurrentUser',
+  variables: GET_CURRENT_USER_VARIABLES,
+  query: GET_CURRENT_USER_QUERY,
+  path: '/metadata',
+});
 
-// I-07: lặp lại đúng request I-01 nhưng bỏ header Origin, cần cả status HTTP nên trả về response.
-async function findManyPeopleWithoutOrigin(baseUrl, token) {
-  const headersNoOrigin = headers(token);
-  delete headersNoOrigin.Origin;
-  return fetch(`${baseUrl}/graphql`, {
-    method: 'POST',
-    headers: headersNoOrigin,
-    body: JSON.stringify({
-      operationName: 'FindManyPeople',
-      variables: FIND_MANY_PEOPLE_VARIABLES,
-      query: FIND_MANY_PEOPLE_QUERY,
-    }),
-  });
-}
+// I-07: lặp lại đúng request I-01 nhưng bỏ header Origin.
+const findManyPeopleWithoutOrigin = (baseUrl, token) => postGraphql(baseUrl, {
+  token,
+  operationName: 'FindManyPeople',
+  variables: FIND_MANY_PEOPLE_VARIABLES,
+  query: FIND_MANY_PEOPLE_QUERY,
+  origin: false,
+});
 
 const request = (token, options = {}) => {
   const {
@@ -280,10 +262,12 @@ describe('twenty-front → twenty-server', () => {
       .willRespondWith({
         status: 403, // phản hồi thật của Twenty v2.46.0 khi cookie hợp lệ nhưng thiếu Origin
         headers: jsonHeader,
+        // Khóa đúng giá trị thật (probe 16/11, logs/probe-i07-body.json): không có extensions.code,
+        // Twenty trả mã CSRF ở khóa top-level "error".
         body: {
-          statusCode: integer(403),
-          messages: eachLike(string('Request origin is not allowed for cookie-authenticated requests'), 1),
-          error: string('CSRF_ORIGIN_MISMATCH'),
+          statusCode: 403,
+          messages: ['Request origin is not allowed for cookie-authenticated requests'],
+          error: 'CSRF_ORIGIN_MISMATCH',
         },
       });
     await pact.executeTest(async (mock) => { await findManyPeopleWithoutOrigin(mock.url, 'valid-session'); });

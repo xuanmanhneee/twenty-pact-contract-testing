@@ -804,41 +804,6 @@
           "Content-Type": "application/json; charset=utf-8"
         },
         "matchingRules": {
-          "body": {
-            "$.error": {
-              "combine": "AND",
-              "matchers": [
-                {
-                  "match": "type"
-                }
-              ]
-            },
-            "$.messages": {
-              "combine": "AND",
-              "matchers": [
-                {
-                  "match": "type",
-                  "min": 1
-                }
-              ]
-            },
-            "$.messages[*]": {
-              "combine": "AND",
-              "matchers": [
-                {
-                  "match": "type"
-                }
-              ]
-            },
-            "$.statusCode": {
-              "combine": "AND",
-              "matchers": [
-                {
-                  "match": "integer"
-                }
-              ]
-            }
-          },
           "header": {
             "Content-Type": {
               "combine": "AND",

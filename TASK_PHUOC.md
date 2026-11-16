@@ -33,7 +33,7 @@ Nguồn query: bắt trực tiếp request/response thật của twenty-front v2
 | I-04 | Workspace có ≥ 1 Opportunity; phiên hợp lệ | POST `/graphql`, `FindManyOpportunities`, cùng variables như I-01 | 200, node có `id`, `name`, `amount.amountMicros`, `amount.currencyCode`, `closeDate`, `company.id/name` |
 | I-05 | Người dùng đã đăng nhập | POST `/metadata`, `GetCurrentUser`, `variables={}` | 200, `data.currentUser` có `id`, `email`, `onboardingStatus`, `currentWorkspace.id/displayName`, `workspaceMember.id/name` |
 | I-06 | Phiên sai | POST `/graphql`, `FindManyPeople`, cookie `twenty-session=session-sai` | 200 (Twenty không đổi status), `errors[].message` là lỗi validate schema |
-| I-07 | Phiên hợp lệ nhưng thiếu Origin | POST `/graphql`, `FindManyPeople`, cookie hợp lệ, **không** gửi Origin | 403, body `{statusCode:403, messages:["Request origin is not allowed for cookie-authenticated requests"], error:"CSRF_ORIGIN_MISMATCH"}` |
+| I-07 | Phiên hợp lệ nhưng thiếu Origin | POST `/graphql`, `FindManyPeople`, cookie hợp lệ, **không** gửi Origin | 403, body chính xác `{statusCode:403, messages:["Request origin is not allowed for cookie-authenticated requests"], error:"CSRF_ORIGIN_MISMATCH"}` (không có `extensions`; đã probe, xem `logs/probe-i07-body.json`) |
 
 ## 2. Viết consumer test
 Truy vấn phải lấy từ request thật của twenty-front (DevTools, tab Network), không tự bịa.
@@ -49,6 +49,10 @@ Ghi chú kỹ thuật:
 - `GetCurrentUser` của twenty-front v2.46.0 đi qua `/metadata`; 5 interaction còn lại đi `/graphql`.
 - Query/response được đối chiếu `actual === network request` (cùng độ dài, từng dòng) trước khi viết test.
 - Header `x-app-version: v2.46.0` giữ như front gửi.
+- I-07 khóa đúng giá trị thật (không dùng matcher kiểu): `statusCode: 403`, `error: CSRF_ORIGIN_MISMATCH`,
+  `messages` nguyên văn. Twenty v2.46.0 **không** trả `extensions.code`; bằng chứng probe:
+  `logs/probe-i07-body.json` (403, `{"statusCode":403,"messages":[...],"error":"CSRF_ORIGIN_MISMATCH"}`).
+- Đã gom 4 helper fetch trùng cấu trúc về `postGraphql` (review 16/11).
 
 ## 3. Thu thập log/metrics (mục G.2)
 - [x] Số interaction pass/fail mỗi lượt chạy
@@ -67,9 +71,12 @@ Tóm tắt (chi tiết trong `logs/metrics.md`):
 
 ## 4. Cần nhờ người khác (ngoài phạm vi của Phước)
 ### Mạnh
-- [ ] `tests/provider.verify.test.js`: `requestFilter` đang đặt Origin cho **mọi** request nên I-07
-      không thể trả 403. Đề xuất đổi thành "chỉ đặt Origin khi request có Origin":
+- [ ] **BLOCKER I-07 (chờ Mạnh, Phước không sửa file của Mạnh):** `tests/provider.verify.test.js`
+      đang đặt Origin cho **mọi** request trong `requestFilter`, nên I-07 (hợp đồng đúng: thiếu Origin
+      ⇒ 403) nhận 200 và fail khi verify qua cổng 4002. `tests/auth-proxy.mjs` cũng luôn gán
+      `origin`. Đề xuất: **chỉ đặt Origin khi request gốc có Origin**.
       ```js
+      // provider.verify.test.js
       requestFilter: (req, _res, next) => {
         if (req.headers['origin']) req.headers['origin'] = ORIGIN;
         if (req.headers['cookie'] === 'twenty-session=valid-session') {
@@ -78,11 +85,20 @@ Tóm tắt (chi tiết trong `logs/metrics.md`):
         next();
       },
       ```
-- [ ] `tests/auth-proxy.mjs`: cổng 4002 cũng luôn gán `origin`; cần cùng quy tắc điều kiện,
-      hoặc tách cổng/cấu hình riêng cho I-07. Đã chứng minh bằng proxy tạm 4003: 6/6 OK.
-- [ ] Thêm `stateHandlers` rỗng/ý nghĩa cho 4 state mới (hiện verifier chỉ WARN rồi chạy tiếp,
-      không fail): `workspace có ít nhất 1 Company`, `workspace có ít nhất 1 Opportunity`,
-      `người dùng đã đăng nhập vào workspace`, `phiên hợp lệ nhưng request thiếu Origin`.
+      ```js
+      // auth-proxy.mjs
+      const headers = { ...req.headers, host: TARGET.host };
+      if (req.headers.origin) headers.origin = ORIGIN;
+      ```
+      Đã chứng minh bằng proxy điều kiện cổng 4003 (không sửa file repo): 6/6 OK, gồm I-07 khóa
+      đúng `statusCode/error/messages`. Log: `logs/provider-run-review-fix-diagnostic.log`.
+- [ ] **Provider state còn thiếu handler** trong `tests/provider.verify.test.js` (hiện chỉ có
+      `workspace có ít nhất 1 Person`, `token không hợp lệ`). Verifier hiện chỉ WARN rồi chạy tiếp,
+      nhưng nên thêm cho đủ (đừng để Phước tự thêm):
+      1. `workspace có ít nhất 1 Company` — dùng bởi I-02 (`tests/consumer.test.js`)
+      2. `workspace có ít nhất 1 Opportunity` — I-04
+      3. `người dùng đã đăng nhập vào workspace` — I-05
+      4. `phiên hợp lệ nhưng request thiếu Origin` — I-07
 - [ ] Nếu làm I-03: cần provider state tạo Person và teardown xóa Person sau mỗi lượt verify
       (tránh rác dữ liệu + lặp lại được). Nếu không, ghi rõ I-03 ngoài phạm vi.
 

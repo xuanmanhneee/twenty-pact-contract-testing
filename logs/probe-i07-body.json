@@ -1,0 +1,10 @@
+{
+  "status": 403,
+  "body": {
+    "statusCode": 403,
+    "messages": [
+      "Request origin is not allowed for cookie-authenticated requests"
+    ],
+    "error": "CSRF_ORIGIN_MISMATCH"
+  }
+}

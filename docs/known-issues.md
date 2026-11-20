@@ -36,14 +36,14 @@ Khi không qua proxy, request bị 403 dù hợp đồng có Origin. Nguyên nh�
 - **Phiên bản:** image `v2.46.0` đã pin, nhưng source đối chiếu `a61e47d` chưa khớp tuyệt đối. Kết quả không phụ thuộc source.
 - **Workspace:** hợp đồng quy ước `dlu-qa`, workspace Docker hiện có tên `phuoc`. Chưa có cách nạp dữ liệu mẫu chung cho cả nhóm.
 - **Phiên đăng nhập:** lấy thủ công, hết hạn nhanh.
-- **Thí nghiệm phá hợp đồng:** mới có M-1 (phía consumer); chưa có M-2 đến M-4 ở provider.
+- **Thí nghiệm phá hợp đồng:** M-2, M-3, M-4 mô phỏng ở lớp proxy (không sửa server thật), mỗi lượt chạy một lần. Chưa thử thay đổi thật trên mã nguồn Twenty.
 - **Phạm vi:** chỉ kiểm hình dạng dữ liệu, không kiểm nghiệp vụ hay hiệu năng.
 
 ## Việc còn lại
 Thứ tự đề xuất, theo mức ảnh hưởng đến tiêu chí "100% pass" trong [contract-testing.md](contract-testing.md):
 - [x] KI-1: verify 7/7 sau khi sửa Origin (21/11/2026).
 - [x] KI-2, KI-3: đủ provider state và teardown tự động cho I-03 (21/11/2026).
-- [ ] Viết lại `rename-proxy` theo cookie (v2.46.0), chạy M-2, M-3, M-4 qua proxy, ghi log.
+- [x] M-2, M-3, M-4 (+ M-0 đối chứng, M-6 tương thích ngược): chạy qua `mutate-proxy`, bằng chứng ở `logs/experiments/` (21/11/2026).
 - [ ] Điều tra KI-4 và ghi nguyên nhân gốc.
 - [ ] Thống nhất workspace `dlu-qa` và cách nạp dữ liệu mẫu.
 - [ ] Kiểm tra chạy lại từ máy sạch theo README, ghi kết quả.

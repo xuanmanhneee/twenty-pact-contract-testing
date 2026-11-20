@@ -18,18 +18,16 @@ Cập nhật: 21/11/2026, dựa trên `main` tại `1b43d3b` cộng bản sửa 
   ```
 - **Trạng thái:** đã áp dụng vào `auth-proxy.mjs` và `provider.verify.test.js`. Verify thật qua `:4002`: **7/7 interaction OK**, I-07 đến server không có Origin và nhận `403 CSRF_ORIGIN_MISMATCH` (log: `logs/auth-proxy-run.log`).
 
-### KI-2. Thiếu provider state handler
-`provider.verify.test.js` chỉ có 2 handler (`workspace có ít nhất 1 Person`, `token không hợp lệ`). Verifier chỉ cảnh báo rồi chạy tiếp.
-Cần thêm 5 handler:
-1. `workspace có ít nhất 1 Company` (I-02)
-2. `workspace có ít nhất 1 Opportunity` (I-04)
-3. `người dùng đã đăng nhập vào workspace` (I-05)
-4. `phiên hợp lệ nhưng request thiếu Origin` (I-07)
-5. `workspace sẵn sàng tạo Person I-03` (I-03, kèm teardown ở KI-3)
+### KI-2. Thiếu provider state handler (ĐÃ SỬA, 21/11/2026)
+`tests/provider.verify.test.js` nay có đủ 7 handler, mỗi state của hợp đồng một handler. Handler kiểm tra precondition thật
+thay vì để trống: `requireRecords` truy vấn `totalCount` của People/Companies/Opportunities, handler đăng nhập gọi `currentUser` qua `/metadata`.
+Precondition không thỏa thì báo lỗi rõ ràng thay vì để verify fail khó hiểu. Các handler này gọi thẳng Twenty (`TARGET`, mặc định `:3000`) bằng phiên thật.
+Chưa kiểm thử nhánh báo lỗi của các handler này (workspace rỗng hoặc phiên hết hạn).
 
-### KI-3. I-03 chưa có teardown tự động
-Fixture UUID `d05b3c0b-1da6-4a73-852b-6ad2b77f7d9e` phải được xóa trước và sau mỗi lượt verify (`DeleteOnePerson` rồi `DestroyOnePerson`).
-Hiện chỉ dọn tay; lượt verify kế tiếp có thể fail I-03 vì trùng UUID.
+### KI-3. I-03 chưa có teardown tự động (ĐÃ SỬA, 21/11/2026)
+State `workspace sẵn sàng tạo Person I-03` có `setup` và `teardown` cùng gọi `cleanupI03` (`DeletePerson` rồi `DestroyPerson` cho fixture
+`d05b3c0b-1da6-4a73-852b-6ad2b77f7d9e`), idempotent. Kiểm chứng 3 tình huống, đều 7/7 và không còn fixture sau verify:
+chạy sạch, chạy lặp lại (chứng minh fixture bị xóa vĩnh viễn vì tạo lại cùng UUID không bị trùng), và chạy khi fixture còn sót từ trước.
 
 ### KI-4. Verifier gọi thẳng Twenty bị 403
 Khi không qua proxy, request bị 403 dù hợp đồng có Origin. Nguyên nhân gốc chưa xác định, hiện tránh bằng auth-proxy. Cần phân tích header (cookie, Origin, `x-app-version`) để kết luận.
@@ -44,7 +42,7 @@ Khi không qua proxy, request bị 403 dù hợp đồng có Origin. Nguyên nh�
 ## Việc còn lại
 Thứ tự đề xuất, theo mức ảnh hưởng đến tiêu chí "100% pass" trong [contract-testing.md](contract-testing.md):
 - [x] KI-1: verify 7/7 sau khi sửa Origin (21/11/2026).
-- [ ] Thêm 5 provider state và teardown I-03 (KI-2, KI-3).
+- [x] KI-2, KI-3: đủ provider state và teardown tự động cho I-03 (21/11/2026).
 - [ ] Viết lại `rename-proxy` theo cookie (v2.46.0), chạy M-2, M-3, M-4 qua proxy, ghi log.
 - [ ] Điều tra KI-4 và ghi nguyên nhân gốc.
 - [ ] Thống nhất workspace `dlu-qa` và cách nạp dữ liệu mẫu.

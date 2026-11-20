@@ -57,7 +57,7 @@ Thời gian verify từng interaction (lượt provider cuối): I-01 131 ms, I-
 Nguồn: `logs/metrics.md` (bảng đầy đủ), `logs/consumer-run-*.log`, `logs/provider-run-*.log`.
 Ảnh bằng chứng: `logs/people.png`, `logs/f3-companies.png`, `logs/opportunities.png`, `logs/f4-current-user.png`.
 
-Lượt `:4003` chỉ là chẩn đoán trên bộ 6 interaction trước I-03. Lượt verify 7/7 thật là lượt ngày 21/11 qua `:4002`. Sau mỗi lượt verify, fixture I-03 vẫn phải dọn tay (KI-3).
+Lượt `:4003` chỉ là chẩn đoán trên bộ 6 interaction trước I-03. Lượt verify 7/7 thật là lượt ngày 21/11 qua `:4002`. Từ cùng ngày, fixture I-03 được dọn tự động bởi state handler nên không cần dọn tay (KI-3).
 
 ## Phân tích nguyên nhân (RCA) đã có
 - **I-07 fail qua `:4002` (đã sửa):** hợp đồng đúng (thiếu Origin thì 403), nhưng `auth-proxy.mjs` và `requestFilter` trong `provider.verify.test.js` đặt Origin cho mọi request, nên server nhận 200. Chi tiết và cách sửa: [known-issues.md](known-issues.md).

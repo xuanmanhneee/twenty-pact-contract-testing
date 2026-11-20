@@ -28,8 +28,8 @@ Request chung (trừ I-07): header `Content-Type: application/json`, `Cookie: tw
 | I-07 | Phiên hợp lệ, **không gửi Origin** | Như I-01 | 403; body chính xác `{statusCode: 403, messages: ["Request origin is not allowed for cookie-authenticated requests"], error: "CSRF_ORIGIN_MISMATCH"}` (không có `extensions`) |
 
 ## Ghi chú theo từng interaction
-- **I-03** là mutation duy nhất. Verify sẽ tạo bản ghi thật, nên cần xóa fixture trước và sau mỗi lượt:
-  `DeleteOnePerson` rồi `DestroyOnePerson` (xóa vĩnh viễn, không chỉ soft-delete). Chứng cứ dọn tay lần đầu: `logs/provider-run-i03-cleanup.json`.
+- **I-03** là mutation duy nhất. Verify tạo bản ghi thật, nên state handler tự xóa fixture trước (`setup`) và sau (`teardown`) mỗi lượt:
+  `DeleteOnePerson` rồi `DestroyOnePerson` (xóa vĩnh viễn, không chỉ soft-delete). Chứng cứ dọn tay trước khi có teardown tự động: `logs/provider-run-i03-cleanup.json`.
 - **I-05** đi qua `/metadata`, khác 6 interaction còn lại.
 - **I-06** mô tả đúng hành vi thật: lỗi xác thực của GraphQL trả HTTP 200, không phải 401.
 - **I-07** khóa giá trị thật. Twenty v2.46.0 không trả `extensions.code`; bằng chứng: `logs/probe-i07-body.json`.

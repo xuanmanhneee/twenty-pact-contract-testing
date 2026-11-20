@@ -63,9 +63,10 @@ tests/
   queries.js                Truy vấn/biến lấy từ request thật của twenty-front
   provider.verify.test.js   Pact Verifier chạy vào Twenty thật
   auth-proxy.mjs            Proxy thay cookie, đặt Origin (cổng 4002)
-  rename-proxy.mjs          Proxy cũ đổi tên field city → cityName (cổng 4001), còn dùng Bearer token nên lỗi thời
+  mutate-proxy.mjs          Proxy sửa JSON response (đổi tên/xóa/đổi kiểu/thêm field) cho thí nghiệm phá hợp đồng (cổng 4001)
+  experiments.mjs           Chạy M-0, M-2, M-3, M-4, M-6 và ghi bằng chứng vào logs/experiments/
   probe.mjs                 Consumer test thử nghiệm cũ (chỉ I-01), không thuộc luồng chính
 pacts/          Hợp đồng JSON được sinh ra (commit để provider verify)
-logs/           Log chạy, ảnh bằng chứng, kết quả probe
+logs/           Log chạy, ảnh bằng chứng, kết quả probe; logs/experiments/ chứa kết quả thí nghiệm phá hợp đồng
 docs/           Tài liệu này
 ```

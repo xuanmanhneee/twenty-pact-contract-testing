@@ -1,0 +1,16 @@
+auth-proxy cổng 4002 → http://localhost:3000
+POST /graphql | header vào: host,user-agent,accept,content-type,content-length | origin vào: undefined | đã thay cookie: false
+POST /graphql | header vào: content-length,host,accept-encoding,accept,origin,x-app-version,cookie,content-type,connection | origin vào: http://localhost:3000 | đã thay cookie: false
+   -> 200 {"data":{"people":{"edges":[{"node":{"__typename":"Person","avatarFile":null,"company":{"__typename":"Company","domainName":{"primaryLinkUrl":"airbnb.com","primaryLinkLabel":"","secondaryLinks":[],"__
+POST /graphql | header vào: content-length,host,accept-encoding,accept,cookie,content-type,origin,x-app-version,connection | origin vào: http://localhost:3000 | đã thay cookie: false
+   -> 200 {"data":{"companies":{"edges":[{"node":{"__typename":"Company","accountOwner":null,"accountOwnerId":null,"address":{"addressStreet1":"888 Brannan St","addressStreet2":"","addressCity":"San Francisco",
+POST /graphql | header vào: content-length,host,accept-encoding,accept,cookie,x-app-version,content-type,origin,connection | origin vào: http://localhost:3000 | đã thay cookie: false
+   -> 200 {"data":{"createPerson":{"__typename":"Person","agentChatThreadTargets":{"edges":[],"__typename":"AgentChatThreadTargetConnection"},"attachments":{"edges":[],"__typename":"AttachmentConnection"},"avat
+POST /graphql | header vào: content-length,host,accept-encoding,accept,content-type,x-app-version,cookie,origin,connection | origin vào: http://localhost:3000 | đã thay cookie: false
+   -> 200 {"data":{"opportunities":{"edges":[{"node":{"__typename":"Opportunity","amount":{"amountMicros":60000000000,"currencyCode":"USD","__typename":"Currency"},"closeDate":"2026-01-31T16:25:00.000Z","compan
+POST /metadata | header vào: content-length,host,accept-encoding,accept,content-type,x-app-version,cookie,origin,connection | origin vào: http://localhost:3000 | đã thay cookie: false
+   -> 200 {"data":{"currentUser":{"id":"bbc9a84d-8a5d-403e-ba21-725dc033efbf","firstName":"","lastName":"","email":"phanlexuanmanh@example.com","canAccessFullAdminPanel":true,"canImpersonate":true,"currentUserW
+POST /graphql | header vào: content-length,host,accept-encoding,accept,x-app-version,content-type,cookie,origin,connection | origin vào: http://localhost:3000 | đã thay cookie: false
+   -> 200 {"errors":[{"message":"Unknown type \"PersonFilterInput\".","locations":[{"line":1,"column":31}]},{"message":"Unknown type \"PersonOrderByInput\".","locations":[{"line":1,"column":61}]},{"message":"Ca
+POST /graphql | header vào: content-length,host,accept-encoding,accept,content-type,cookie,x-app-version,connection | origin vào: undefined | đã thay cookie: false
+   -> 403 {"statusCode":403,"messages":["Request origin is not allowed for cookie-authenticated requests"],"error":"CSRF_ORIGIN_MISMATCH"}

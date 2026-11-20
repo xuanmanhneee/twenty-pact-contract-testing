@@ -45,3 +45,6 @@ npm run test:provider          # kỳ vọng I-01 FAILED
 npm run test:consumer && npm run test:provider   # khôi phục xanh
 ```
 (Trên PowerShell đặt `$env:BREAK=1` thay cho `BREAK=1`.)
+
+## Tài liệu
+Xem thư mục [`docs/`](docs/README.md): kiến trúc, cài đặt, danh mục interaction, cách chạy test và vấn đề đang mở.

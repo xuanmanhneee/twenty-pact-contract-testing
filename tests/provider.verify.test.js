@@ -25,7 +25,8 @@ describe('twenty-server thật thỏa mãn hợp đồng của twenty-front', ()
       },
       // I-01: thay phiên giả bằng phiên thật. I-06: giữ phiên sai.
       requestFilter: (req, _res, next) => {
-        req.headers['origin'] = ORIGIN; // như trình duyệt thật
+        // Chỉ đặt Origin khi hợp đồng có Origin; I-07 cố ý không gửi để kiểm tra 403 CSRF.
+        if (req.headers['origin']) req.headers['origin'] = ORIGIN;
         if (process.env.DEBUG_PACT) console.log('[filter] origin=', req.headers['origin'], '| cookie prefix=', String(req.headers['cookie']).slice(0, 22));
         if (req.headers['cookie'] === 'twenty-session=valid-session') {
           req.headers['cookie'] = `twenty-session=${SESSION}`;

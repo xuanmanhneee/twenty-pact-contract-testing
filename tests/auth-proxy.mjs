@@ -9,7 +9,9 @@ const ORIGIN = process.env.TWENTY_ORIGIN || 'http://localhost:3000';
 const SESSION = (process.env.TWENTY_SESSION || fs.readFileSync('token.txt', 'utf8')).trim();
 
 http.createServer((req, res) => {
-  const headers = { ...req.headers, host: TARGET.host, origin: ORIGIN };
+  const headers = { ...req.headers, host: TARGET.host };
+  // Chỉ đặt Origin khi request gốc có Origin (I-07 cố ý không gửi).
+  if (req.headers.origin) headers.origin = ORIGIN;
   const replaced = headers.cookie === 'twenty-session=valid-session';
   if (replaced) headers.cookie = `twenty-session=${SESSION}`;
   console.log(`${req.method} ${req.url} | header vào: ${Object.keys(req.headers).join(',')} | origin vào: ${req.headers.origin} | đã thay cookie: ${replaced}`);

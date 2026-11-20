@@ -6,9 +6,9 @@
     "test:consumer": "rimraf pacts && vitest run tests/consumer.test.js",
     "test:provider": "vitest run tests/provider.verify.test.js",
     "break:rename-field": "rimraf pacts && cross-env BREAK=1 vitest run tests/consumer.test.js && vitest run tests/provider.verify.test.js",
-    "proxy": "node tests/rename-proxy.mjs",
-    "test:provider:proxy": "cross-env TWENTY_URL=http://localhost:4001 vitest run tests/provider.verify.test.js",
-    "auth-proxy": "node tests/auth-proxy.mjs"
+    "auth-proxy": "node tests/auth-proxy.mjs",
+    "mutate-proxy": "node tests/mutate-proxy.mjs",
+    "experiments": "node tests/experiments.mjs"
   },
   "devDependencies": {
     "@pact-foundation/pact": "^16.0.0",

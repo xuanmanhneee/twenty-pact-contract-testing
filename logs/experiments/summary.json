@@ -1,0 +1,105 @@
+[
+  {
+    "id": "M-0",
+    "title": "Đối chứng: proxy chuyển tiếp nguyên vẹn",
+    "expected": [],
+    "failed": [],
+    "results": {
+      "I-01": "OK",
+      "I-02": "OK",
+      "I-03": "OK",
+      "I-04": "OK",
+      "I-05": "OK",
+      "I-06": "OK",
+      "I-07": "OK"
+    },
+    "match": true,
+    "seconds": "3.25"
+  },
+  {
+    "id": "M-2",
+    "title": "Đổi tên field jobTitle → jobTitleName",
+    "expected": [
+      "I-01",
+      "I-03"
+    ],
+    "failed": [
+      "I-01",
+      "I-03"
+    ],
+    "results": {
+      "I-01": "FAILED",
+      "I-02": "OK",
+      "I-03": "FAILED",
+      "I-04": "OK",
+      "I-05": "OK",
+      "I-06": "OK",
+      "I-07": "OK"
+    },
+    "match": true,
+    "seconds": "2.96"
+  },
+  {
+    "id": "M-3",
+    "title": "Xóa field amount (Opportunity)",
+    "expected": [
+      "I-04"
+    ],
+    "failed": [
+      "I-04"
+    ],
+    "results": {
+      "I-01": "OK",
+      "I-02": "OK",
+      "I-03": "OK",
+      "I-04": "FAILED",
+      "I-05": "OK",
+      "I-06": "OK",
+      "I-07": "OK"
+    },
+    "match": true,
+    "seconds": "2.70"
+  },
+  {
+    "id": "M-4",
+    "title": "Đổi kiểu totalCount từ số sang chuỗi",
+    "expected": [
+      "I-01",
+      "I-02",
+      "I-04"
+    ],
+    "failed": [
+      "I-01",
+      "I-02",
+      "I-04"
+    ],
+    "results": {
+      "I-01": "FAILED",
+      "I-02": "FAILED",
+      "I-03": "OK",
+      "I-04": "FAILED",
+      "I-05": "OK",
+      "I-06": "OK",
+      "I-07": "OK"
+    },
+    "match": true,
+    "seconds": "2.83"
+  },
+  {
+    "id": "M-6",
+    "title": "Thêm field mới jobTitleExtra (tương thích ngược)",
+    "expected": [],
+    "failed": [],
+    "results": {
+      "I-01": "OK",
+      "I-02": "OK",
+      "I-03": "OK",
+      "I-04": "OK",
+      "I-05": "OK",
+      "I-06": "OK",
+      "I-07": "OK"
+    },
+    "match": true,
+    "seconds": "2.84"
+  }
+]

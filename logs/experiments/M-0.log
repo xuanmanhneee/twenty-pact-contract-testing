@@ -1,0 +1,90 @@
+# M-0: Đối chứng: proxy chuyển tiếp nguyên vẹn
+Thời điểm: 2026-11-20T20:35:58.823Z
+Pact 16.5.0, Node v24.18.0, Twenty v2.46.0 (image đã pin, xem VERSIONS.md)
+Proxy: MUTATION=none FIELD=- TO=-
+Kỳ vọng fail: (không) | Thực tế fail: (không) | Khớp: CÓ
+Thời gian chạy verify: 3.25 s
+
+## Log mutate-proxy
+mutate-proxy :4001 → http://localhost:4002 | MUTATION=none FIELD=- TO=-
+
+## Log Pact Verifier
+RUN  v3.2.7 D:/Workspace/Projects/twenty-pact-contract-testing
+
+2026-11-20T20:35:58.385231Z  WARN ThreadId(17) pact_matching::metrics: 
+
+Please note:
+We are tracking events anonymously to gather important usage statistics like Pact version and operating system. To disable tracking, set the 'PACT_DO_NOT_TRACK' environment variable to 'true'.
+
+
+
+Verifying a pact between twenty-front and twenty-server
+
+  I-01 FindManyPeople với phiên hợp lệ (1ms loading, 107ms verification)
+     Given workspace có ít nhất 1 Person
+    returns a response which
+      has status code 200 (OK)
+      includes headers
+        "Content-Type" with value "application/json; charset=utf-8" (OK)
+      has a matching body (OK)
+
+  I-02 FindManyCompanies với phiên hợp lệ (1ms loading, 50ms verification)
+     Given workspace có ít nhất 1 Company
+    returns a response which
+      has status code 200 (OK)
+      includes headers
+        "Content-Type" with value "application/json; charset=utf-8" (OK)
+      has a matching body (OK)
+
+  I-03 CreateOnePerson với phiên hợp lệ (1ms loading, 189ms verification)
+     Given workspace sẵn sàng tạo Person I-03
+    returns a response which
+      has status code 200 (OK)
+      includes headers
+        "Content-Type" with value "application/json; charset=utf-8" (OK)
+      has a matching body (OK)
+
+  I-04 FindManyOpportunities với phiên hợp lệ (1ms loading, 44ms verification)
+     Given workspace có ít nhất 1 Opportunity
+    returns a response which
+      has status code 200 (OK)
+      includes headers
+        "Content-Type" with value "application/json; charset=utf-8" (OK)
+      has a matching body (OK)
+
+  I-05 GetCurrentUser với phiên hợp lệ (1ms loading, 83ms verification)
+     Given người dùng đã đăng nhập vào workspace
+    returns a response which
+      has status code 200 (OK)
+      includes headers
+        "Content-Type" with value "application/json; charset=utf-8" (OK)
+      has a matching body (OK)
+
+  I-06 FindManyPeople với phiên sai (1ms loading, 15ms verification)
+     Given token không hợp lệ
+    returns a response which
+      has status code 200 (OK)
+      includes headers
+        "Content-Type" with value "application/json; charset=utf-8" (OK)
+      has a matching body (OK)
+
+  I-07 FindManyPeople thiếu Origin (1ms loading, 13ms verification)
+     Given phiên hợp lệ nhưng request thiếu Origin
+    returns a response which
+      has status code 403 (OK)
+      includes headers
+        "Content-Type" with value "application/json; charset=utf-8" (OK)
+      has a matching body (OK)
+
+
+ ✓ tests/provider.verify.test.js (1 test) 811ms
+   ✓ twenty-server thật thỏa mãn hợp đồng của twenty-front > xác minh toàn bộ interaction  810ms
+
+ Test Files  1 passed (1)
+      Tests  1 passed (1)
+   Start at  03:35:56
+   Duration  1.77s (transform 15ms, setup 0ms, collect 601ms, tests 811ms, environment 0ms, prepare 107ms)
+
+
+(node:24088) [DEP0060] DeprecationWarning: The `util._extend` API is deprecated. Please use Object.assign() instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)

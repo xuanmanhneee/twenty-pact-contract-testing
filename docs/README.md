@@ -11,6 +11,7 @@ Contract testing (Pact) cho Twenty CRM: consumer `twenty-front`, provider `twent
 | [testing.md](testing.md) | Cách chạy, thí nghiệm phá hợp đồng, kết quả đo | Chạy test, đọc kết quả |
 | [report-context.md](report-context.md) | Yêu cầu nộp, nguồn bằng chứng cho phần A đến H, số liệu, giới hạn, đóng góp | Viết báo cáo và slide |
 | [report/phan-cong-cong-viec.md](report/phan-cong-cong-viec.md) | Bảng phân công, checklist đã xong theo từng người, mẫu peer review | Theo dõi tiến độ, nộp phân công |
+| [report/bao-cao-cuoi-ky.md](report/bao-cao-cuoi-ky.md) | Bản nháp báo cáo cuối kỳ A đến H, phần chờ kết quả đánh dấu `⏳ CHỜ` | Viết và gộp báo cáo |
 | [known-issues.md](known-issues.md) | Lỗi đang mở, giới hạn, việc còn lại | Trước khi bắt đầu việc mới |
 | [archive/](archive/) | Báo cáo gốc và đề bài của giảng viên (chỉ để tham khảo) | Cần nguồn gốc yêu cầu |
 

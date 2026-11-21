@@ -1,0 +1,13 @@
+
+> experiments
+> node tests/experiments.mjs
+
+M-0 KHỚP | fail: - | kỳ vọng: - | 5.48s
+(node:20608) [DEP0190] DeprecationWarning: Passing args to a child process with shell option true can lead to security vulnerabilities, as the arguments are not escaped, only concatenated.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+M-2 KHỚP | fail: I-01,I-03 | kỳ vọng: I-01,I-03 | 2.96s
+M-3 KHỚP | fail: I-04 | kỳ vọng: I-04 | 3.10s
+M-4 KHỚP | fail: I-01,I-02,I-04 | kỳ vọng: I-01,I-02,I-04 | 3.05s
+M-6 KHỚP | fail: - | kỳ vọng: - | 3.00s
+
+Đã ghi D:\Workspace\Projects\twenty-pact-contract-testing\logs\experiments

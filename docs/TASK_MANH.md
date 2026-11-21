@@ -1,7 +1,9 @@
 # Task của Mạnh (2312686) và bàn giao cho phiên sau
 
+> Danh sách task chung của cả nhóm đến khi hoàn thành: [`TASKS.md`](../TASKS.md). Mục 2 bên dưới là phần việc của Mạnh.
+
 Nhiệm vụ theo báo cáo giữa kỳ: **dựng môi trường Docker, auth-proxy, provider verification**.
-Cập nhật lần cuối: 21/11/2026. Danh sách vấn đề và việc còn lại đầy đủ: [`docs/known-issues.md`](docs/known-issues.md).
+Cập nhật lần cuối: 21/11/2026. Danh sách vấn đề và việc còn lại đầy đủ: [`docs/known-issues.md`](known-issues.md).
 
 ## 1. Trạng thái hiện tại
 - Consumer: 7/7 pass. Provider verify gọi thẳng `:3000`: **7/7 OK** (KI-1 Origin, KI-4 Host đã sửa).
@@ -41,7 +43,7 @@ npm run experiments               # kỳ vọng 5/5 khớp, ghi logs/experiments
 - Windows: `git` cảnh báo LF/CRLF. `pacts/twenty-front-twenty-server.json` sinh lại chỉ khác kiểu xuống dòng, đừng commit (`git checkout -- pacts`).
 - `logs/auth-proxy-run.log` là stdout của auth-proxy chạy nền, tăng dần, chưa commit bản mới.
 - Không ghi phiên `sess_...`, khóa mã hóa vào tài liệu, log hay commit.
-- Không sửa `TASK_PHUOC.md` (nhật ký của Phước).
+- `TASK_PHUOC.md` là nhật ký của Phước: chỉ thêm mục "Việc tiếp theo" ở cuối (Mạnh cho phép 21/11), không sửa phần cũ. `TASK_LUYEN.md` là việc giao cho Luyến.
 - Quy tắc làm việc: xong mỗi task thì commit (danh tính `xuanmanhneee`, repo local); **push thì hỏi trước**. Chỉ commit khi đã chạy kiểm chứng thật.
 
 ## 5. Ghi chú tiến độ

@@ -37,8 +37,12 @@ Mở http://localhost:3000, tạo tài khoản và workspace.
 Sinh khóa ngẫu nhiên: `openssl rand -base64 32`. `docker/.env` đã nằm trong `.gitignore`, không commit.
 
 ## 2. Dữ liệu mẫu
-Hợp đồng quy ước workspace tên **`dlu-qa`**, tối thiểu có 1 Person, 1 Company, 1 Opportunity.
-Workspace của Phước hiện tên `phuoc` (5 People, 5 Companies, 6 Opportunities). Chưa thống nhất cách nạp chung: xem [known-issues.md](known-issues.md).
+**Quy ước chung (chốt 21/11/2026):**
+- Mỗi người tự chạy Docker riêng, nên mỗi người có DB và workspace riêng. Không có dữ liệu dùng chung giữa các máy.
+- Tên workspace đề nghị là **`dlu-qa`** nhưng **không bắt buộc**: trong hợp đồng I-05, `displayName` là matcher kiểu chuỗi (`string('dlu-qa')`), nên tên nào cũng pass. Bằng chứng: workspace `phuoc` của Phước đã pass I-05 khi verify (`logs/provider-run-i03.log`).
+- Dữ liệu tối thiểu: **ít nhất 1 Person, 1 Company, 1 Opportunity** (workspace của Mạnh hiện có 5/5/6). Thiếu thì state handler báo lỗi rõ ràng (`Precondition không thỏa: workspace không có people ...`) trước khi verify.
+- Cách nạp: dùng dữ liệu mẫu có sẵn khi tạo workspace mới (Twenty seed sẵn People, Companies, Opportunities); nếu workspace trống, tạo tay mỗi loại 1 bản ghi trong giao diện (trang People, Companies, Opportunities, nút **+ New**), rồi chạy `npm run test:provider`.
+- Verify I-03 tạo và xóa một Person fixture (UUID cố định) nên không làm đổi số bản ghi sau mỗi lượt.
 
 ## 3. Lấy phiên đăng nhập cho verifier
 Twenty v2.46.0 xác thực bằng cookie. Verifier cần một phiên thật:

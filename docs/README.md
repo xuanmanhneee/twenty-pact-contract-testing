@@ -9,11 +9,14 @@ Contract testing (Pact) cho Twenty CRM: consumer `twenty-front`, provider `twent
 | [contract-testing.md](contract-testing.md) | Nguyên lý, phạm vi, giả định, tiêu chí pass/fail | Cần hiểu vì sao test như vậy |
 | [interactions.md](interactions.md) | Danh mục I-01 → I-07: precondition, input, expected | Thêm hoặc sửa interaction |
 | [testing.md](testing.md) | Cách chạy, thí nghiệm phá hợp đồng, kết quả đo | Chạy test, đọc kết quả |
+| [report-context.md](report-context.md) | Yêu cầu nộp, nguồn bằng chứng cho phần A đến H, số liệu, giới hạn, đóng góp | Viết báo cáo và slide |
+| [report/phan-cong-cong-viec.md](report/phan-cong-cong-viec.md) | Bảng phân công, checklist đã xong theo từng người, mẫu peer review | Theo dõi tiến độ, nộp phân công |
+| [report/bao-cao-cuoi-ky.md](report/bao-cao-cuoi-ky.md) | Bản nháp báo cáo cuối kỳ A đến H, phần chờ kết quả đánh dấu `⏳ CHỜ` | Viết và gộp báo cáo |
 | [known-issues.md](known-issues.md) | Lỗi đang mở, giới hạn, việc còn lại | Trước khi bắt đầu việc mới |
 | [archive/](archive/) | Báo cáo gốc và đề bài của giảng viên (chỉ để tham khảo) | Cần nguồn gốc yêu cầu |
 
 Các tệp liên quan ở thư mục gốc: `README.md` (lệnh chạy nhanh), `VERSIONS.md` (phiên bản đã pin),
-`TASK_PHUOC.md` (nhật ký công việc consumer test).
+[`TASKS.md`](../TASKS.md) (danh sách task chung đến khi hoàn thành); trong `docs/`: [TASK_MANH.md](TASK_MANH.md), [TASK_LUYEN.md](TASK_LUYEN.md), [TASK_PHUOC.md](TASK_PHUOC.md) (việc và nhật ký từng người).
 
 ## Quy ước
 - Tài liệu mô tả **trạng thái hiện tại** của mã. Số liệu đo được ghi kèm nguồn trong `logs/`.

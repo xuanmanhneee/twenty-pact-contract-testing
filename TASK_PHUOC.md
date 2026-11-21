@@ -130,3 +130,18 @@ Tóm tắt (chi tiết trong `logs/metrics.md`):
   thêm I-03 và hỗ trợ operation type `mutation`; consumer 7/7 pass, provider 6/7 interaction pass (I-03 pass,
   I-07 còn blocker cũ); đã xóa vĩnh viễn fixture sau verify. Log: `logs/consumer-run-i03.log`,
   `logs/provider-run-i03.log`, `logs/probe-i03-mutation.json`, `logs/provider-run-i03-cleanup.json`.
+
+## Việc tiếp theo (Mạnh giao ngày 21/11/2026)
+Các blocker ở mục 4 phía trên **đã được Mạnh xử lý** (Origin KI-1, đủ 7 state handler, teardown I-03, và KI-4 Host); provider verify gọi thẳng `:3000` 7/7. Danh sách chung: [`TASKS.md`](TASKS.md); bối cảnh viết báo cáo: [`docs/report-context.md`](docs/report-context.md).
+
+Quy tắc: commit bằng tài khoản GitHub của chính bạn, **mỗi mục nhỏ một commit ngay khi xong** (thầy sẽ xem lịch sử Git khi bảo vệ); phần báo cáo viết vào file riêng trong `docs/report/`; không sửa `tests/provider.verify.test.js`, `auth-proxy`, `docker/` (của Mạnh). Không đưa phiên `sess_...` vào tài liệu hay ảnh.
+
+- [ ] **P-1 Thí nghiệm `BREAK=1` trên bộ 7 interaction (TASKS 1.3).** Lệnh `npm run break:rename-field` (nay verify gọi thẳng, không cần auth-proxy). Kỳ vọng: consumer 7/7 pass; provider fail đúng I-01 và I-03 (cả hai dùng `jobTitle`). Lưu log vào `logs/break-7-interaction-*.log`, thêm dòng vào bảng trong `docs/testing.md`. Nhớ chạy lại `npm run test:consumer` để khôi phục hợp đồng trước khi commit (đừng commit `pacts/` bản phá).
+- [ ] **P-2 Phần E: scenario và test case (TASKS 5.2, 5.3) → `docs/report/E-scenario.md`.** Bảng I-01 đến I-07 đủ precondition, input, expected, dữ liệu test, provider state (lấy từ mục 1 của file này và `docs/interactions.md`, cập nhật theo bản hiện tại). Thêm đoạn nêu kỹ thuật thiết kế test đã dùng (ca dương, ca âm: phiên sai I-06, thiếu Origin I-07; thử phá hợp đồng M-0 đến M-6) và vì sao query lấy từ request thật của twenty-front.
+- [ ] **P-3 Phần G: log, metrics, phân tích (TASKS 6.2) → `docs/report/G-log-metrics.md`.** Gom bảng pass/fail và thời gian từ `logs/metrics.md` và `docs/testing.md` (số liệu mới nhất ngày 21/11), giải thích ý nghĩa từng loại dòng log của Verifier (`OK`, `FAILED`, `Actual map is missing the following keys`, `expected 200 but was 403`). Ghi các hành vi bất thường của Twenty đã quan sát và RCA (xem bảng KI-1 đến KI-4 trong `docs/report-context.md` mục 5). Phân biệt lỗi của harness nhóm với lỗi của Twenty; chưa phát hiện lỗi Twenty thì chứng minh bằng M-0 (pass), M-2/3/4 (fail đúng chỗ), M-6 (không báo động giả).
+- [ ] **P-4 Bằng chứng luồng nghiệp vụ (TASKS 4.2) → `logs/`.** Đã có F1, F3, F4 và ảnh trang People/Opportunities. Rà lại cho đủ ít nhất 3 luồng chạy được, có ảnh luồng "tạo Person" (I-03) nếu chưa có ảnh đẹp; kiểm tra ảnh không lộ cookie.
+- [ ] **P-5 Chạy lại trên máy của bạn sau khi `git pull`**: `npm install`, `npm run test:consumer`, `npm run test:provider` (cần phiên mới trong `token.txt`). Báo Mạnh nếu không ra 7/7.
+- [ ] **P-6 Đóng góp cá nhân (peer review, TASKS 7.4):** thêm `docs/report/dong-gop-phuoc.md` liệt kê việc đã làm kèm mã commit (bao gồm 6 commit ngày 16/11 và các việc mới). Chỉ ghi việc thật.
+- [ ] **P-7 Dọn tài liệu cá nhân:** sửa MSSV 2312716 nếu còn chỗ ghi 2312714 trong phần của bạn; cập nhật các mục 4 và "Câu hỏi cho Mạnh" của file này là đã giải quyết (tick lại).
+
+Hạn: bản nháp E, G xong trước hạn nộp (khoảng đầu tháng 12/2026) ít nhất 4 ngày để Mạnh gộp báo cáo.

@@ -3,20 +3,15 @@
 ## Lệnh
 Cần Twenty đang chạy và `token.txt` (xem [setup.md](setup.md)). Dùng hai terminal.
 
-Terminal 1 (giữ chạy):
-```bash
-npm run auth-proxy            # cổng 4002 → Twenty :3000
-```
-Terminal 2:
 ```bash
 npm run test:consumer         # xóa pacts/, sinh lại hợp đồng
-npm run test:provider         # verify hợp đồng vào Twenty thật qua auth-proxy
+npm run test:provider         # verify hợp đồng gọi thẳng Twenty thật (:3000)
 ```
 
 | Script | Việc làm |
 |---|---|
 | `test:consumer` | `rimraf pacts` rồi chạy `tests/consumer.test.js` |
-| `test:provider` | Chạy `tests/provider.verify.test.js` (mặc định qua `:4002`) |
+| `test:provider` | Chạy `tests/provider.verify.test.js` (mặc định gọi thẳng `:3000`) |
 | `auth-proxy` | Proxy thay cookie giả bằng phiên thật, đặt Origin, in log |
 | `break:rename-field` | Sinh hợp đồng với `BREAK=1` rồi verify |
 | `mutate-proxy` | Proxy `:4001` sửa JSON response; cấu hình bằng `MUTATION`, `FIELD`, `TO` (xem đầu `tests/mutate-proxy.mjs`) |

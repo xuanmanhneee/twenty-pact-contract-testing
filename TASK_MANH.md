@@ -4,15 +4,15 @@ Nhiệm vụ theo báo cáo giữa kỳ: **dựng môi trường Docker, auth-pr
 Cập nhật lần cuối: 21/11/2026. Danh sách vấn đề và việc còn lại đầy đủ: [`docs/known-issues.md`](docs/known-issues.md).
 
 ## 1. Trạng thái hiện tại
-- Consumer: 7/7 pass. Provider verify qua auth-proxy `:4002`: **7/7 OK** (I-07 đã sửa Origin).
+- Consumer: 7/7 pass. Provider verify gọi thẳng `:3000`: **7/7 OK** (KI-1 Origin, KI-4 Host đã sửa).
 - Provider state: đủ 7 handler, I-03 có `setup`/`teardown` tự động (KI-2, KI-3 xong).
 - Thí nghiệm phá hợp đồng phía provider M-0, M-2, M-3, M-4, M-6: đều khớp kỳ vọng. Bằng chứng: `logs/experiments/`.
 - Tài liệu chuẩn hóa ở `docs/` (mục lục: `docs/README.md`).
-- **`main` đang trước `origin/main` 6 commit, CHƯA push.** Đã đăng nhập `gh` bằng `xuanmanhneee`; push cần hỏi trước.
+- **Đã push tới `510f3cc`; commit mới hơn thì hỏi trước khi push.** Đã đăng nhập `gh` bằng `xuanmanhneee`; push cần hỏi trước.
 
 ## 2. Việc cần làm tiếp (theo thứ tự đề xuất)
-- [ ] **Push `main`** lên GitHub (hỏi Mạnh trước).
-- [ ] **KI-4: vì sao Verifier gọi thẳng Twenty bị 403.** Nghi vấn: lúc dọn fixture, `fetch` gọi thẳng `:3000` kèm cookie + Origin vẫn nhận 200, nên lỗi có thể nằm ở cách Verifier/requestFilter gửi header (thứ tự, `x-app-version`, `Host`) chứ không phải ở server. Thử `TWENTY_URL=http://localhost:3000 npm run test:provider` với `DEBUG_PACT=1`, so header với request từ `fetch` thành công. Ghi nguyên nhân gốc vào `docs/known-issues.md`; nếu bỏ được auth-proxy thì cập nhật README, `docs/setup.md`, `docs/architecture.md`.
+- [x] Push `main` (21/11, đã push tới 510f3cc).
+- [x] KI-4 xong (21/11): nguyên nhân là Host của Verifier không khớp Origin; sửa trong `requestFilter`, bỏ được auth-proxy khỏi luồng verify. Chi tiết `docs/known-issues.md`.
 - [ ] **Workspace `dlu-qa`:** hợp đồng quy ước tên này, workspace Docker thực tế có thể tên khác. Thống nhất tên và cách nạp dữ liệu mẫu (tối thiểu 1 Person, 1 Company, 1 Opportunity) cho cả nhóm; ghi vào `docs/setup.md` mục 2.
 - [ ] **Chạy lại trên máy sạch** theo README: một thành viên khác (Luyến hoặc Phước) làm từ đầu, ghi kết quả và lỗi gặp phải. Đây là tiêu chí "tái chạy" của D.6 và phần H của báo cáo.
 - [ ] **Pin phiên bản và tag:** tạo git tag cho bản nộp, ghi vào `VERSIONS.md`. Nếu tìm được tag source khớp image `v2.46.0` thì thay commit `a61e47d`.
@@ -28,9 +28,9 @@ Cập nhật lần cuối: 21/11/2026. Danh sách vấn đề và việc còn l�
 3. Gỡ biến proxy: `unset HTTP_PROXY HTTPS_PROXY http_proxy https_proxy`.
 
 ```bash
-npm run auth-proxy                # terminal 1, cổng 4002 (có thể đang chạy sẵn từ phiên trước)
-npm run test:consumer             # terminal 2, sinh hợp đồng
-npm run test:provider             # kỳ vọng 7/7 OK
+npm run test:consumer             # sinh hợp đồng
+npm run test:provider             # gọi thẳng :3000, kỳ vọng 7/7 OK
+npm run auth-proxy                # chỉ cần cho experiments (cổng 4002)
 npm run experiments               # kỳ vọng 5/5 khớp, ghi logs/experiments/
 ```
 

@@ -29,8 +29,10 @@ State `workspace sẵn sàng tạo Person I-03` có `setup` và `teardown` cùng
 `d05b3c0b-1da6-4a73-852b-6ad2b77f7d9e`), idempotent. Kiểm chứng 3 tình huống, đều 7/7 và không còn fixture sau verify:
 chạy sạch, chạy lặp lại (chứng minh fixture bị xóa vĩnh viễn vì tạo lại cùng UUID không bị trùng), và chạy khi fixture còn sót từ trước.
 
-### KI-4. Verifier gọi thẳng Twenty bị 403
-Khi không qua proxy, request bị 403 dù hợp đồng có Origin. Nguyên nhân gốc chưa xác định, hiện tránh bằng auth-proxy. Cần phân tích header (cookie, Origin, `x-app-version`) để kết luận.
+### KI-4. Verifier gọi thẳng Twenty bị 403 (ĐÃ SỬA, xác nhận 21/11/2026)
+- **Triệu chứng:** gọi thẳng `:3000`, 5 interaction dùng phiên hợp lệ (I-01 đến I-05) trả 403 `CSRF_ORIGIN_MISMATCH`; I-06, I-07 vẫn OK.
+- **Nguyên nhân gốc:** Verifier phát lại request tới Twenty với `Host: 127.0.0.1:<cổng ngẫu nhiên>` (bắt bằng server giả ở `:4009`). Cookie, Origin và `x-app-version` đều đúng. Twenty đối chiếu Origin với Host: cùng cookie + Origin `http://localhost:3000`, Host `localhost:3000` cho 200, còn Host `127.0.0.1:53331` hoặc `127.0.0.1:3000` cho 403. Auth-proxy trước đây tránh được lỗi vì tự đặt `host: TARGET.host`.
+- **Cách sửa:** trong `requestFilter` đặt `req.headers['host'] = new URL(ORIGIN).host`. Verify gọi thẳng: **7/7 OK**. Mặc định `TWENTY_URL` giờ là `http://localhost:3000`.
 
 ## Giới hạn đã biết
 - **Phiên bản:** image `v2.46.0` đã pin, nhưng source đối chiếu `a61e47d` chưa khớp tuyệt đối. Kết quả không phụ thuộc source.
@@ -44,7 +46,7 @@ Thứ tự đề xuất, theo mức ảnh hưởng đến tiêu chí "100% pass"
 - [x] KI-1: verify 7/7 sau khi sửa Origin (21/11/2026).
 - [x] KI-2, KI-3: đủ provider state và teardown tự động cho I-03 (21/11/2026).
 - [x] M-2, M-3, M-4 (+ M-0 đối chứng, M-6 tương thích ngược): chạy qua `mutate-proxy`, bằng chứng ở `logs/experiments/` (21/11/2026).
-- [ ] Điều tra KI-4 và ghi nguyên nhân gốc.
+- [x] KI-4: nguyên nhân gốc là Host, đã sửa (21/11/2026).
 - [ ] Thống nhất workspace `dlu-qa` và cách nạp dữ liệu mẫu.
 - [ ] Kiểm tra chạy lại từ máy sạch theo README, ghi kết quả.
 - [ ] Tạo tag cho phiên bản nộp và ghi vào `VERSIONS.md`.

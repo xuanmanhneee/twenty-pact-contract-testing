@@ -4,12 +4,14 @@
 Cần Twenty đang chạy và `token.txt` (xem [setup.md](setup.md)). Dùng hai terminal.
 
 ```bash
+npm run all                   # một lệnh chạy hết, in tóm tắt
 npm run test:consumer         # xóa pacts/, sinh lại hợp đồng
 npm run test:provider         # verify hợp đồng gọi thẳng Twenty thật (:3000)
 ```
 
 | Script | Việc làm |
 |---|---|
+| `all` | Chạy toàn bộ: kiểm tra Twenty và phiên, consumer, provider, thí nghiệm; ghi `logs/run-all-summary.md` (tự bật auth-proxy cho thí nghiệm) |
 | `test:consumer` | `rimraf pacts` rồi chạy `tests/consumer.test.js` |
 | `test:provider` | Chạy `tests/provider.verify.test.js` (mặc định gọi thẳng `:3000`) |
 | `auth-proxy` | Proxy thay cookie giả bằng phiên thật, đặt Origin, in log |

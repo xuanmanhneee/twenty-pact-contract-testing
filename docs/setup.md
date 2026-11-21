@@ -75,3 +75,14 @@ npm install
   - Bash: `unset HTTP_PROXY HTTPS_PROXY http_proxy https_proxy`
 - **Máy Windows + WSL2:** đặt repo trong hệ tệp Linux nếu chạy trong WSL, tránh `/mnt/d` (chậm, dễ lỗi I/O).
 - **Gỡ dữ liệu:** `docker compose down -v` xóa cả volume, workspace và dữ liệu mẫu sẽ mất.
+
+## 7. Lỗi thường gặp
+| Triệu chứng | Nguyên nhân | Cách xử lý |
+|---|---|---|
+| `docker compose` báo không kết nối được Docker API | Docker Desktop chưa chạy | Mở Docker Desktop, đợi engine sẵn sàng rồi chạy lại |
+| `curl localhost:3000/healthz` không phản hồi | Stack chưa lên hoặc cổng 3000 bị chiếm | `docker compose ps` trong thư mục `docker`; xem log bằng `docker compose logs server` |
+| Verify báo `UNAUTHENTICATED` hoặc 5 interaction fail ngay từ I-01 | Phiên trong `token.txt` hết hạn hoặc sai | Lấy lại cookie `twenty-session` (mục 3), chép đúng phần giá trị, không kèm `twenty-session=` hay dấu `;` |
+| 403 `CSRF_ORIGIN_MISMATCH` ở mọi interaction | `TWENTY_ORIGIN` hoặc `SERVER_URL` khác `http://localhost:3000`, hoặc có biến proxy hệ thống | Giữ Twenty ở `localhost:3000` (hoặc đặt `TWENTY_ORIGIN` khớp); gỡ `HTTP_PROXY` và `HTTPS_PROXY` (mục 6) |
+| `Precondition không thỏa: workspace không có people/companies/opportunities` | Workspace thiếu dữ liệu | Tạo tối thiểu 1 Person, 1 Company, 1 Opportunity (mục 2) |
+| `npm run experiments` không lên được cổng 4001 hoặc 4002 | Cổng đang bị chương trình khác dùng | Tắt chương trình đó hoặc đặt `PROXY_PORT`; `npm run all` tự bật auth-proxy nếu cổng 4002 trống |
+| `git` cảnh báo LF/CRLF khi sinh lại hợp đồng | Windows đổi kiểu xuống dòng | Không sao; không commit `pacts/` nếu chỉ khác kiểu xuống dòng |

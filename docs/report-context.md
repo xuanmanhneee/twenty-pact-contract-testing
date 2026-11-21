@@ -70,7 +70,7 @@ Hành vi của Twenty v2.46.0 phát hiện khi viết test (đều có bằng ch
 
 ## 6. Giới hạn cần nói thật (báo cáo và khi bảo vệ)
 - M-2, M-3, M-4 chỉ mô phỏng ở lớp proxy, chưa sửa mã nguồn Twenty thật; mỗi lượt chạy một lần, chưa đo độ ổn định.
-- Image `v2.46.0` đã pin theo digest nhưng source đối chiếu (`a61e47d`) chưa khớp tuyệt đối với image; kết quả không phụ thuộc source.
+- Image `v2.46.0` đã pin theo digest; source đối chiếu là tag `sdk/v2.46.0` (`9070979`, trùng ngày build) nhưng chưa chứng minh khớp từng byte; kết quả không phụ thuộc source.
 - Phiên đăng nhập lấy thủ công từ cookie `twenty-session`, hết hạn nhanh; mỗi lần chạy lại cần phiên mới.
 - Workspace Docker tên `phuoc`, hợp đồng quy ước `dlu-qa` (chưa thống nhất); chưa có cách nạp dữ liệu mẫu chung (hiện 5 People, 5 Companies, 6 Opportunities).
 - Chưa chạy lại trên máy sạch; chưa có tag; chưa có link Trello/Jira.

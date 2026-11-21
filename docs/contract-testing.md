@@ -32,7 +32,7 @@ GraphQL còn trả `null` cho field không tồn tại thay vì báo lỗi, nên
 1. Image Twenty `v2.46.0` (đã pin digest) giữ nguyên suốt dự án.
 2. Dữ liệu workspace `dlu-qa` ổn định, đóng vai trò provider state.
 3. Verifier lấy được phiên đăng nhập hợp lệ (thủ công qua `token.txt`).
-4. Source `a61e47d` chỉ để đọc hiểu; kết quả không phụ thuộc source vì hợp đồng verify trực tiếp vào image.
+4. Source đối chiếu là tag `sdk/v2.46.0` (commit `9070979`) chỉ để đọc hiểu; kết quả không phụ thuộc source vì hợp đồng verify trực tiếp vào image.
 
 ## Rủi ro
 | Rủi ro | Mức | Xử lý |

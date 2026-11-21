@@ -8,7 +8,8 @@
     "break:rename-field": "rimraf pacts && cross-env BREAK=1 vitest run tests/consumer.test.js && vitest run tests/provider.verify.test.js",
     "auth-proxy": "node tests/auth-proxy.mjs",
     "mutate-proxy": "node tests/mutate-proxy.mjs",
-    "experiments": "node tests/experiments.mjs"
+    "experiments": "node tests/experiments.mjs",
+    "all": "node tests/run-all.mjs"
   },
   "devDependencies": {
     "@pact-foundation/pact": "^16.0.0",

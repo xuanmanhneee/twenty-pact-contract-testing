@@ -3,6 +3,13 @@
 Contract test (Pact): consumer = twenty-front, provider = twenty-server.
 Phiên bản Twenty đã chốt: xem `VERSIONS.md`. Chạy được trên Windows, macOS, Linux.
 
+## 0. Bắt đầu nhanh (thành viên mới)
+1. Cài Docker Desktop, Node.js >= 22, Git. Clone repo rồi `git pull` trước mỗi buổi làm.
+2. Làm theo mục 1 đến 3 bên dưới (dựng Twenty, tạo tối thiểu 1 Person, 1 Company, 1 Opportunity, lấy phiên vào `token.txt`), rồi `npm install` và `npm run all`. Kỳ vọng "TẤT CẢ ĐẠT" (khoảng 20 giây). Lỗi thường gặp: `docs/setup.md` mục 7.
+3. Việc cần làm: `TASKS.md` (danh sách chung), `docs/TASK_LUYEN.md`, `docs/TASK_PHUOC.md`, `docs/TASK_MANH.md`; bảng phân công và checklist: `docs/report/phan-cong-cong-viec.md`. Mỗi người commit bằng tài khoản của mình, mỗi việc nhỏ một commit.
+4. Báo cáo nháp: `docs/report/bao-cao-cuoi-ky.md` (chỗ `CHỜ` là phần chưa có số liệu). Bối cảnh và yêu cầu chấm: `docs/report-context.md`.
+5. Slide: `cd slides && npm install && npm run dev` (http://localhost:3030). Kịch bản demo: `docs/demo.md`.
+
 ## 1. Dựng Twenty
 ```
 cd docker

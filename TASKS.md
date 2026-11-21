@@ -59,7 +59,7 @@ Context để viết báo cáo (yêu cầu của thầy, nguồn bằng chứng 
 
 ## 8. Báo cáo cuối kỳ, slide, demo
 - [ ] **8.1** Báo cáo tổng kết 8 phần A đến H (gộp từ mục 2 đến 6), một người tổng biên tập (đề xuất M), cả nhóm rà soát. Nguồn: `docs/`, `logs/`, `docs/archive/bao_cao_giua_ky_milestone_2.md`.
-- [ ] **8.2** Slide thuyết trình gọn: bài toán, kiến trúc, Pact là gì, 7 interaction, demo, kết quả thí nghiệm phá hợp đồng, bài học (KI-1, KI-4), giới hạn.
+- [x] **8.2** (bản nháp Slidev ở `slides/`, còn chờ slide đóng góp và sơ đồ của Luyến) Slide thuyết trình gọn: bài toán, kiến trúc, Pact là gì, 7 interaction, demo, kết quả thí nghiệm phá hợp đồng, bài học (KI-1, KI-4), giới hạn.
 - [x] **8.3** Kịch bản demo chạy trực tiếp: `test:consumer` rồi `test:provider` (7/7), sau đó `experiments` hoặc một lượt phá hợp đồng thấy fail đúng chỗ. Có phương án dự phòng (log/ảnh) nếu Docker hoặc phiên đăng nhập hỏng. Tập demo trên máy thật, nhớ lấy phiên mới trước buổi demo.
 - [x] **8.4** Danh sách câu hỏi có thể bị hỏi và câu trả lời (vì sao Pact, vì sao Origin/Host, giới hạn của contract test, khác biệt so với integration test).
 - [ ] **8.5** Nộp lên LMS trước hạn (1 tuần trước bảo vệ): (1) báo cáo cuối kỳ, (2) bản phân chia công việc và đóng góp qua peer review (mục 7.4), kèm mã nguồn. Xác nhận định dạng, ngày chính xác với giảng viên; đối chiếu "mục A phần 6 trong file hướng dẫn" mà thầy nhắc.

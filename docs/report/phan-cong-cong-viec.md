@@ -14,7 +14,7 @@ Quy ước: `[x]` đã xong và có bằng chứng kiểm chứng được; `[ ]
 ## 2. Tóm tắt tiến độ
 | Người | Việc đã xong | Việc còn lại | Commit hiện có |
 |---|---|---|---|
-| Mạnh | 19 | 6 | 12 |
+| Mạnh | 20 | 5 | 12 |
 | Luyến | 0 | 11 | 0 |
 | Phước | 9 | 7 | 6 |
 | Cả nhóm | 0 | 3 | 0 |
@@ -50,7 +50,7 @@ Quy ước: `[x]` đã xong và có bằng chứng kiểm chứng được; `[ ]
 | M19 | Rà tiêu chí A của thầy trước khi nộp | [ ] | 6.0 | |
 | M20 | Link Trello/Jira/GitHub Projects, đưa task lên | [ ] | 7.2 | link |
 | M21 | Báo cáo tổng kết 8 phần A đến H (gộp từ phần của cả nhóm) | [ ] | 8.1 | |
-| M22 | Slide thuyết trình | [ ] | 8.2 | |
+| M22 | Slide thuyết trình (Slidev, 14 slide; còn chờ slide đóng góp và sơ đồ của Luyến) | [x] | 8.2 | `slides/slides.md` |
 | M23 | Kịch bản demo và phương án dự phòng | [x] | 8.3 | `docs/demo.md` |
 | M24 | Câu hỏi dự kiến và trả lời | [x] | 8.4 | `docs/demo.md` mục 5 |
 | M25 | Tổng hợp peer review và phần trình bày lịch sử Git | [ ] | 7.4, 7.5 | |

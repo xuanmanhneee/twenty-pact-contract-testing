@@ -6,6 +6,8 @@ Mỗi mục có tiêu chí xong; làm xong thì tick và commit (push thì hỏi
 
 Người phụ trách theo phân công đề xuất: **M** = Mạnh (môi trường, provider), **L** = Luyến (kiến trúc, sơ đồ, onboarding), **P** = Phước (scenario, consumer, log/metrics). Phân công chính thức cần cả nhóm xác nhận (mục 7).
 
+Context để viết báo cáo (yêu cầu của thầy, nguồn bằng chứng từng phần A đến H, số liệu, giới hạn): [`docs/report-context.md`](docs/report-context.md).
+
 ## 0. Đã xong (tham chiếu)
 - [x] Consumer 7/7 (I-01 đến I-07), hợp đồng `pacts/twenty-front-twenty-server.json` (P)
 - [x] Provider verify gọi thẳng `:3000` 7/7; KI-1 Origin, KI-4 Host, state handler đủ 7, teardown I-03 (M)
@@ -51,14 +53,15 @@ Người phụ trách theo phân công đề xuất: **M** = Mạnh (môi trư�
 - [ ] **7.1** Phân công thật 3 thành viên và đóng góp cụ thể kèm bằng chứng commit (báo cáo giữa kỳ còn `[CẦN ĐIỀN]`). Đổi MSSV của Phước thành 2312716 trong mọi tài liệu (báo cáo cũ ghi 2312714).
 - [ ] **7.2** Tạo link Trello, Jira hoặc GitHub Projects, đưa các mục của file này lên đó, ghi link vào README và báo cáo.
 - [ ] **7.3** Lịch sử commit đều: mỗi thành viên có commit thật bằng danh tính của mình (Luyến, Phước chưa có việc nào trong danh sách này nếu chỉ Mạnh làm). Chia mục 2 đến 5 cho Luyến và Phước commit trực tiếp.
-- [ ] **7.4** Chuẩn bị peer-review (đánh giá chéo): mỗi người liệt kê đóng góp của mình.
+- [ ] **7.4** **Bản phân chia công việc và đóng góp cá nhân qua peer review** (hồ sơ nộp LMS, thầy yêu cầu thêm 21/11): mỗi người liệt kê đóng góp cụ thể kèm bằng chứng commit, đánh giá chéo hai người còn lại; một người tổng hợp thành một file nộp riêng.
+- [ ] **7.5** Chuẩn bị phần trình bày **lịch sử công việc và commit Git** cho buổi bảo vệ (thầy yêu cầu): bảng commit theo người và ngày, giải thích trung thực. Số liệu và cảnh báo ở `docs/report-context.md` mục 7.
 
 ## 8. Báo cáo cuối kỳ, slide, demo
 - [ ] **8.1** Báo cáo tổng kết 8 phần A đến H (gộp từ mục 2 đến 6), một người tổng biên tập (đề xuất M), cả nhóm rà soát. Nguồn: `docs/`, `logs/`, `docs/archive/bao_cao_giua_ky_milestone_2.md`.
 - [ ] **8.2** Slide thuyết trình gọn: bài toán, kiến trúc, Pact là gì, 7 interaction, demo, kết quả thí nghiệm phá hợp đồng, bài học (KI-1, KI-4), giới hạn.
 - [ ] **8.3** Kịch bản demo chạy trực tiếp: `test:consumer` rồi `test:provider` (7/7), sau đó `experiments` hoặc một lượt phá hợp đồng thấy fail đúng chỗ. Có phương án dự phòng (log/ảnh) nếu Docker hoặc phiên đăng nhập hỏng. Tập demo trên máy thật, nhớ lấy phiên mới trước buổi demo.
 - [ ] **8.4** Danh sách câu hỏi có thể bị hỏi và câu trả lời (vì sao Pact, vì sao Origin/Host, giới hạn của contract test, khác biệt so với integration test).
-- [ ] **8.5** Nộp báo cáo và mã nguồn trước hạn (1 tuần trước bảo vệ): xác nhận định dạng, nơi nộp, ngày chính xác với giảng viên.
+- [ ] **8.5** Nộp lên LMS trước hạn (1 tuần trước bảo vệ): (1) báo cáo cuối kỳ, (2) bản phân chia công việc và đóng góp qua peer review (mục 7.4), kèm mã nguồn. Xác nhận định dạng, ngày chính xác với giảng viên; đối chiếu "mục A phần 6 trong file hướng dẫn" mà thầy nhắc.
 
 ## 9. Thứ tự đề xuất
 1. Mục 1 (1.1, 1.2, 1.5), vì mọi phần sau cần số liệu và tên workspace chốt.

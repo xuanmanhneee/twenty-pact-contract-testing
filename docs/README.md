@@ -9,6 +9,7 @@ Contract testing (Pact) cho Twenty CRM: consumer `twenty-front`, provider `twent
 | [contract-testing.md](contract-testing.md) | Nguyên lý, phạm vi, giả định, tiêu chí pass/fail | Cần hiểu vì sao test như vậy |
 | [interactions.md](interactions.md) | Danh mục I-01 → I-07: precondition, input, expected | Thêm hoặc sửa interaction |
 | [testing.md](testing.md) | Cách chạy, thí nghiệm phá hợp đồng, kết quả đo | Chạy test, đọc kết quả |
+| [report-context.md](report-context.md) | Yêu cầu nộp, nguồn bằng chứng cho phần A đến H, số liệu, giới hạn, đóng góp | Viết báo cáo và slide |
 | [known-issues.md](known-issues.md) | Lỗi đang mở, giới hạn, việc còn lại | Trước khi bắt đầu việc mới |
 | [archive/](archive/) | Báo cáo gốc và đề bài của giảng viên (chỉ để tham khảo) | Cần nguồn gốc yêu cầu |
 

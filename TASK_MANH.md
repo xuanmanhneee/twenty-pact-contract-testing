@@ -19,7 +19,7 @@ Cập nhật lần cuối: 21/11/2026. Danh sách vấn đề và việc còn l�
 - [ ] **Hạ tầng cho báo cáo (phần A–C, chưa có):** sơ đồ kiến trúc dạng ảnh, cây thư mục `tree -L 2`, danh sách dependency chính, ảnh chụp 3 luồng chạy được (đã có F1, F3, F4 trong `logs/`).
 - [ ] **Quản trị dự án:** link Trello/Jira/GitHub Projects (chưa có trong tài liệu nào), phân công thật của 3 thành viên (báo cáo giữa kỳ còn trống). Rubric chấm lịch sử commit đều của từng người.
 - [ ] **Báo cáo cuối kỳ và slide:** chưa bắt đầu. Hạn nộp trước buổi bảo vệ 1 tuần (khoảng đầu tháng 12/2026), ngày chính xác hỏi giảng viên. Nguồn nội dung: `docs/` cộng `logs/`.
-- [ ] Dọn: `tests/probe.mjs` là consumer test cũ chỉ có I-01, không thuộc luồng chính (xóa hoặc ghi rõ); tên test trong `consumer.test.js` còn chỗ nhắc "token".
+- [x] Dọn (21/11): xóa `tests/probe.mjs`; đổi provider state `token không hợp lệ` thành `phiên không hợp lệ` (consumer, provider, pact, docs). **Chưa chạy lại provider verify** (Docker tắt): khi có stack, xác nhận vẫn 7/7.
 
 ## 3. Cách chạy lại nhanh (khi vào phiên mới)
 Điều kiện:

@@ -60,7 +60,7 @@ describe('twenty-server thật thỏa mãn hợp đồng của twenty-front', ()
         // I-03 tạo bản ghi thật: dọn fixture trước (tránh trùng UUID) và sau (không để rác).
         'workspace sẵn sàng tạo Person I-03': { setup: cleanupI03, teardown: cleanupI03 },
         'phiên hợp lệ nhưng request thiếu Origin': async () => {},
-        'token không hợp lệ': async () => {},
+        'phiên không hợp lệ': async () => {},
       },
       // I-01: thay phiên giả bằng phiên thật. I-06: giữ phiên sai.
       requestFilter: (req, _res, next) => {

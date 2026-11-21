@@ -13,7 +13,7 @@ Request chung (trừ I-07): header `Content-Type: application/json`, `Cookie: tw
 | I-03 | `workspace sẵn sàng tạo Person I-03` | `/graphql` | `CreateOnePerson` (mutation) |
 | I-04 | `workspace có ít nhất 1 Opportunity` | `/graphql` | `FindManyOpportunities` |
 | I-05 | `người dùng đã đăng nhập vào workspace` | `/metadata` | `GetCurrentUser` |
-| I-06 | `token không hợp lệ` | `/graphql` | `FindManyPeople` |
+| I-06 | `phiên không hợp lệ` | `/graphql` | `FindManyPeople` |
 | I-07 | `phiên hợp lệ nhưng request thiếu Origin` | `/graphql` | `FindManyPeople` |
 
 ## Chi tiết

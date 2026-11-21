@@ -48,7 +48,7 @@ Lưu ý: sơ đồ trong `docs/architecture.md` còn vẽ Verifier đi qua auth-
 | Node.js | ≥ 22 (đã chạy với v26.13.0 trên Windows 11) |
 | Pact | `@pact-foundation/pact` 16.5.0 |
 | Test runner | vitest 3.x |
-📎 Nguồn: `VERSIONS.md` (digest đầy đủ). Source tham chiếu `a61e47d` chưa khớp tuyệt đối với image; kết quả không phụ thuộc source (⏳ CHỜ: thử tìm tag source khớp, TASKS 6.3).
+📎 Nguồn: `VERSIONS.md` (digest đầy đủ). Source tham chiếu: tag `sdk/v2.46.0` (commit `9070979`, 09/10/2026, trùng ngày build image); image không công bố commit nên chưa chứng minh khớp từng byte, kết quả không phụ thuộc source.
 
 ### C.2 Hướng dẫn dựng hệ thống
 1. `cd docker && cp .env.example .env`, điền các giá trị `CHANGE_ME` (mật khẩu PostgreSQL, khóa mã hóa sinh bằng `openssl rand -base64 32`); `docker compose up -d`; kiểm tra `curl http://localhost:3000/healthz`.
@@ -56,6 +56,7 @@ Lưu ý: sơ đồ trong `docs/architecture.md` còn vẽ Verifier đi qua auth-
 3. Lấy phiên: đăng nhập, F12 → Network → request `graphql` → cookie `twenty-session=sess_...`; dán giá trị vào `token.txt`.
 4. Gỡ proxy hệ thống (`unset HTTP_PROXY HTTPS_PROXY`), `npm install`, chạy `npm run test:consumer`, `npm run test:provider`.
 📎 Nguồn: `README.md`, `docs/setup.md`.
+Bảng xử lý lỗi thường gặp (Docker chưa chạy, phiên hết hạn, 403 CSRF, thiếu dữ liệu, cổng bận): `docs/setup.md` mục 7.
 ⏳ CHỜ [Luyến, TASKS 4.3]: kết quả chạy lại trên máy sạch theo đúng các bước trên (thời gian, lỗi gặp) → `docs/report/clean-run.md`.
 
 ### C.3 Bằng chứng hệ thống chạy được
@@ -129,7 +130,8 @@ Lưu ý: thay đổi được mô phỏng bằng `mutate-proxy` ở lớp mạng
 | `npm run test:consumer` | Sinh hợp đồng từ consumer test |
 | `npm run test:provider` | Verifier gọi thẳng Twenty `:3000`, kỳ vọng 7/7 |
 | `npm run experiments` | Chạy M-0, M-2, M-3, M-4, M-6, ghi `logs/experiments/` |
-⏳ CHỜ [Mạnh, TASKS 6.1]: một lệnh chạy toàn bộ và in tóm tắt; kiểm tra README trên máy sạch.
+| `npm run all` | Một lệnh chạy toàn bộ (kiểm tra điều kiện, consumer, provider, thí nghiệm), in tóm tắt, ghi `logs/run-all-summary.md`; lượt chạy 21/11/2026: tất cả đạt |
+⏳ CHỜ [Luyến, TASKS 4.3]: kiểm tra README và `npm run all` trên máy sạch.
 
 ## G. Log, metrics và phân tích
 ### G.1 Kết quả chạy (21/11/2026, Windows 11, Node v26.13.0, Pact 16.5.0, Twenty v2.46.0)
@@ -169,7 +171,7 @@ Giới hạn: thay đổi mô phỏng ở lớp proxy, mỗi lượt chạy mộ
 
 ## 2. Hạn chế
 - Mô phỏng thay đổi ở lớp proxy, chưa sửa mã server thật; chưa đo độ ổn định (lặp nhiều lần).
-- Image đã pin nhưng source đối chiếu chưa khớp tuyệt đối.
+- Image đã pin; source đối chiếu (tag `sdk/v2.46.0`) trùng ngày build nhưng chưa chứng minh khớp từng byte.
 - Phiên đăng nhập lấy thủ công, hết hạn nhanh; chưa tự động hóa đăng nhập.
 - Không có Pact Broker và CI; hợp đồng lưu trong repo.
 - Chỉ kiểm hình dạng dữ liệu của 7 interaction, không kiểm nghiệp vụ, hiệu năng hay bảo mật.

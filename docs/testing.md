@@ -72,10 +72,14 @@ Lưu ý trung thực: các thay đổi được mô phỏng ở lớp proxy, kh�
 | Provider qua `:4002`, 7 interaction (trước khi sửa Origin, 16/11) | 7 | 6 | 1 (I-07, do proxy) | 1,82 s |
 | Provider qua `:4002`, 7 interaction (sau khi sửa Origin, 21/11) | 7 | **7** | 0 | 1,58 s |
 | Consumer, 7 interaction (21/11) | 7 | 7 | 0 | 1,11 s |
+| Consumer, 7 interaction (21/11, sau KI-4) | 7 | 7 | 0 | 1,25 s |
+| **Provider gọi thẳng `:3000`, 7 interaction (21/11, sau KI-4)** | 7 | **7** | 0 | 3,16 s |
 | Provider qua proxy điều kiện `:4003`, 6 interaction (trước I-03) | 6 | 6 | 0 | 1,3 s (đo tường) |
 | M-1, provider qua `:4003` | 6 | 5 | 1 (I-01) | 1,6 s (đo tường) |
 
 Thời gian verify từng interaction (lượt provider cuối): I-01 131 ms, I-02 41 ms, I-03 92 ms, I-04 52 ms, I-05 128 ms, I-06 40 ms, I-07 59 ms.
+
+Thời gian verify từng interaction, lượt gọi thẳng `:3000` (21/11): I-01 302 ms, I-02 84 ms, I-03 1,10 s, I-04 81 ms, I-05 103 ms, I-06 18 ms, I-07 16 ms. I-03 chậm hơn vì gồm `setup` và `teardown` (xóa fixture) của provider state. Log: `logs/provider-run-direct-21-11.log`, `logs/consumer-run-21-11.log`, `logs/experiments-run-21-11.log`. Thí nghiệm chạy lại 21/11: M-0, M-2, M-3, M-4, M-6 đều khớp kỳ vọng (2,96 đến 5,48 s mỗi lượt).
 
 Nguồn: `logs/metrics.md` (bảng đầy đủ), `logs/consumer-run-*.log`, `logs/provider-run-*.log`.
 Ảnh bằng chứng: `logs/people.png`, `logs/f3-companies.png`, `logs/opportunities.png`, `logs/f4-current-user.png`.

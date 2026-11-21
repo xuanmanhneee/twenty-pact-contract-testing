@@ -1,0 +1,83 @@
+
+> test:provider
+> vitest run tests/provider.verify.test.js
+
+
+[1m[46m RUN [49m[22m [36mv3.2.7 [39m[90mD:/Workspace/Projects/twenty-pact-contract-testing[39m
+
+(node:21964) [DEP0060] DeprecationWarning: The `util._extend` API is deprecated. Please use Object.assign() instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-21T05:49:28.270133Z  WARN ThreadId(17) pact_matching::metrics: 
+
+Please note:
+We are tracking events anonymously to gather important usage statistics like Pact version and operating system. To disable tracking, set the 'PACT_DO_NOT_TRACK' environment variable to 'true'.
+
+
+
+Verifying a pact between [1mtwenty-front[0m and [1mtwenty-server[0m
+
+  I-01 FindManyPeople với phiên hợp lệ (4ms loading, 302ms verification)
+     Given workspace có ít nhất 1 Person
+    returns a response which
+      has status code [1m200[0m ([32mOK[0m)
+      includes headers
+        "[1mContent-Type[0m" with value "[1mapplication/json; charset=utf-8[0m" ([32mOK[0m)
+      has a matching body ([32mOK[0m)
+
+  I-02 FindManyCompanies với phiên hợp lệ (4ms loading, 84ms verification)
+     Given workspace có ít nhất 1 Company
+    returns a response which
+      has status code [1m200[0m ([32mOK[0m)
+      includes headers
+        "[1mContent-Type[0m" with value "[1mapplication/json; charset=utf-8[0m" ([32mOK[0m)
+      has a matching body ([32mOK[0m)
+
+  I-03 CreateOnePerson với phiên hợp lệ (4ms loading, 1s 104ms verification)
+     Given workspace sẵn sàng tạo Person I-03
+    returns a response which
+      has status code [1m200[0m ([32mOK[0m)
+      includes headers
+        "[1mContent-Type[0m" with value "[1mapplication/json; charset=utf-8[0m" ([32mOK[0m)
+      has a matching body ([32mOK[0m)
+
+  I-04 FindManyOpportunities với phiên hợp lệ (4ms loading, 81ms verification)
+     Given workspace có ít nhất 1 Opportunity
+    returns a response which
+      has status code [1m200[0m ([32mOK[0m)
+      includes headers
+        "[1mContent-Type[0m" with value "[1mapplication/json; charset=utf-8[0m" ([32mOK[0m)
+      has a matching body ([32mOK[0m)
+
+  I-05 GetCurrentUser với phiên hợp lệ (4ms loading, 103ms verification)
+     Given người dùng đã đăng nhập vào workspace
+    returns a response which
+      has status code [1m200[0m ([32mOK[0m)
+      includes headers
+        "[1mContent-Type[0m" with value "[1mapplication/json; charset=utf-8[0m" ([32mOK[0m)
+      has a matching body ([32mOK[0m)
+
+  I-06 FindManyPeople với phiên sai (4ms loading, 18ms verification)
+     Given phiên không hợp lệ
+    returns a response which
+      has status code [1m200[0m ([32mOK[0m)
+      includes headers
+        "[1mContent-Type[0m" with value "[1mapplication/json; charset=utf-8[0m" ([32mOK[0m)
+      has a matching body ([32mOK[0m)
+
+  I-07 FindManyPeople thiếu Origin (4ms loading, 16ms verification)
+     Given phiên hợp lệ nhưng request thiếu Origin
+    returns a response which
+      has status code [1m403[0m ([32mOK[0m)
+      includes headers
+        "[1mContent-Type[0m" with value "[1mapplication/json; charset=utf-8[0m" ([32mOK[0m)
+      has a matching body ([32mOK[0m)
+
+
+ [32m✓[39m tests/provider.verify.test.js [2m([22m[2m1 test[22m[2m)[22m[33m 2160[2mms[22m[39m
+   [33m[2m✓[22m[39m twenty-server thật thỏa mãn hợp đồng của twenty-front[2m > [22mxác minh toàn bộ interaction [33m 2159[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+[2m   Start at [22m 12:49:25
+[2m   Duration [22m 3.16s[2m (transform 19ms, setup 0ms, collect 606ms, tests 2.16s, environment 0ms, prepare 124ms)[22m
+

@@ -29,6 +29,10 @@ npm install
 npm run test:consumer          # sinh pacts/twenty-front-twenty-server.json
 npm run test:provider          # verify gọi thẳng Twenty thật (:3000)
 ```
+Hoặc chạy toàn bộ bằng một lệnh (kiểm tra điều kiện, consumer, provider, thí nghiệm phá hợp đồng; in tóm tắt và ghi `logs/run-all-summary.md`):
+```
+npm run all
+```
 Verifier gọi thẳng Twenty, không cần proxy. `requestFilter` thay cookie giả `valid-session` bằng phiên thật và đặt
 `Host`/`Origin` về `localhost:3000` (Twenty v2.46.0 trả 403 CSRF_ORIGIN_MISMATCH khi Host không khớp Origin, xem KI-4
 trong `docs/known-issues.md`). `auth-proxy` (`npm run auth-proxy`, cổng 4002) chỉ còn dùng cho thí nghiệm và chẩn đoán.

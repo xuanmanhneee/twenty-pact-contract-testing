@@ -14,7 +14,7 @@
       "I-07": "OK"
     },
     "match": true,
-    "seconds": "5.48"
+    "seconds": "3.21"
   },
   {
     "id": "M-2",
@@ -37,7 +37,7 @@
       "I-07": "OK"
     },
     "match": true,
-    "seconds": "2.96"
+    "seconds": "2.73"
   },
   {
     "id": "M-3",
@@ -58,7 +58,7 @@
       "I-07": "OK"
     },
     "match": true,
-    "seconds": "3.10"
+    "seconds": "3.16"
   },
   {
     "id": "M-4",
@@ -83,7 +83,7 @@
       "I-07": "OK"
     },
     "match": true,
-    "seconds": "3.05"
+    "seconds": "2.83"
   },
   {
     "id": "M-6",
@@ -100,6 +100,6 @@
       "I-07": "OK"
     },
     "match": true,
-    "seconds": "3.00"
+    "seconds": "2.84"
   }
 ]

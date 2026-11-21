@@ -44,6 +44,7 @@ Context để viết báo cáo (yêu cầu của thầy, nguồn bằng chứng 
 - [ ] **5.3** Kỹ thuật thiết kế test được áp dụng (phân vùng tương đương, giá trị biên, thử âm: phiên sai I-06, thiếu Origin I-07) và kịch bản phá hợp đồng M-0 đến M-6 (P).
 
 ## 6. Phần F, G, H: mã nguồn, log, tái lập (M + P)
+- [ ] **6.0 Tiêu chí A của thầy** (đối chiếu từng gạch trong `docs/report-context.md` mục 1.1): sơ đồ dễ hiểu, hướng dẫn cài đặt giảng viên tự làm theo được (kể cả lấy phiên `twenty-session` có ảnh), giải thích vì sao áp dụng Pact, scenario cụ thể, một lệnh chạy toàn bộ và sinh kết quả, giải thích ý nghĩa log, phân biệt lỗi harness với lỗi Twenty. Rà lại trước khi nộp (cả nhóm).
 - [ ] **6.1 F:** README gốc đủ lệnh chạy và dependency; script chạy lại tự động (`test:consumer`, `test:provider`, `experiments`). Kiểm tra cuối cùng cùng với 4.3 (M).
 - [ ] **6.2 G:** bảng log/metrics: số interaction pass/fail mỗi lượt, thời gian, lượt bình thường và lượt phá hợp đồng; danh sách defect và hành vi bất thường (CSRF Host/Origin, 403 vs 200 của phiên sai, response không có `extensions.code`) kèm phân tích nguyên nhân gốc (P viết, M cung cấp số liệu `logs/experiments/`).
 - [ ] **6.3 H, pin phiên bản:** tạo git tag cho bản nộp (ví dụ `v1.0-final`), ghi tag, commit SHA, digest image vào `VERSIONS.md`; thử tìm tag source khớp image `v2.46.0` để thay `a61e47d` (M). *Tag tạo sau cùng, khi code và log đã đóng băng.*

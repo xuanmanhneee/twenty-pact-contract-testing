@@ -6,13 +6,22 @@ Tài liệu nền cho người viết báo cáo (và slide): yêu cầu của gi
 Đề tài R10 (Twenty CRM) × K04 (Contract Testing, Pact). Môn Kiểm thử Phần mềm, ĐH Đà Lạt, GV Nguyễn Thế Lâm. Nhóm 12.
 
 **Hồ sơ nộp lên LMS** (thầy bổ sung 21/11/2026, nộp trước buổi bảo vệ 1 tuần, khoảng đầu tháng 12/2026; ngày chính xác hỏi giảng viên):
-1. **Báo cáo cuối kỳ**, theo cấu trúc 8 phần A đến H (thầy nhắc "mục A phần 6 trong file hướng dẫn"; mục đó chưa đối chiếu được vì chưa đọc nội dung PDF, xem `archive/ban_phan_cong_de_tai.pdf`).
+1. **Báo cáo cuối kỳ**, theo cấu trúc 8 phần A đến H (thầy nhắc "mục A phần 6 trong file hướng dẫn"; nhiều khả năng là tiêu chí đánh giá A ở mục 1.1 bên dưới, chưa xác nhận được với PDF `archive/ban_phan_cong_de_tai.pdf`).
 2. **Bản phân chia công việc và đóng góp của từng cá nhân thông qua peer review.**
 3. Nộp kèm mã nguồn kiểm thử (đề bài) và, theo đề bài, báo cáo tổng kết.
 
 **Tại buổi bảo vệ:** thuyết trình toàn bộ dự án, demo script tự động, và **trình bày lịch sử công việc và commit Git** để chứng minh cả nhóm tham gia đều đặn.
 
 **Tiêu chí chấm** (`archive/context-de-tai-kiem-thu.md`): (1) báo cáo chuyên môn và mã nguồn: hiểu và áp dụng đúng Contract Testing, scenario cụ thể, mã chạy tự động, hướng dẫn cài đặt rõ; (2) quản trị dự án và thuyết trình: commit đều, slide gọn, trả lời đúng trọng tâm; (3) peer evaluation.
+
+### 1.1 Tiêu chí A: đánh giá báo cáo chuyên môn và mã nguồn (nguyên văn từ thầy) và đối chiếu
+| Tiêu chí của thầy | Bằng chứng hiện có | Còn thiếu để đạt tốt |
+|---|---|---|
+| Trình bày mục tiêu hệ thống, vẽ lại luồng dữ liệu cơ bản ở mức dễ hiểu | `architecture.md` (Mermaid) | Sơ đồ ảnh đơn giản cho người không chuyên: người dùng, twenty-front, GraphQL, twenty-server, DB; luồng "xem People" và "tạo Person" từng bước (TASKS 2.1, 2.3, 3.1). Tránh thuật ngữ nội bộ |
+| Hướng dẫn cài đặt rõ để giảng viên dựng lại và chạy thử (khuyến khích Docker) | `README.md`, `setup.md`, `docker/` | **Giảng viên phải làm theo được mà không cần Mạnh.** Cần: chạy lại trên máy sạch (TASKS 4.3), chốt `dlu-qa` và dữ liệu mẫu (1.1), cách lấy phiên `twenty-session` từng bước kèm ảnh, nhắc lỗi hay gặp (proxy môi trường, Docker tắt, phiên hết hạn). Điểm yếu lớn nhất hiện nay: phiên lấy thủ công, hết hạn nhanh |
+| Cho thấy hiểu kỹ thuật kiểm thử và biết vận dụng vào dự án | `contract-testing.md`, thí nghiệm M-0 đến M-6 | Giải thích bằng lời của nhóm: vì sao chọn contract testing cho cặp front-back của Twenty, hợp đồng nằm ở đâu, ai sinh ai verify; so với integration/E2E; nêu ranh giới (chỉ hình dạng dữ liệu) |
+| Scenario mô tả cụ thể; mã test gọn, chạy tự động, sinh kết quả | `interactions.md`, `tests/`, `npm run test:consumer`, `test:provider`, `experiments` | Một lệnh duy nhất chạy toàn bộ và in tóm tắt (cân nhắc script `npm run all`); kiểm tra mã gọn (không còn file thừa, tên rõ); nơi lưu kết quả cố định (`logs/`, `logs/experiments/summary.md`) |
+| Từ kết quả chỉ ra lỗi phần mềm (nếu có) hoặc giải thích ý nghĩa log/kết quả | Bảng defect KI-1 đến KI-4 (mục 5), kết quả M-0 đến M-6 | Phân biệt rõ: lỗi do môi trường/harness của nhóm (KI-1, KI-4) khác lỗi của phần mềm Twenty. Chưa phát hiện lỗi của Twenty; phải nói thẳng và dùng mục "nếu không có lỗi phải chứng minh" (phần G): dẫn M-0 pass, M-2/3/4 fail đúng chỗ, M-6 không báo động giả. Giải thích từng loại log: dòng `OK/FAILED` của Verifier, `Actual map is missing the following keys`, `expected 200 but was 403` nghĩa là gì |
 
 ## 2. Cấu trúc báo cáo A đến H và nguồn trong repo
 | Phần | Nội dung bắt buộc | Nguồn trong repo | Tình trạng |

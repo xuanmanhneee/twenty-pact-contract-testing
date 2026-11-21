@@ -36,7 +36,7 @@ chạy sạch, chạy lặp lại (chứng minh fixture bị xóa vĩnh viễn v
 
 ## Giới hạn đã biết
 - **Phiên bản:** image `v2.46.0` đã pin, nhưng source đối chiếu `a61e47d` chưa khớp tuyệt đối. Kết quả không phụ thuộc source.
-- **Workspace:** hợp đồng quy ước `dlu-qa`, workspace Docker hiện có tên `phuoc`. Chưa có cách nạp dữ liệu mẫu chung cho cả nhóm.
+- **Workspace:** tên `dlu-qa` chỉ là quy ước, không ảnh hưởng kết quả verify (matcher kiểu chuỗi). Mỗi người có dữ liệu riêng trên Docker của mình; quy ước dữ liệu tối thiểu ở [setup.md](setup.md) mục 2.
 - **Phiên đăng nhập:** lấy thủ công, hết hạn nhanh.
 - **Thí nghiệm phá hợp đồng:** M-2, M-3, M-4 mô phỏng ở lớp proxy (không sửa server thật), mỗi lượt chạy một lần. Chưa thử thay đổi thật trên mã nguồn Twenty.
 - **Phạm vi:** chỉ kiểm hình dạng dữ liệu, không kiểm nghiệp vụ hay hiệu năng.
@@ -47,6 +47,6 @@ Thứ tự đề xuất, theo mức ảnh hưởng đến tiêu chí "100% pass"
 - [x] KI-2, KI-3: đủ provider state và teardown tự động cho I-03 (21/11/2026).
 - [x] M-2, M-3, M-4 (+ M-0 đối chứng, M-6 tương thích ngược): chạy qua `mutate-proxy`, bằng chứng ở `logs/experiments/` (21/11/2026).
 - [x] KI-4: nguyên nhân gốc là Host, đã sửa (21/11/2026).
-- [ ] Thống nhất workspace `dlu-qa` và cách nạp dữ liệu mẫu.
+- [x] Thống nhất workspace `dlu-qa` và dữ liệu mẫu (21/11/2026), xem setup.md mục 2.
 - [ ] Kiểm tra chạy lại từ máy sạch theo README, ghi kết quả.
 - [ ] Tạo tag cho phiên bản nộp và ghi vào `VERSIONS.md`.

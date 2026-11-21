@@ -21,8 +21,8 @@ Mở http://localhost:3000, tạo workspace/đăng nhập (dữ liệu mẫu n�
 
 ## 2. Lấy phiên đăng nhập
 Twenty v2.46.0 xác thực bằng cookie, không có header Authorization.
-Đăng nhập trên trình duyệt → trang People → DevTools (F12) → Network → request `graphql` (FindManyPeople)
-→ Request Headers → `cookie` → chép giá trị sau `twenty-session=` (bắt đầu bằng `sess_`, dừng trước dấu `;`).
+Đăng nhập trên trình duyệt → DevTools (F12) → **Application** (Firefox: Storage) → Cookies → `http://localhost:3000`
+→ dòng `twenty-session` → chép cột Value (bắt đầu bằng `sess_`). Cách khác: tab Network → request `graphql` → header `cookie`.
 Dán vào file `token.txt` (cùng cấp package.json), hoặc đặt biến `TWENTY_SESSION`. Không commit, không chia sẻ.
 Nếu verify báo UNAUTHENTICATED ở I-01, lấy lại giá trị mới.
 

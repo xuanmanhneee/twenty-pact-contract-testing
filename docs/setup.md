@@ -47,8 +47,8 @@ Sinh khóa ngẫu nhiên: `openssl rand -base64 32`. `docker/.env` đã nằm tr
 ## 3. Lấy phiên đăng nhập cho verifier
 Twenty v2.46.0 xác thực bằng cookie. Verifier cần một phiên thật:
 1. Đăng nhập trên trình duyệt, mở trang People.
-2. DevTools (F12) → Network → chọn request `graphql` (`FindManyPeople`) → Request Headers → `cookie`.
-3. Chép giá trị sau `twenty-session=` (bắt đầu bằng `sess_`, dừng trước dấu `;`).
+2. Cách nhanh: DevTools (F12) → **Application** (Chrome/Edge; Firefox là Storage) → Cookies → `http://localhost:3000` → dòng `twenty-session` → chép cột **Value** (bắt đầu bằng `sess_`).
+3. Cách khác: tab Network → request `graphql` → Request Headers → `cookie` → chép giá trị sau `twenty-session=`, dừng trước dấu `;`.
 4. Dán vào `token.txt` ở thư mục gốc, hoặc đặt biến `TWENTY_SESSION`.
 
 Phiên hết hạn nhanh: nếu verify báo `UNAUTHENTICATED` ở I-01, lấy lại giá trị mới. `token.txt` đã nằm trong `.gitignore`.

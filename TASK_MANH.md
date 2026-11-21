@@ -1,4 +1,5 @@
 # Task của Mạnh (2312686) và bàn giao cho phiên sau
+n> Danh sách task chung của cả nhóm đến khi hoàn thành: [`TASKS.md`](TASKS.md). Mục 2 bên dưới là phần việc của Mạnh.
 
 Nhiệm vụ theo báo cáo giữa kỳ: **dựng môi trường Docker, auth-proxy, provider verification**.
 Cập nhật lần cuối: 21/11/2026. Danh sách vấn đề và việc còn lại đầy đủ: [`docs/known-issues.md`](docs/known-issues.md).

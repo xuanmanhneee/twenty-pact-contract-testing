@@ -13,7 +13,7 @@ Contract testing (Pact) cho Twenty CRM: consumer `twenty-front`, provider `twent
 | [archive/](archive/) | Báo cáo gốc và đề bài của giảng viên (chỉ để tham khảo) | Cần nguồn gốc yêu cầu |
 
 Các tệp liên quan ở thư mục gốc: `README.md` (lệnh chạy nhanh), `VERSIONS.md` (phiên bản đã pin),
-`TASK_PHUOC.md` (nhật ký công việc consumer test).
+`TASK_PHUOC.md` (nhật ký công việc consumer test), `TASKS.md` (danh sách task chung đến khi hoàn thành).
 
 ## Quy ước
 - Tài liệu mô tả **trạng thái hiện tại** của mã. Số liệu đo được ghi kèm nguồn trong `logs/`.

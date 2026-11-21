@@ -55,7 +55,7 @@ Quy ước: `[x]` đã xong và có bằng chứng kiểm chứng được; `[ ]
 | M24 | Câu hỏi dự kiến và trả lời | [ ] | 8.4 | |
 | M25 | Tổng hợp peer review và phần trình bày lịch sử Git | [ ] | 7.4, 7.5 | |
 
-## 4. Luyến (2312682) — chi tiết ở [`TASK_LUYEN.md`](../../TASK_LUYEN.md)
+## 4. Luyến (2312682) — chi tiết ở [`TASK_LUYEN.md`](../TASK_LUYEN.md)
 | # | Công việc | TT | Mục TASKS | Sản phẩm | Bằng chứng (commit) |
 |---|---|---|---|---|---|
 | L1 | Clone repo, dựng Twenty bằng Docker, xem được trang People | [ ] | 4.3 | | |
@@ -70,7 +70,7 @@ Quy ước: `[x]` đã xong và có bằng chứng kiểm chứng được; `[ ]
 | L10 | File đóng góp cá nhân (kèm mã commit) | [ ] | 7.4 | `docs/report/dong-gop-luyen.md` | |
 | L11 | Cập nhật tick và ghi chú tiến độ trong `TASK_LUYEN.md` | [ ] | | | |
 
-## 5. Phước (2312716) — chi tiết ở [`TASK_PHUOC.md`](../../TASK_PHUOC.md)
+## 5. Phước (2312716) — chi tiết ở [`TASK_PHUOC.md`](../TASK_PHUOC.md)
 ### Đã xong
 | # | Công việc | TT | Bằng chứng |
 |---|---|---|---|

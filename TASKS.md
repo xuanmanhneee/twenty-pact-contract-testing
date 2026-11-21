@@ -1,8 +1,8 @@
 # Danh sách task chung đến khi hoàn thành (nhóm 12)
 
-Hợp nhất từ `TASK_MANH.md`, `TASK_PHUOC.md` và yêu cầu đề bài (`docs/archive/context-de-tai-kiem-thu.md`).
+Hợp nhất từ `docs/TASK_MANH.md`, `docs/TASK_PHUOC.md` và yêu cầu đề bài (`docs/archive/context-de-tai-kiem-thu.md`).
 Cập nhật lần cuối: 21/11/2026. Hạn nộp báo cáo và mã nguồn: trước buổi bảo vệ 1 tuần (khoảng đầu tháng 12/2026; hỏi giảng viên ngày chính xác).
-Mỗi mục có tiêu chí xong; làm xong thì tick và commit (push thì hỏi trước). `TASK_PHUOC.md` là nhật ký của Phước, không sửa; các mục "chờ Mạnh" trong đó đã xong (xem mục 0).
+Mỗi mục có tiêu chí xong; làm xong thì tick và commit (push thì hỏi trước). `docs/TASK_PHUOC.md` là nhật ký của Phước, không sửa; các mục "chờ Mạnh" trong đó đã xong (xem mục 0).
 
 Người phụ trách theo phân công đề xuất: **M** = Mạnh (môi trường, provider), **L** = Luyến (kiến trúc, sơ đồ, onboarding), **P** = Phước (scenario, consumer, log/metrics). Phân công chính thức cần cả nhóm xác nhận (mục 7).
 
@@ -14,7 +14,7 @@ Context để viết báo cáo (yêu cầu của thầy, nguồn bằng chứng 
 - [x] Thí nghiệm phá hợp đồng phía provider M-0, M-2, M-3, M-4, M-6, bằng chứng `logs/experiments/` (M)
 - [x] Thí nghiệm `BREAK=1` phía consumer (jobTitle đổi tên), log `logs/` (P)
 - [x] Chuẩn hóa `docs/`, dọn `probe.mjs`, đổi tên state `phiên không hợp lệ` (M)
-- [x] Các blocker trong `TASK_PHUOC.md` mục 4 (Origin, state handler, teardown I-03): đã giải quyết ở phía Mạnh
+- [x] Các blocker trong `docs/TASK_PHUOC.md` mục 4 (Origin, state handler, teardown I-03): đã giải quyết ở phía Mạnh
 
 ## 1. Chốt kỹ thuật còn lại (làm trước vì báo cáo dựa vào đây)
 - [x] **1.1 Workspace `dlu-qa` và dữ liệu mẫu** (chốt 21/11: tên không bắt buộc vì hợp đồng dùng matcher kiểu chuỗi; dữ liệu tối thiểu 1 Person, 1 Company, 1 Opportunity; mỗi người tự nạp trên Docker riêng, xem `docs/setup.md` mục 2. Còn lại: Luyến hoặc Phước xác nhận khi chạy lại trên máy sạch, mục 4.3). Ghi chú gốc (M + P). Quyết định: đổi tên workspace Docker `phuoc` thành `dlu-qa` hay giữ tên và sửa quy ước. Ghi cách nạp dữ liệu mẫu tối thiểu (1 Person, 1 Company, 1 Opportunity; hiện có 5/5/6) vào `docs/setup.md` mục 2. *Xong khi:* người khác làm theo setup.md có workspace đủ dữ liệu để verify 7/7; tên thống nhất trong hợp đồng, docs, README.
@@ -40,7 +40,7 @@ Context để viết báo cáo (yêu cầu của thầy, nguồn bằng chứng 
 
 ## 5. Phần D và E: lý thuyết và thiết kế test (P + L, rà bởi M)
 - [ ] **5.1** Phần D (nguyên lý, lý do chọn phạm vi, giả định, rủi ro, tiêu chí pass/fail): cập nhật từ `docs/contract-testing.md`, bỏ rủi ro đã xử lý (KI-1, KI-4), thêm kết quả thực tế (L).
-- [ ] **5.2** Phần E: bảng I-01 đến I-07 đủ precondition, input, expected, dữ liệu test, provider state (đã có trong `docs/interactions.md` và `TASK_PHUOC.md` mục 1) (P).
+- [ ] **5.2** Phần E: bảng I-01 đến I-07 đủ precondition, input, expected, dữ liệu test, provider state (đã có trong `docs/interactions.md` và `docs/TASK_PHUOC.md` mục 1) (P).
 - [ ] **5.3** Kỹ thuật thiết kế test được áp dụng (phân vùng tương đương, giá trị biên, thử âm: phiên sai I-06, thiếu Origin I-07) và kịch bản phá hợp đồng M-0 đến M-6 (P).
 
 ## 6. Phần F, G, H: mã nguồn, log, tái lập (M + P)

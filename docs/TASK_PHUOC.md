@@ -132,7 +132,7 @@ Tóm tắt (chi tiết trong `logs/metrics.md`):
   `logs/provider-run-i03.log`, `logs/probe-i03-mutation.json`, `logs/provider-run-i03-cleanup.json`.
 
 ## Việc tiếp theo (Mạnh giao ngày 21/11/2026)
-Các blocker ở mục 4 phía trên **đã được Mạnh xử lý** (Origin KI-1, đủ 7 state handler, teardown I-03, và KI-4 Host); provider verify gọi thẳng `:3000` 7/7. Danh sách chung: [`TASKS.md`](TASKS.md); bối cảnh viết báo cáo: [`docs/report-context.md`](docs/report-context.md).
+Các blocker ở mục 4 phía trên **đã được Mạnh xử lý** (Origin KI-1, đủ 7 state handler, teardown I-03, và KI-4 Host); provider verify gọi thẳng `:3000` 7/7. Danh sách chung: [`TASKS.md`](../TASKS.md); bối cảnh viết báo cáo: [`docs/report-context.md`](report-context.md).
 
 Quy tắc: commit bằng tài khoản GitHub của chính bạn, **mỗi mục nhỏ một commit ngay khi xong** (thầy sẽ xem lịch sử Git khi bảo vệ); phần báo cáo viết vào file riêng trong `docs/report/`; không sửa `tests/provider.verify.test.js`, `auth-proxy`, `docker/` (của Mạnh). Không đưa phiên `sess_...` vào tài liệu hay ảnh.
 

@@ -1,7 +1,7 @@
 # Task của Luyến (2312682)
 
 Nhiệm vụ theo báo cáo giữa kỳ: **phân tích kiến trúc, vẽ sơ đồ, data flow, tài liệu on-boarding**.
-Giao ngày 21/11/2026. Danh sách chung của nhóm: [`TASKS.md`](TASKS.md). Bối cảnh, yêu cầu của thầy và nguồn bằng chứng: [`docs/report-context.md`](docs/report-context.md) (đọc mục 1, 2, 3 trước).
+Giao ngày 21/11/2026. Danh sách chung của nhóm: [`TASKS.md`](../TASKS.md). Bối cảnh, yêu cầu của thầy và nguồn bằng chứng: [`docs/report-context.md`](report-context.md) (đọc mục 1, 2, 3 trước).
 
 ## Cách làm việc (quan trọng, thầy sẽ xem lịch sử commit)
 - Clone repo, `git config user.name` và `user.email` là **tài khoản GitHub của chính bạn**, rồi commit và push bằng tài khoản đó. Mạnh sẽ cấp quyền ghi nếu chưa có.

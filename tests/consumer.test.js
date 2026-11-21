@@ -286,7 +286,7 @@ describe('twenty-front → twenty-server', () => {
 
   it('I-06 FindManyPeople với phiên sai', async () => {
     pact
-      .given('token không hợp lệ')
+      .given('phiên không hợp lệ')
       .uponReceiving('I-06 FindManyPeople với phiên sai')
       .withRequest(request('session-sai'))
       .willRespondWith({

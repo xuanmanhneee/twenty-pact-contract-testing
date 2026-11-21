@@ -58,7 +58,7 @@ npm install
 | Biến | Mặc định | Tác dụng |
 |---|---|---|
 | `TWENTY_SESSION` | đọc từ `token.txt` | Phiên thật cho verifier |
-| `TWENTY_URL` | `http://localhost:4002` | Địa chỉ provider mà verifier gọi (mặc định là auth-proxy) |
+| `TWENTY_URL` | `http://localhost:3000` | Địa chỉ provider mà verifier gọi (đặt `http://localhost:4002` để đi qua auth-proxy) |
 | `TWENTY_ORIGIN` | `http://localhost:3000` | Origin gán cho request |
 | `TARGET` | `http://localhost:3000` | Đích của auth-proxy |
 | `PROXY_PORT` | `4002` | Cổng của auth-proxy |

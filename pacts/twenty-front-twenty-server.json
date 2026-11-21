@@ -830,7 +830,7 @@
       "description": "I-06 FindManyPeople với phiên sai",
       "providerStates": [
         {
-          "name": "token không hợp lệ"
+          "name": "phiên không hợp lệ"
         }
       ],
       "request": {

@@ -7,8 +7,8 @@ import { Verifier } from '@pact-foundation/pact';
 // Đặt biến TWENTY_SESSION hoặc dán vào file token.txt (đã .gitignore).
 const readFile = () => { try { return fs.readFileSync('token.txt', 'utf8').trim(); } catch { return undefined; } };
 const SESSION = process.env.TWENTY_SESSION || process.env.TWENTY_TOKEN || readFile();
-// Mặc định đi qua auth-proxy (cổng 4002): gọi thẳng Twenty từ Verifier bị 403 CSRF (xem README).
-const BASE = process.env.TWENTY_URL || 'http://localhost:4002';
+// Mặc định gọi thẳng Twenty (đã sửa KI-4 bằng cách đặt Host trong requestFilter). Muốn đi qua auth-proxy: TWENTY_URL=http://localhost:4002.
+const BASE = process.env.TWENTY_URL || 'http://localhost:3000';
 // Twenty v2.46.0 chặn request dùng cookie nếu thiếu Origin hợp lệ (403 CSRF_ORIGIN_MISMATCH).
 const ORIGIN = process.env.TWENTY_ORIGIN || 'http://localhost:3000';
 // Provider state gọi thẳng Twenty (không qua proxy) bằng phiên thật + Origin hợp lệ.
@@ -60,12 +60,14 @@ describe('twenty-server thật thỏa mãn hợp đồng của twenty-front', ()
         // I-03 tạo bản ghi thật: dọn fixture trước (tránh trùng UUID) và sau (không để rác).
         'workspace sẵn sàng tạo Person I-03': { setup: cleanupI03, teardown: cleanupI03 },
         'phiên hợp lệ nhưng request thiếu Origin': async () => {},
-        'token không hợp lệ': async () => {},
+        'phiên không hợp lệ': async () => {},
       },
       // I-01: thay phiên giả bằng phiên thật. I-06: giữ phiên sai.
       requestFilter: (req, _res, next) => {
         // Chỉ đặt Origin khi hợp đồng có Origin; I-07 cố ý không gửi để kiểm tra 403 CSRF.
         if (req.headers['origin']) req.headers['origin'] = ORIGIN;
+        // KI-4: Verifier gửi Host 127.0.0.1:<cổng ngẫu nhiên>; Twenty đối chiếu Origin với Host nên trả 403. Đặt Host về host của Origin.
+        req.headers['host'] = new URL(ORIGIN).host;
         if (process.env.DEBUG_PACT) console.log('[filter] origin=', req.headers['origin'], '| cookie prefix=', String(req.headers['cookie']).slice(0, 22));
         if (req.headers['cookie'] === 'twenty-session=valid-session') {
           req.headers['cookie'] = `twenty-session=${SESSION}`;

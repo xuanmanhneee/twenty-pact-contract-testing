@@ -24,19 +24,14 @@ PowerShell: `Remove-Item Env:HTTP_PROXY,Env:HTTPS_PROXY -ErrorAction SilentlyCon
 Bash: `unset HTTP_PROXY HTTPS_PROXY http_proxy https_proxy`
 
 ## 4. Chạy test
-Cần hai terminal. Terminal 1 giữ `auth-proxy` chạy (cổng 4002 → Twenty cổng 3000):
 ```
 npm install
-npm run auth-proxy
-```
-Terminal 2:
-```
 npm run test:consumer          # sinh pacts/twenty-front-twenty-server.json
-npm run test:provider          # verify qua auth-proxy vào Twenty thật
+npm run test:provider          # verify gọi thẳng Twenty thật (:3000)
 ```
-Lý do có auth-proxy: Twenty v2.46.0 trả 403 CSRF_ORIGIN_MISMATCH nếu request dùng cookie mà thiếu Origin hợp lệ.
-Khi Verifier gọi thẳng, request tới server bị 403 dù hợp đồng có Origin (nguyên nhân chưa xác định); proxy đặt Origin,
-thay cookie giả `valid-session` bằng phiên thật và in log request/response để đối chiếu.
+Verifier gọi thẳng Twenty, không cần proxy. `requestFilter` thay cookie giả `valid-session` bằng phiên thật và đặt
+`Host`/`Origin` về `localhost:3000` (Twenty v2.46.0 trả 403 CSRF_ORIGIN_MISMATCH khi Host không khớp Origin, xem KI-4
+trong `docs/known-issues.md`). `auth-proxy` (`npm run auth-proxy`, cổng 4002) chỉ còn dùng cho thí nghiệm và chẩn đoán.
 
 ### Thí nghiệm phá hợp đồng (hợp đồng đòi jobTitleName, server chỉ có jobTitle)
 ```

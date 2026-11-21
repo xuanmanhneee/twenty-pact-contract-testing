@@ -6,7 +6,7 @@ Tài liệu nền cho người viết báo cáo (và slide): yêu cầu của gi
 Đề tài R10 (Twenty CRM) × K04 (Contract Testing, Pact). Môn Kiểm thử Phần mềm, ĐH Đà Lạt, GV Nguyễn Thế Lâm. Nhóm 12.
 
 **Hồ sơ nộp lên LMS** (thầy bổ sung 21/11/2026, nộp trước buổi bảo vệ 1 tuần, khoảng đầu tháng 12/2026; ngày chính xác hỏi giảng viên):
-1. **Báo cáo cuối kỳ**, theo cấu trúc 8 phần A đến H (thầy nhắc "mục A phần 6 trong file hướng dẫn"; nhiều khả năng là tiêu chí đánh giá A ở mục 1.1 bên dưới, chưa xác nhận được với PDF `archive/ban_phan_cong_de_tai.pdf`).
+1. **Báo cáo cuối kỳ**, theo cấu trúc 8 phần A đến H (thầy nhắc "mục A phần 6 trong file hướng dẫn"; nhiều khả năng là tiêu chí đánh giá A ở mục 1.1 bên dưới, chưa xác nhận được với file hướng dẫn gốc của thầy, đã chuyển ra ngoài repo).
 2. **Bản phân chia công việc và đóng góp của từng cá nhân thông qua peer review.**
 3. Nộp kèm mã nguồn kiểm thử (đề bài) và, theo đề bài, báo cáo tổng kết.
 

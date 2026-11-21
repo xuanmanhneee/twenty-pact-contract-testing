@@ -51,7 +51,7 @@ Twenty v2.46.0 xác thực bằng cookie. Verifier cần một phiên thật:
 3. Cách khác: tab Network → request `graphql` → Request Headers → `cookie` → chép giá trị sau `twenty-session=`, dừng trước dấu `;`.
 4. Dán vào `token.txt` ở thư mục gốc, hoặc đặt biến `TWENTY_SESSION`.
 
-Phiên hết hạn nhanh: nếu verify báo `UNAUTHENTICATED` ở I-01, lấy lại giá trị mới. `token.txt` đã nằm trong `.gitignore`.
+Phiên là session phía máy chủ (`sess_...`), thực tế dùng được qua đêm nhưng có thời hạn: nếu verify báo `UNAUTHENTICATED` ở I-01, lấy lại giá trị mới. `token.txt` đã nằm trong `.gitignore`.
 
 ## 4. Cài phụ thuộc test
 ```bash

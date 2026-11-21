@@ -165,7 +165,7 @@ Quan sát hành vi Twenty v2.46.0 (không phải lỗi): phiên sai trả HTTP 2
 # Hạn chế
 
 - Thay đổi chỉ **mô phỏng ở lớp proxy**, chưa sửa mã máy chủ thật; mỗi lượt chạy một lần
-- Phiên đăng nhập lấy thủ công, hết hạn nhanh
+- Phiên đăng nhập lấy thủ công, có thời hạn
 - Mã nguồn đối chiếu (tag `sdk/v2.46.0`) trùng ngày build image nhưng chưa chứng minh khớp từng byte
 - Không có Pact Broker và CI
 - Chỉ kiểm hình dạng dữ liệu của 7 interaction

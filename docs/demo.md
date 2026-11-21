@@ -4,7 +4,7 @@ Dùng cho buổi bảo vệ (thời lượng demo khoảng 5 phút). Hệ thốn
 
 ## 1. Chuẩn bị trước buổi bảo vệ (làm trước 1 ngày và 30 phút trước giờ)
 - [ ] Mở Docker Desktop, `docker compose up -d`, `curl localhost:3000/healthz` trả ok. **Không** `docker compose down -v`.
-- [ ] Đăng nhập Twenty trên trình duyệt, lấy cookie `twenty-session` mới vào `token.txt` (phiên hết hạn nhanh, lấy lại sát giờ demo).
+- [ ] Đăng nhập Twenty trên trình duyệt, lấy cookie `twenty-session` mới vào `token.txt` (phiên có thời hạn chưa rõ; lấy lại sát giờ demo cho chắc).
 - [ ] Gỡ biến proxy: `unset HTTP_PROXY HTTPS_PROXY http_proxy https_proxy`.
 - [ ] Chạy thử `npm run all` một lần, kỳ vọng "TẤT CẢ ĐẠT" (khoảng 20 giây).
 - [ ] Mở sẵn 3 cửa sổ: terminal ở thư mục dự án, trình duyệt ở trang People của Twenty, file `logs/experiments/summary.md`.
@@ -58,7 +58,7 @@ Gọi thẳng Twenty thì 5 interaction bị 403 CSRF. Nguyên nhân gốc: Veri
 Quan sát hành vi thật của Twenty v2.46.0: request chưa đăng nhập không thấy được `people` nên GraphQL trả lỗi validate schema trong `errors[]` với HTTP 200, không phải 401. Hợp đồng mô tả đúng hành vi này.
 
 **Hạn chế lớn nhất?**
-Thay đổi chỉ mô phỏng ở lớp proxy, chưa sửa mã máy chủ thật; phiên đăng nhập lấy thủ công và hết hạn nhanh; không có Pact Broker và CI.
+Thay đổi chỉ mô phỏng ở lớp proxy, chưa sửa mã máy chủ thật; phiên đăng nhập lấy thủ công, có thời hạn; không có Pact Broker và CI.
 
 **Nếu mở rộng thì làm gì?**
 Thêm interaction cho các thao tác khác (cập nhật, xóa, bộ lọc), dùng Pact Broker và CI, tự động hóa đăng nhập để lấy phiên.

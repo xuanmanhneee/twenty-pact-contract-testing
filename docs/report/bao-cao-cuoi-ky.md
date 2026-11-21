@@ -167,12 +167,12 @@ Giới hạn: thay đổi mô phỏng ở lớp proxy, mỗi lượt chạy mộ
 - Phiên bản đã pin: `VERSIONS.md`; hợp đồng được commit trong `pacts/`; `package-lock.json` khóa phụ thuộc test.
 - ⏳ CHỜ [Mạnh, TASKS 6.3]: tag/commit SHA của bản nộp.
 - ⏳ CHỜ [Luyến, TASKS 4.3]: chạy lại trên máy sạch (ghi nhận từng bước và kết quả).
-- Cách người khác chạy lại: README và `docs/setup.md`. Điều kiện bắt buộc: Docker chạy Twenty, phiên `twenty-session` lấy thủ công (hết hạn nhanh), gỡ biến proxy hệ thống.
+- Cách người khác chạy lại: README và `docs/setup.md`. Điều kiện bắt buộc: Docker chạy Twenty, phiên `twenty-session` lấy thủ công (có thời hạn, đã thấy dùng được qua đêm), gỡ biến proxy hệ thống.
 
 ## 2. Hạn chế
 - Mô phỏng thay đổi ở lớp proxy, chưa sửa mã server thật; chưa đo độ ổn định (lặp nhiều lần).
 - Image đã pin; source đối chiếu (tag `sdk/v2.46.0`) trùng ngày build nhưng chưa chứng minh khớp từng byte.
-- Phiên đăng nhập lấy thủ công, hết hạn nhanh; chưa tự động hóa đăng nhập.
+- Phiên đăng nhập lấy thủ công, có thời hạn (đã thấy dùng được qua đêm, chưa đo hạn thật); chưa tự động hóa đăng nhập.
 - Không có Pact Broker và CI; hợp đồng lưu trong repo.
 - Chỉ kiểm hình dạng dữ liệu của 7 interaction, không kiểm nghiệp vụ, hiệu năng hay bảo mật.
 

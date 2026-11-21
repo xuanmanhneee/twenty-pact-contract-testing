@@ -39,7 +39,7 @@ GraphQL còn trả `null` cho field không tồn tại thay vì báo lỗi, nên
 |---|---|---|
 | Verifier gọi thẳng Twenty bị 403 (KI-4, ĐÃ SỬA 21/11/2026) | Đã xử lý | Nguyên nhân: Host của Verifier không khớp Origin; `requestFilter` đặt lại Host |
 | Schema động theo workspace | Trung bình | Chỉ dùng workspace cố định `dlu-qa` |
-| Phiên hết hạn nhanh | Trung bình | Lấy phiên mới trước mỗi lượt verify |
+| Phiên có thời hạn (đã thấy dùng được qua đêm, chưa đo hạn thật) | Trung bình | Lấy phiên mới khi verify báo UNAUTHENTICATED |
 | Mutation (I-03) để lại dữ liệu | Trung bình | Fixture UUID cố định, dọn trước/sau verify |
 | Lỗi GraphQL vẫn trả HTTP 200 nên dễ bỏ sót | Thấp | Đưa `errors[]` vào hợp đồng (I-06) |
 

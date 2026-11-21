@@ -34,7 +34,7 @@ Context để viết báo cáo (yêu cầu của thầy, nguồn bằng chứng 
 - [ ] **3.2** Giải thích 3 đến 5 module liên quan trực tiếp tới kiểm thử (twenty-front, twenty-server GraphQL `/graphql` và `/metadata`, xác thực cookie/CSRF, Postgres/Redis).
 
 ## 4. Phần C: môi trường và bằng chứng (M + L)
-- [ ] **4.1** Tài liệu môi trường: phiên bản, lệnh build/run, DB/service, seed data (M, từ `docs/setup.md`, `VERSIONS.md`).
+- [x] **4.1** Tài liệu môi trường: phiên bản, lệnh build/run, DB/service, seed data (M, từ `docs/setup.md`, `VERSIONS.md`).
 - [ ] **4.2** Bằng chứng hệ thống chạy: ảnh `/healthz`, đăng nhập, **ít nhất 3 luồng nghiệp vụ** (đã có F1, F3, F4 và ảnh `people.png`, `opportunities.png` trong `logs/`; bổ sung nếu thiếu F2) (P + M).
 - [ ] **4.3** **Chạy lại trên máy sạch** theo README bởi Luyến hoặc Phước, ghi từng bước, lỗi gặp và thời gian vào `docs/testing.md` hoặc `docs/clean-run.md`; sửa README/setup theo lỗi gặp (L hoặc P chạy, M sửa tài liệu). Đây là bằng chứng cho D.6 và phần H.
 
@@ -45,10 +45,10 @@ Context để viết báo cáo (yêu cầu của thầy, nguồn bằng chứng 
 
 ## 6. Phần F, G, H: mã nguồn, log, tái lập (M + P)
 - [ ] **6.0 Tiêu chí A của thầy** (đối chiếu từng gạch trong `docs/report-context.md` mục 1.1): sơ đồ dễ hiểu, hướng dẫn cài đặt giảng viên tự làm theo được (kể cả lấy phiên `twenty-session` có ảnh), giải thích vì sao áp dụng Pact, scenario cụ thể, một lệnh chạy toàn bộ và sinh kết quả, giải thích ý nghĩa log, phân biệt lỗi harness với lỗi Twenty. Rà lại trước khi nộp (cả nhóm).
-- [ ] **6.1 F:** README gốc đủ lệnh chạy và dependency; script chạy lại tự động (`test:consumer`, `test:provider`, `experiments`). Kiểm tra cuối cùng cùng với 4.3 (M).
+- [ ] **6.1 F** (đã có `npm run all` và bảng lỗi thường gặp trong `docs/setup.md` mục 7, còn lại: kiểm tra trên máy sạch cùng 4.3): README gốc đủ lệnh chạy và dependency; script chạy lại tự động (`test:consumer`, `test:provider`, `experiments`). Kiểm tra cuối cùng cùng với 4.3 (M).
 - [ ] **6.2 G:** bảng log/metrics: số interaction pass/fail mỗi lượt, thời gian, lượt bình thường và lượt phá hợp đồng; danh sách defect và hành vi bất thường (CSRF Host/Origin, 403 vs 200 của phiên sai, response không có `extensions.code`) kèm phân tích nguyên nhân gốc (P viết, M cung cấp số liệu `logs/experiments/`).
-- [ ] **6.3 H, pin phiên bản:** tạo git tag cho bản nộp (ví dụ `v1.0-final`), ghi tag, commit SHA, digest image vào `VERSIONS.md`; thử tìm tag source khớp image `v2.46.0` để thay `a61e47d` (M). *Tag tạo sau cùng, khi code và log đã đóng băng.*
-- [ ] **6.4** Làm sạch repo trước khi nộp: không có `token.txt`, `docker/.env`, phiên `sess_...` trong lịch sử/log (`git log -p` và grep `sess_`); quyết định cách xử lý `logs/auth-proxy-run.log` (không commit bản tăng dần) và `docs/archive/` (commit hay để ngoài).
+- [ ] **6.3 H, pin phiên bản:** tạo git tag cho bản nộp (ví dụ `v1.0-final`), ghi tag, commit SHA, digest image vào `VERSIONS.md` (M). Đã xong 21/11: tìm được source khớp image là tag `sdk/v2.46.0` (commit `9070979`, trùng ngày build), đã ghi vào `VERSIONS.md`. *Tag tạo sau cùng, khi code và log đã đóng băng.*
+- [x] **6.4** Làm sạch repo trước khi nộp: không có `token.txt`, `docker/.env`, phiên `sess_...` trong lịch sử/log (`git log -p` và grep `sess_`); quyết định cách xử lý `logs/auth-proxy-run.log` (không commit bản tăng dần) và `docs/archive/` (commit hay để ngoài).
 
 ## 7. Quản trị dự án (cả nhóm)
 - [ ] **7.1** Phân công thật 3 thành viên và đóng góp cụ thể kèm bằng chứng commit (báo cáo giữa kỳ còn `[CẦN ĐIỀN]`). Đổi MSSV của Phước thành 2312716 trong mọi tài liệu (báo cáo cũ ghi 2312714).
@@ -59,9 +59,9 @@ Context để viết báo cáo (yêu cầu của thầy, nguồn bằng chứng 
 
 ## 8. Báo cáo cuối kỳ, slide, demo
 - [ ] **8.1** Báo cáo tổng kết 8 phần A đến H (gộp từ mục 2 đến 6), một người tổng biên tập (đề xuất M), cả nhóm rà soát. Nguồn: `docs/`, `logs/`, `docs/archive/bao_cao_giua_ky_milestone_2.md`.
-- [ ] **8.2** Slide thuyết trình gọn: bài toán, kiến trúc, Pact là gì, 7 interaction, demo, kết quả thí nghiệm phá hợp đồng, bài học (KI-1, KI-4), giới hạn.
-- [ ] **8.3** Kịch bản demo chạy trực tiếp: `test:consumer` rồi `test:provider` (7/7), sau đó `experiments` hoặc một lượt phá hợp đồng thấy fail đúng chỗ. Có phương án dự phòng (log/ảnh) nếu Docker hoặc phiên đăng nhập hỏng. Tập demo trên máy thật, nhớ lấy phiên mới trước buổi demo.
-- [ ] **8.4** Danh sách câu hỏi có thể bị hỏi và câu trả lời (vì sao Pact, vì sao Origin/Host, giới hạn của contract test, khác biệt so với integration test).
+- [x] **8.2** (bản nháp Slidev ở `slides/`, còn chờ slide đóng góp và sơ đồ của Luyến) Slide thuyết trình gọn: bài toán, kiến trúc, Pact là gì, 7 interaction, demo, kết quả thí nghiệm phá hợp đồng, bài học (KI-1, KI-4), giới hạn.
+- [x] **8.3** Kịch bản demo chạy trực tiếp: `test:consumer` rồi `test:provider` (7/7), sau đó `experiments` hoặc một lượt phá hợp đồng thấy fail đúng chỗ. Có phương án dự phòng (log/ảnh) nếu Docker hoặc phiên đăng nhập hỏng. Tập demo trên máy thật, nhớ lấy phiên mới trước buổi demo.
+- [x] **8.4** Danh sách câu hỏi có thể bị hỏi và câu trả lời (vì sao Pact, vì sao Origin/Host, giới hạn của contract test, khác biệt so với integration test).
 - [ ] **8.5** Nộp lên LMS trước hạn (1 tuần trước bảo vệ): (1) báo cáo cuối kỳ, (2) bản phân chia công việc và đóng góp qua peer review (mục 7.4), kèm mã nguồn. Xác nhận định dạng, ngày chính xác với giảng viên; đối chiếu "mục A phần 6 trong file hướng dẫn" mà thầy nhắc.
 
 ## 9. Thứ tự đề xuất

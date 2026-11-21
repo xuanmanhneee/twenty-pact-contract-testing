@@ -26,7 +26,7 @@ Cập nhật lần cuối: 21/11/2026. Danh sách vấn đề và việc còn l�
 ## 3. Cách chạy lại nhanh (khi vào phiên mới)
 Điều kiện:
 1. Docker stack cũ `twenty-*` đang chạy (`curl localhost:3000/healthz` trả ok). **Không `docker compose down -v`**: volume `twenty_db-data` giữ workspace và dữ liệu mẫu, và Mạnh không còn nhớ mật khẩu cũ.
-2. `token.txt` ở thư mục gốc chứa phiên `sess_...` (Chrome: F12 → Application → Cookies → `http://localhost:3000` → `twenty-session` → Value). Phiên hết hạn nhanh: nếu thấy `UNAUTHENTICATED`, lấy lại.
+2. `token.txt` ở thư mục gốc chứa phiên `sess_...` (Chrome: F12 → Application → Cookies → `http://localhost:3000` → `twenty-session` → Value). Phiên có thời hạn (đã thấy dùng được qua đêm): nếu thấy `UNAUTHENTICATED`, lấy lại.
 3. Gỡ biến proxy: `unset HTTP_PROXY HTTPS_PROXY http_proxy https_proxy`.
 
 ```bash

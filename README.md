@@ -3,6 +3,13 @@
 Contract test (Pact): consumer = twenty-front, provider = twenty-server.
 Phiên bản Twenty đã chốt: xem `VERSIONS.md`. Chạy được trên Windows, macOS, Linux.
 
+## 0. Bắt đầu nhanh (thành viên mới)
+1. Cài Docker Desktop, Node.js >= 22, Git. Clone repo rồi `git pull` trước mỗi buổi làm.
+2. Làm theo mục 1 đến 3 bên dưới (dựng Twenty, tạo tối thiểu 1 Person, 1 Company, 1 Opportunity, lấy phiên vào `token.txt`), rồi `npm install` và `npm run all`. Kỳ vọng "TẤT CẢ ĐẠT" (khoảng 20 giây). Lỗi thường gặp: `docs/setup.md` mục 7.
+3. Việc cần làm: `TASKS.md` (danh sách chung), `docs/TASK_LUYEN.md`, `docs/TASK_PHUOC.md`, `docs/TASK_MANH.md`; bảng phân công và checklist: `docs/report/phan-cong-cong-viec.md`. Mỗi người commit bằng tài khoản của mình, mỗi việc nhỏ một commit.
+4. Báo cáo nháp: `docs/report/bao-cao-cuoi-ky.md` (chỗ `CHỜ` là phần chưa có số liệu). Bối cảnh và yêu cầu chấm: `docs/report-context.md`.
+5. Slide: `cd slides && npm install && npm run dev` (http://localhost:3030). Kịch bản demo: `docs/demo.md`.
+
 ## 1. Dựng Twenty
 ```
 cd docker
@@ -14,8 +21,8 @@ Mở http://localhost:3000, tạo workspace/đăng nhập (dữ liệu mẫu n�
 
 ## 2. Lấy phiên đăng nhập
 Twenty v2.46.0 xác thực bằng cookie, không có header Authorization.
-Đăng nhập trên trình duyệt → trang People → DevTools (F12) → Network → request `graphql` (FindManyPeople)
-→ Request Headers → `cookie` → chép giá trị sau `twenty-session=` (bắt đầu bằng `sess_`, dừng trước dấu `;`).
+Đăng nhập trên trình duyệt → DevTools (F12) → **Application** (Firefox: Storage) → Cookies → `http://localhost:3000`
+→ dòng `twenty-session` → chép cột Value (bắt đầu bằng `sess_`). Cách khác: tab Network → request `graphql` → header `cookie`.
 Dán vào file `token.txt` (cùng cấp package.json), hoặc đặt biến `TWENTY_SESSION`. Không commit, không chia sẻ.
 Nếu verify báo UNAUTHENTICATED ở I-01, lấy lại giá trị mới.
 

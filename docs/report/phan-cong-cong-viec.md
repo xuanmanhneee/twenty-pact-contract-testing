@@ -14,7 +14,7 @@ Quy ước: `[x]` đã xong và có bằng chứng kiểm chứng được; `[ ]
 ## 2. Tóm tắt tiến độ
 | Người | Việc đã xong | Việc còn lại | Commit hiện có |
 |---|---|---|---|
-| Mạnh | 14 | 11 | 12 |
+| Mạnh | 20 | 5 | 12 |
 | Luyến | 0 | 11 | 0 |
 | Phước | 9 | 7 | 6 |
 | Cả nhóm | 0 | 3 | 0 |
@@ -43,16 +43,16 @@ Quy ước: `[x]` đã xong và có bằng chứng kiểm chứng được; `[ ]
 ### Còn lại
 | # | Công việc | TT | Mục TASKS | Bằng chứng khi xong |
 |---|---|---|---|---|
-| M15 | Phần C: tài liệu môi trường, lệnh build/run, seed data | [ ] | 4.1 | (commit) |
-| M16 | Phần F: README đủ lệnh và dependency; một lệnh chạy toàn bộ và in tóm tắt | [ ] | 6.1 | |
-| M17 | Pin phiên bản: tag bản nộp, ghi vào `VERSIONS.md`, thử tìm tag source khớp `v2.46.0` | [ ] | 6.3 | tag |
-| M18 | Làm sạch repo: không `sess_`, `token.txt`, `docker/.env` trong lịch sử; xử lý `logs/auth-proxy-run.log`, `docs/archive/` | [ ] | 6.4 | |
+| M15 | Phần C: tài liệu môi trường, lệnh build/run, seed data, bảng lỗi thường gặp | [x] | 4.1 | `docs/setup.md` mục 2 và 7, `docs/report/bao-cao-cuoi-ky.md` phần C |
+| M16 | Phần F: README đủ lệnh và dependency; một lệnh chạy toàn bộ và in tóm tắt (còn lại: kiểm tra trên máy sạch cùng L2) | [x] | 6.1 | `tests/run-all.mjs`, `npm run all`, `logs/run-all-summary.md` |
+| M17 | Pin phiên bản: tìm source khớp `v2.46.0` (đã xong: tag `sdk/v2.46.0`, commit `9070979`); tạo tag bản nộp (làm sau cùng, khi code đóng băng) | [ ] | 6.3 | `VERSIONS.md`; tag chờ |
+| M18 | Làm sạch repo: không `sess_`, `token.txt`, `docker/.env` trong lịch sử (đã kiểm 21/11: sạch); `logs/auth-proxy-run.log` thôi theo dõi; `docs/archive/` đã commit. Kiểm lại lần cuối trước khi nộp | [x] | 6.4 | `.gitignore`, kết quả `git log -S` |
 | M19 | Rà tiêu chí A của thầy trước khi nộp | [ ] | 6.0 | |
 | M20 | Link Trello/Jira/GitHub Projects, đưa task lên | [ ] | 7.2 | link |
 | M21 | Báo cáo tổng kết 8 phần A đến H (gộp từ phần của cả nhóm) | [ ] | 8.1 | |
-| M22 | Slide thuyết trình | [ ] | 8.2 | |
-| M23 | Kịch bản demo và phương án dự phòng | [ ] | 8.3 | |
-| M24 | Câu hỏi dự kiến và trả lời | [ ] | 8.4 | |
+| M22 | Slide thuyết trình (Slidev, 14 slide; còn chờ slide đóng góp và sơ đồ của Luyến) | [x] | 8.2 | `slides/slides.md` |
+| M23 | Kịch bản demo và phương án dự phòng | [x] | 8.3 | `docs/demo.md` |
+| M24 | Câu hỏi dự kiến và trả lời | [x] | 8.4 | `docs/demo.md` mục 5 |
 | M25 | Tổng hợp peer review và phần trình bày lịch sử Git | [ ] | 7.4, 7.5 | |
 
 ## 4. Luyến (2312682) — chi tiết ở [`TASK_LUYEN.md`](../TASK_LUYEN.md)

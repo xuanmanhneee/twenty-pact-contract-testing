@@ -37,7 +37,7 @@ chạy sạch, chạy lặp lại (chứng minh fixture bị xóa vĩnh viễn v
 ## Giới hạn đã biết
 - **Phiên bản:** image `v2.46.0` đã pin theo digest; source đối chiếu là tag `sdk/v2.46.0` (commit `9070979`, trùng ngày build 09/10/2026) nhưng image không công bố commit nên chưa chứng minh khớp từng byte. Kết quả không phụ thuộc source.
 - **Workspace:** tên `dlu-qa` chỉ là quy ước, không ảnh hưởng kết quả verify (matcher kiểu chuỗi). Mỗi người có dữ liệu riêng trên Docker của mình; quy ước dữ liệu tối thiểu ở [setup.md](setup.md) mục 2.
-- **Phiên đăng nhập:** lấy thủ công, hết hạn nhanh.
+- **Phiên đăng nhập:** lấy thủ công, có thời hạn (chưa đo).
 - **Thí nghiệm phá hợp đồng:** M-2, M-3, M-4 mô phỏng ở lớp proxy (không sửa server thật), mỗi lượt chạy một lần. Chưa thử thay đổi thật trên mã nguồn Twenty.
 - **Phạm vi:** chỉ kiểm hình dạng dữ liệu, không kiểm nghiệp vụ hay hiệu năng.
 

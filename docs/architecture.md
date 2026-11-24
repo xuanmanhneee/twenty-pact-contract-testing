@@ -34,16 +34,22 @@ flowchart LR
       MS -->|ghi| PF[(pacts/twenty-front-<br/>twenty-server.json)]
     end
     subgraph Provider phase
-      V[tests/provider.verify.test.js<br/>Pact Verifier] -->|đọc| PF
-      V -->|phát lại request| AP[auth-proxy :4002<br/>tests/auth-proxy.mjs]
-      AP -->|cookie thật + Origin| S[twenty-server :3000]
+      V[tests/provider.verify.test.js<br/>Pact Verifier + requestFilter] -->|đọc| PF
+      V -->|phát lại request<br/>cookie thật, Origin, Host| S[twenty-server :3000]
       S --> DB[(PostgreSQL)]
       S --> R[(Redis)]
     end
+    subgraph Thí nghiệm phá hợp đồng
+      V2[Verifier] --> MP[mutate-proxy :4001]
+      MP --> AP[auth-proxy :4002]
+      AP --> S
+    end
 ```
 
-Auth-proxy tồn tại vì hợp đồng chứa phiên giả `valid-session` còn server cần phiên thật; proxy thay cookie và đặt Origin.
-Hạn chế hiện tại của proxy: xem [known-issues.md](known-issues.md) (I-07).
+Verifier **gọi thẳng** Twenty `:3000`. Hợp đồng chứa phiên giả `valid-session`, nên `requestFilter` trong `tests/provider.verify.test.js` thay bằng phiên thật,
+đặt lại Origin (chỉ khi request gốc có Origin, để I-07 vẫn nhận 403) và đặt lại Host (KI-4).
+`auth-proxy` và `mutate-proxy` chỉ dùng cho thí nghiệm phá hợp đồng (xem [testing.md](testing.md)): `mutate-proxy` sửa JSON response trên đường về Verifier mà không động tới server thật.
+Lịch sử các lỗi KI-1, KI-4: xem [known-issues.md](known-issues.md).
 
 ## Luồng dữ liệu của các nghiệp vụ trong phạm vi
 | Nghiệp vụ | Luồng | Interaction |

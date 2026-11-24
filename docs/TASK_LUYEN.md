@@ -17,7 +17,7 @@ Giao ngày 21/11/2026. Danh sách chung của nhóm: [`TASKS.md`](../TASKS.md). 
 
 ## 1. Chạy lại trên máy sạch (TASKS 4.3) — ưu tiên cao
 Đây là phép thử "giảng viên làm theo được không". Làm **đúng từng bước theo `README.md` và `docs/setup.md`, không hỏi Mạnh trước**, ghi lại mọi chỗ vướng.
-- [x] Thực hiện từ đầu: Docker lên, tạo tài khoản và workspace, lấy phiên `twenty-session` vào `token.txt`, `npm install`, `npm run test:consumer`, `npm run test:provider`.
+- [ ] Thực hiện từ đầu: Docker lên, tạo tài khoản và workspace, lấy phiên `twenty-session` vào `token.txt`, `npm install`, `npm run test:consumer`, `npm run test:provider`.
 - [ ] Ghi vào `docs/report/clean-run.md`: máy và hệ điều hành, phiên bản Docker/Node, từng bước đã làm, thời gian mỗi bước, lỗi gặp và cách khắc phục, kết quả cuối (kỳ vọng consumer 7/7, provider 7/7).
 - [x] Chụp ảnh bước lấy phiên (che giá trị cookie) và kết quả 7/7, lưu vào `logs/clean-run/`.
 - [x] Liệt kê chỗ hướng dẫn thiếu hoặc sai; gửi Mạnh (hoặc tự sửa `docs/setup.md` và `README.md` nếu là lỗi chính tả hay thiếu bước rõ ràng, commit riêng).
@@ -54,4 +54,4 @@ Viết bằng lời của bạn, dựa trên `docs/contract-testing.md`:
 Hạn: bản nháp A, B, D xong trước hạn nộp (khoảng đầu tháng 12/2026) ít nhất 4 ngày để Mạnh gộp báo cáo.
 
 ## Ghi chú tiến độ
-- (Luyến ghi ngày, việc đã làm, vướng mắc ở đây.)
+- 24/11/2026: viết A, B, D, dựng `clean-run.md` kèm ảnh. Lượt chạy này chạy lại trên môi trường có sẵn từ 19/10 (volume Docker, `.env`, `node_modules`), chưa phải máy sạch; mục "Thực hiện từ đầu" chưa tick, cần làm lại từ đầu trên môi trường mới.

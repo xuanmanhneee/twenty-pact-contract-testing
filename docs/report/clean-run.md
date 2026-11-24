@@ -14,20 +14,20 @@ Không ghi giá trị phiên `sess_...` hay khóa mã hóa vào file này; che c
 | Docker Compose (`docker compose version`) | v5.5.1 |
 | Node.js (`node -v`) | v22.18.0 |
 | Commit của repo (`git rev-parse --short HEAD`) | `7f30b8f` (nhánh `2312682_HaLuyen`, đã kéo từ `origin/main` `752d346`) |
-| Máy "sạch" theo nghĩa nào | `[ĐIỀN]` (ví dụ: chưa từng chạy Twenty, DB và volume mới) |
+| Máy "sạch" theo nghĩa nào | **Không sạch.** Máy đã có sẵn từ 19/10/2026: volume Docker `twenty_db-data` và `twenty_server-local-data` (tạo 19/10/2026), `docker/.env`, `node_modules`, `token.txt`. Lượt này là chạy lại trên môi trường sẵn có, **chưa phải bằng chứng "máy sạch"** |
 
 ## 2. Các bước đã làm
 Ghi thời gian thực tế của mỗi bước.
 
 | # | Bước (theo tài liệu) | Lệnh / thao tác | Thời gian | Kết quả | Ghi chú |
 |---|---|---|---|---|---|
-| 1 | Clone repo, `npm install` | `[ĐIỀN]` | `[ĐIỀN]` | `[ĐIỀN]` | |
-| 2 | Tạo `docker/.env` từ `.env.example`, điền khóa | `[ĐIỀN]` | `[ĐIỀN]` | `[ĐIỀN]` | |
-| 3 | Dựng Twenty bằng Docker | `docker compose up -d` | `[ĐIỀN]` | `[ĐIỀN]` | |
-| 4 | Kiểm tra `/healthz` | `curl http://localhost:3000/healthz` | `[ĐIỀN]` | `[ĐIỀN]` | |
-| 5 | Tạo tài khoản và workspace | giao diện :3000 | `[ĐIỀN]` | `[ĐIỀN]` | |
-| 6 | Nạp dữ liệu mẫu (≥ 1 Person, 1 Company, 1 Opportunity) | giao diện | `[ĐIỀN]` | `[ĐIỀN]` | |
-| 7 | Lấy phiên `twenty-session` vào `token.txt` | DevTools > Application > Cookies | `[ĐIỀN]` | `[ĐIỀN]` | |
+| 1 | Clone repo, `npm install` | không làm lại | không áp dụng | Đã có sẵn từ 19/10/2026 (`node_modules`) | Repo được kéo về `origin/main` bằng `git merge --ff-only` |
+| 2 | Tạo `docker/.env` từ `.env.example`, điền khóa | không làm lại | không áp dụng | Đã có sẵn từ 19/10/2026 | |
+| 3 | Dựng Twenty bằng Docker | stack đã có sẵn; tạo lại container server (mục 3) | không đo | Server lên được sau khi tạo lại lúc khoảng 15:02 ngày 24/11/2026 | Xem lỗi 1 ở mục 3 |
+| 4 | Kiểm tra `/healthz` | `curl http://localhost:3000/healthz` | không đo | `{"status":"ok",...}` | |
+| 5 | Tạo tài khoản và workspace | giao diện :3000 | không áp dụng | Đã có sẵn từ 19/10/2026, đăng nhập lại | |
+| 6 | Nạp dữ liệu mẫu (≥ 1 Person, 1 Company, 1 Opportunity) | giao diện | không áp dụng | Dữ liệu có sẵn (ví dụ trang Công ty có 5 bản ghi, ảnh `lay_phien.png`) | |
+| 7 | Lấy phiên `twenty-session` vào `token.txt` | DevTools > Application > Cookies | không đo | Lấy phiên mới, test chạy được (ảnh chụp 15:34 đến 15:54) | |
 | 8 | Chạy consumer | `npm run test:consumer` | 5,69 s (vitest, 24/11/2026 15:35) | 7 passed (7) | Cả 7 interaction I-01 đến I-07 đều pass |
 | 9 | Chạy provider | `npm run test:provider` | 3,92 s (vitest, 24/11/2026 15:45) | 7/7 interaction (I-01 đến I-07) đều OK, `Tests 1 passed (1)` | Một test vitest bọc cả 7 interaction |
 
@@ -35,7 +35,7 @@ Ghi thời gian thực tế của mỗi bước.
 | # | Bước | Triệu chứng (thông báo nguyên văn, ngắn) | Nguyên nhân | Cách khắc phục | Tài liệu cần sửa |
 |---|---|---|---|---|---|
 | 1 | Bước 3 | Container `twenty-server-1` lặp restart, log `psql: error: could not translate host name "db" to address: Try again` | Server không phân giải được tên `db` trong mạng Docker, trong khi worker, db, redis vẫn bình thường; nguyên nhân gốc `[CHƯA XÁC ĐỊNH]` | Tạo lại riêng container server: `docker compose -f docker/docker-compose.yml --env-file docker/.env up -d --force-recreate --no-deps server`, rồi chờ `/healthz` trả `ok` | `docs/setup.md` mục 7: đã thêm dòng lỗi này |
-| 2 | Bước 9 | `UNAUTHENTICATED` ở các state handler | `token.txt` chứa phiên cũ không hợp lệ với Docker hiện tại | Đăng nhập lại và lấy lại cookie `twenty-session` | `docs/setup.md` mục 7: đã bổ sung trường hợp phiên của lần dựng Docker/DB cũ |
+| 2 | Bước 9 | `UNAUTHENTICATED` ở các state handler | `token.txt` ghi từ 19/10/2026 (hơn một tháng) nên phiên không còn hợp lệ; nguyên nhân cụ thể (hết hạn theo thời gian hay lý do khác) `[CHƯA XÁC ĐỊNH]` | Đăng nhập lại và lấy lại cookie `twenty-session` | `docs/setup.md` mục 7: đã ghi trường hợp `token.txt` cũ |
 
 ## 4. Kết quả cuối
 | Lượt chạy | Kết quả | Thời gian | Ảnh |
@@ -54,10 +54,10 @@ Liệt kê để sửa `README.md` và `docs/setup.md` (lỗi chính tả hoặc
 | # | Vị trí (file, mục) | Vấn đề | Đề xuất sửa | Đã sửa? |
 |---|---|---|---|---|
 | 1 | `docs/setup.md` mục 7 (lỗi thường gặp) | Bảng chưa có lỗi `could not translate host name "db"` khi server lặp restart | Thêm dòng lỗi và lệnh tạo lại container server | Đã sửa |
-| 2 | `docs/setup.md` mục 7, dòng `UNAUTHENTICATED` | Chưa nói rõ phiên cũ mất hiệu lực khi dựng Docker/DB mới (`token.txt` có từ lần dựng trước) | Bổ sung trường hợp này vào cột nguyên nhân | Đã sửa |
+| 2 | `docs/setup.md` mục 7, dòng `UNAUTHENTICATED` | Chưa nói `token.txt` cũ (hàng tuần) có thể hết hiệu lực | Bổ sung trường hợp này vào cột nguyên nhân | Đã sửa |
 
 ## 7. Kết luận
-- **Kết quả:** sau khi xử lý lỗi server ở mục 3 và lấy phiên mới, `test:consumer` đạt 7/7 và `test:provider` đạt 7/7 (ảnh ở mục 5).
+- **Kết quả:** sau khi xử lý lỗi server ở mục 3 và lấy phiên mới, `test:consumer` đạt 7/7 và `test:provider` đạt 7/7 (ảnh ở mục 5). Đây là lượt **chạy lại trên môi trường sẵn có** (volume Docker, `.env`, `node_modules` từ 19/10/2026), **không phải máy sạch**.
 - **Trung thực về quá trình:** lỗi `could not translate host name "db"` không có trong tài liệu nên phải tự chẩn đoán (có sự hỗ trợ của công cụ AI trong lúc chẩn đoán và dựng tài liệu); sau khi bổ sung vào `docs/setup.md`, người sau có thể tự xử lý.
 - **Cải thiện đã làm:** thêm hai dòng vào bảng lỗi thường gặp (mục 6).
-- **Chưa kiểm chứng:** nguyên nhân gốc của lỗi phân giải `db`; tổng thời gian từ đầu đến 7/7 `[ĐIỀN]`; việc máy có thực sự "sạch" (chưa từng chạy Twenty) `[ĐIỀN]`.
+- **Chưa kiểm chứng:** nguyên nhân gốc của lỗi phân giải `db`; tổng thời gian từ đầu đến 7/7 (không đo). **Còn thiếu để đủ bằng chứng TASKS 4.3:** một lượt làm từ đầu trên môi trường mới (clone mới, volume Docker mới, tài khoản mới) có đo thời gian từng bước.

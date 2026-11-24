@@ -1,0 +1,20 @@
+
+> test:consumer
+> rimraf pacts && vitest run tests/consumer.test.js
+
+
+ RUN  v3.2.7 D:/Hoc_Tap/Nam_4/KT_PhanMem/clean-run-test
+
+2026-11-24T09:48:51.418024Z  WARN ThreadId(01) pact_models::pact: Note: Existing pact is an older specification version (V3), and will be upgraded
+2026-11-24T09:48:51.436765Z  WARN ThreadId(01) pact_models::pact: Note: Existing pact is an older specification version (V3), and will be upgraded
+2026-11-24T09:48:51.457319Z  WARN ThreadId(01) pact_models::pact: Note: Existing pact is an older specification version (V3), and will be upgraded
+2026-11-24T09:48:51.487767Z  WARN ThreadId(01) pact_models::pact: Note: Existing pact is an older specification version (V3), and will be upgraded
+2026-11-24T09:48:51.535479Z  WARN ThreadId(01) pact_models::pact: Note: Existing pact is an older specification version (V3), and will be upgraded
+2026-11-24T09:48:51.567412Z  WARN ThreadId(01) pact_models::pact: Note: Existing pact is an older specification version (V3), and will be upgraded
+ ✓ tests/consumer.test.js (7 tests) 375ms
+
+ Test Files  1 passed (1)
+      Tests  7 passed (7)
+   Start at  16:48:45
+   Duration  6.10s (transform 186ms, setup 0ms, collect 4.56s, tests 375ms, environment 1ms, prepare 462ms)
+

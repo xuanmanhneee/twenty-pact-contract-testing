@@ -17,7 +17,8 @@ cp .env.example .env      # Windows: copy .env.example .env, rồi điền ENCRY
 docker compose up -d
 curl http://localhost:3000/healthz
 ```
-Mở http://localhost:3000, tạo workspace/đăng nhập (dữ liệu mẫu nếu có).
+`docker compose up -d` có thể chờ vài phút (khoảng 4 phút để `/healthz` trả `ok` ở lần chạy đầu); chưa lên thì chờ rồi chạy lại `curl`. Cổng 3000 phải trống (dừng stack Twenty khác nếu có).
+Mở http://localhost:3000, tạo workspace/đăng nhập. Workspace mới thường tự có dữ liệu mẫu; chi tiết ở `docs/setup.md` mục 2.
 
 ## 2. Lấy phiên đăng nhập
 Twenty v2.46.0 xác thực bằng cookie, không có header Authorization.

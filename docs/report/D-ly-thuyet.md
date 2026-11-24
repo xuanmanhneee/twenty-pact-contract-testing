@@ -62,7 +62,7 @@ Chi tiết nguyên nhân và cách sửa từng lỗi: [`docs/known-issues.md`](
 | Verify trên server nguyên bản | 100% interaction pass | 7/7 (gọi thẳng `:3000`, 21/11/2026) |
 | Phát hiện breaking change | Mỗi loại thay đổi (đổi tên, xóa field, đổi kiểu, thiếu Origin/phiên) làm ít nhất 1 interaction liên quan fail | M-2 đổi tên: I-01, I-03 fail; M-3 xóa field: I-04 fail; M-4 đổi kiểu: I-01, I-02, I-04 fail; I-07 khóa hành vi 403 khi thiếu Origin |
 | Báo động giả | 0 | 0: M-0 (đối chứng) và M-6 (chỉ thêm field) đều 7/7 OK |
-| Tái chạy | Người khác chạy lại theo README trên máy mới ra cùng kết quả | **Chưa xác nhận**: chờ kết quả chạy trên máy sạch ([`clean-run.md`](clean-run.md), TASKS 4.3) |
+| Tái chạy | Người khác chạy lại theo README trên máy mới ra cùng kết quả | Đạt trên môi trường mới (clone, volume Docker, tài khoản mới, 24/11/2026): consumer 7/7, provider 7/7. Hạn chế: lượt này do công cụ AI chạy trên máy của Luyến, tạo tài khoản bằng API, chạy một lần ([`clean-run.md`](clean-run.md)) |
 
 Một interaction được coi là **pass** khi response thật khớp hợp đồng về status code, header liên quan và hình dạng body (kiểu từng field qua matcher); **fail** khi thiếu field, sai kiểu hoặc sai status.
 Kết luận chung cho bộ hợp đồng: đạt khi toàn bộ interaction pass trên server nguyên bản và mọi breaking change được mô phỏng đều làm fail đúng interaction liên quan.

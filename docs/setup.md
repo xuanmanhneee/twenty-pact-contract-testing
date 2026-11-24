@@ -21,7 +21,10 @@ cp .env.example .env          # Windows: copy .env.example .env
 docker compose up -d
 curl http://localhost:3000/healthz
 ```
-Mở http://localhost:3000, tạo tài khoản và workspace.
+`docker compose up -d` có thể chờ hơn 2 phút, và `/healthz` chỉ trả `ok` sau khoảng 4 phút trên máy thử (24/11/2026, lần chạy đầu của DB mới); chưa lên thì chờ rồi chạy lại `curl`.
+Cổng `3000` cố định và `SERVER_URL`/Origin phải là `http://localhost:3000`: nếu đang chạy một stack Twenty khác ở cổng này, dừng nó trước (`docker compose stop`, không dùng `down -v`).
+
+Mở http://localhost:3000, tạo tài khoản và workspace. Workspace mới thường tự có dữ liệu mẫu (đã thấy 5 People, 5 Companies, 6 Opportunities sau khoảng 20 giây kể từ khi workspace được kích hoạt); xem mục 2 nếu còn trống.
 
 ### Biến môi trường (`docker/.env`)
 | Biến | Giá trị | Ghi chú |
@@ -80,8 +83,9 @@ npm install
 | Triệu chứng | Nguyên nhân | Cách xử lý |
 |---|---|---|
 | `docker compose` báo không kết nối được Docker API | Docker Desktop chưa chạy | Mở Docker Desktop, đợi engine sẵn sàng rồi chạy lại |
+| Container `twenty-server-1` lặp restart, log `psql: error: could not translate host name "db" to address: Try again` (worker, db, redis vẫn chạy bình thường) | Server không phân giải được tên `db` trong mạng Docker (nguyên nhân gốc chưa xác định; gặp ngày 24/11/2026 trên Windows 11 + Docker 29.7.2) | Tạo lại riêng container server, không mất dữ liệu: `docker compose -f docker/docker-compose.yml --env-file docker/.env up -d --force-recreate --no-deps server`, rồi chờ `/healthz` trả `ok`. Chỉ restart (`docker restart`) thì không hết lỗi |
 | `curl localhost:3000/healthz` không phản hồi | Stack chưa lên hoặc cổng 3000 bị chiếm | `docker compose ps` trong thư mục `docker`; xem log bằng `docker compose logs server` |
-| Verify báo `UNAUTHENTICATED` hoặc 5 interaction fail ngay từ I-01 | Phiên trong `token.txt` hết hạn hoặc sai | Lấy lại cookie `twenty-session` (mục 3), chép đúng phần giá trị, không kèm `twenty-session=` hay dấu `;` |
+| Verify báo `UNAUTHENTICATED` hoặc 5 interaction fail ngay từ I-01 | Phiên trong `token.txt` hết hạn hoặc sai (gặp ngày 24/11/2026: `token.txt` ghi từ 19/10/2026, hơn một tháng; phân tích giai đoạn 1 ghi mặc định phiên Twenty hết hạn sau 30 ngày không hoạt động, chưa kiểm chứng đây là nguyên nhân) | Lấy lại cookie `twenty-session` (mục 3), chép đúng phần giá trị, không kèm `twenty-session=` hay dấu `;` |
 | 403 `CSRF_ORIGIN_MISMATCH` ở mọi interaction | `TWENTY_ORIGIN` hoặc `SERVER_URL` khác `http://localhost:3000`, hoặc có biến proxy hệ thống | Giữ Twenty ở `localhost:3000` (hoặc đặt `TWENTY_ORIGIN` khớp); gỡ `HTTP_PROXY` và `HTTPS_PROXY` (mục 6) |
 | `Precondition không thỏa: workspace không có people/companies/opportunities` | Workspace thiếu dữ liệu | Tạo tối thiểu 1 Person, 1 Company, 1 Opportunity (mục 2) |
 | `npm run experiments` không lên được cổng 4001 hoặc 4002 | Cổng đang bị chương trình khác dùng | Tắt chương trình đó hoặc đặt `PROXY_PORT`; `npm run all` tự bật auth-proxy nếu cổng 4002 trống |

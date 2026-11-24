@@ -54,9 +54,9 @@ Làm theo README trên môi trường mới (clone, volume, tài khoản mới) 
 ## 6. Chỗ hướng dẫn thiếu hoặc sai
 | # | Vị trí | Vấn đề | Đề xuất sửa | Đã sửa? |
 |---|---|---|---|---|
-| 1 | `README.md` mục 1, `docs/setup.md` mục 1 | Không cảnh báo `docker compose up -d` có thể chờ hơn 2 phút và `/healthz` chỉ lên sau khoảng 4 phút trên máy này | Ghi "chờ vài phút, kiểm tra bằng `curl /healthz`" | Chưa |
-| 2 | `docs/setup.md` mục 2 | Chỉ nói "tạo workspace (dữ liệu mẫu nếu có)"; quan sát thực tế: workspace mới tự có 5/5/6 bản ghi sau khoảng 20 s kể từ khi kích hoạt | Ghi rõ điều này | Chưa |
-| 3 | `docs/setup.md` mục 1 | Cổng 3000 cố định và Origin phải là `http://localhost:3000`; muốn chạy song song hai stack phải dừng stack cũ trước | Thêm lưu ý | Chưa |
+| 1 | `README.md` mục 1, `docs/setup.md` mục 1 | Không cảnh báo `docker compose up -d` có thể chờ hơn 2 phút và `/healthz` chỉ lên sau khoảng 4 phút trên máy này | Ghi "chờ vài phút, kiểm tra bằng `curl /healthz`" | Đã sửa (`README.md`, `docs/setup.md`) |
+| 2 | `docs/setup.md` mục 2 | Chỉ nói "tạo workspace (dữ liệu mẫu nếu có)"; quan sát thực tế: workspace mới tự có 5/5/6 bản ghi sau khoảng 20 s kể từ khi kích hoạt | Ghi rõ điều này | Đã sửa (`docs/setup.md` mục 1) |
+| 3 | `docs/setup.md` mục 1 | Cổng 3000 cố định và Origin phải là `http://localhost:3000`; muốn chạy song song hai stack phải dừng stack cũ trước | Thêm lưu ý | Đã sửa (`README.md`, `docs/setup.md` mục 1) |
 | 4 | `docs/setup.md` mục 7 (từ lượt trước) | Lỗi `could not translate host name "db"` và `token.txt` cũ | Đã thêm | Đã sửa |
 
 ## 7. Kết luận

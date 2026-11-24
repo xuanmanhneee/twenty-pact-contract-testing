@@ -28,7 +28,7 @@ Ghi thời gian thực tế của mỗi bước.
 | 5 | Tạo tài khoản và workspace | giao diện :3000 | `[ĐIỀN]` | `[ĐIỀN]` | |
 | 6 | Nạp dữ liệu mẫu (≥ 1 Person, 1 Company, 1 Opportunity) | giao diện | `[ĐIỀN]` | `[ĐIỀN]` | |
 | 7 | Lấy phiên `twenty-session` vào `token.txt` | DevTools > Application > Cookies | `[ĐIỀN]` | `[ĐIỀN]` | |
-| 8 | Chạy consumer | `npm run test:consumer` | `[ĐIỀN]` | `[ĐIỀN]` (kỳ vọng 7 passed) | |
+| 8 | Chạy consumer | `npm run test:consumer` | 1,67 s (vitest, 24/11/2026 15:25) | 7 passed (7) | Cả 7 interaction I-01 đến I-07 đều pass |
 | 9 | Chạy provider | `npm run test:provider` | `[ĐIỀN]` | `[ĐIỀN]` (kỳ vọng 7/7) | |
 
 ## 3. Lỗi gặp và cách khắc phục
@@ -41,7 +41,7 @@ Ghi thời gian thực tế của mỗi bước.
 ## 4. Kết quả cuối
 | Lượt chạy | Kết quả | Thời gian | Ảnh |
 |---|---|---|---|
-| `npm run test:consumer` | `[ĐIỀN]` (kỳ vọng 7/7) | `[ĐIỀN]` | `logs/clean-run/consumer.png` |
+| `npm run test:consumer` | 7/7 (24/11/2026 15:25) | 1,67 s | `logs/clean-run/consumer.png` |
 | `npm run test:provider` | 7/7 (lượt chạy 24/11/2026 trên Docker của Luyến) `[XÁC NHẬN LẠI]` | `[ĐIỀN]` | `logs/clean-run/provider.png` |
 
 ## 5. Ảnh bằng chứng (lưu vào `logs/clean-run/`)

@@ -17,10 +17,10 @@ Giao ngày 21/11/2026. Danh sách chung của nhóm: [`TASKS.md`](../TASKS.md). 
 
 ## 1. Chạy lại trên máy sạch (TASKS 4.3) — ưu tiên cao
 Đây là phép thử "giảng viên làm theo được không". Làm **đúng từng bước theo `README.md` và `docs/setup.md`, không hỏi Mạnh trước**, ghi lại mọi chỗ vướng.
-- [ ] Thực hiện từ đầu: Docker lên, tạo tài khoản và workspace, lấy phiên `twenty-session` vào `token.txt`, `npm install`, `npm run test:consumer`, `npm run test:provider`.
+- [x] Thực hiện từ đầu: Docker lên, tạo tài khoản và workspace, lấy phiên `twenty-session` vào `token.txt`, `npm install`, `npm run test:consumer`, `npm run test:provider`.
 - [ ] Ghi vào `docs/report/clean-run.md`: máy và hệ điều hành, phiên bản Docker/Node, từng bước đã làm, thời gian mỗi bước, lỗi gặp và cách khắc phục, kết quả cuối (kỳ vọng consumer 7/7, provider 7/7).
-- [ ] Chụp ảnh bước lấy phiên (che giá trị cookie) và kết quả 7/7, lưu vào `logs/clean-run/`.
-- [ ] Liệt kê chỗ hướng dẫn thiếu hoặc sai; gửi Mạnh (hoặc tự sửa `docs/setup.md` và `README.md` nếu là lỗi chính tả hay thiếu bước rõ ràng, commit riêng).
+- [x] Chụp ảnh bước lấy phiên (che giá trị cookie) và kết quả 7/7, lưu vào `logs/clean-run/`.
+- [x] Liệt kê chỗ hướng dẫn thiếu hoặc sai; gửi Mạnh (hoặc tự sửa `docs/setup.md` và `README.md` nếu là lỗi chính tả hay thiếu bước rõ ràng, commit riêng).
 - *Xong khi:* có `clean-run.md` đầy đủ và test chạy 7/7 trên máy của bạn.
 
 ## 2. Phần A: mô tả hệ thống → `docs/report/A-he-thong.md` (TASKS 2.1 đến 2.3)

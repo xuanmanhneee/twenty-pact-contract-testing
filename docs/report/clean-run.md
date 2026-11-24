@@ -28,8 +28,8 @@ Ghi thời gian thực tế của mỗi bước.
 | 5 | Tạo tài khoản và workspace | giao diện :3000 | `[ĐIỀN]` | `[ĐIỀN]` | |
 | 6 | Nạp dữ liệu mẫu (≥ 1 Person, 1 Company, 1 Opportunity) | giao diện | `[ĐIỀN]` | `[ĐIỀN]` | |
 | 7 | Lấy phiên `twenty-session` vào `token.txt` | DevTools > Application > Cookies | `[ĐIỀN]` | `[ĐIỀN]` | |
-| 8 | Chạy consumer | `npm run test:consumer` | 1,67 s (vitest, 24/11/2026 15:25) | 7 passed (7) | Cả 7 interaction I-01 đến I-07 đều pass |
-| 9 | Chạy provider | `npm run test:provider` | `[ĐIỀN]` | `[ĐIỀN]` (kỳ vọng 7/7) | |
+| 8 | Chạy consumer | `npm run test:consumer` | 5,69 s (vitest, 24/11/2026 15:35) | 7 passed (7) | Cả 7 interaction I-01 đến I-07 đều pass |
+| 9 | Chạy provider | `npm run test:provider` | 3,92 s (vitest, 24/11/2026 15:45) | 7/7 interaction (I-01 đến I-07) đều OK, `Tests 1 passed (1)` | Một test vitest bọc cả 7 interaction |
 
 ## 3. Lỗi gặp và cách khắc phục
 | # | Bước | Triệu chứng (thông báo nguyên văn, ngắn) | Nguyên nhân | Cách khắc phục | Tài liệu cần sửa |
@@ -41,13 +41,13 @@ Ghi thời gian thực tế của mỗi bước.
 ## 4. Kết quả cuối
 | Lượt chạy | Kết quả | Thời gian | Ảnh |
 |---|---|---|---|
-| `npm run test:consumer` | 7/7 (24/11/2026 15:25) | 1,67 s | `logs/clean-run/consumer.png` |
-| `npm run test:provider` | 7/7 (lượt chạy 24/11/2026 trên Docker của Luyến) `[XÁC NHẬN LẠI]` | `[ĐIỀN]` | `logs/clean-run/provider.png` |
+| `npm run test:consumer` | 7/7 (24/11/2026 15:35) | 5,69 s | `logs/clean-run/consumer.png` |
+| `npm run test:provider` | 7/7 (24/11/2026 15:45) | 3,92 s | `logs/clean-run/provider_1.png`, `logs/clean-run/provider_2.png` |
 
 ## 5. Ảnh bằng chứng (lưu vào `logs/clean-run/`)
-- [ ] Bước lấy phiên (DevTools, **che giá trị cookie**).
-- [ ] Kết quả `test:consumer` 7/7.
-- [ ] Kết quả `test:provider` 7/7.
+- [x] Bước lấy phiên (DevTools, giá trị cookie đã che): `logs/clean-run/lay_phien.png`.
+- [x] Kết quả `test:consumer` 7/7: `logs/clean-run/consumer.png`.
+- [x] Kết quả `test:provider` 7/7: `logs/clean-run/provider_1.png` (I-01 đến I-03) và `provider_2.png` (I-04 đến I-07, tóm tắt).
 
 ## 6. Chỗ hướng dẫn thiếu hoặc sai
 Liệt kê để sửa `README.md` và `docs/setup.md` (lỗi chính tả hoặc thiếu bước rõ ràng thì tự sửa và commit riêng; còn lại gửi Mạnh).

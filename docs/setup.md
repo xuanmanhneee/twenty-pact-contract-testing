@@ -21,7 +21,10 @@ cp .env.example .env          # Windows: copy .env.example .env
 docker compose up -d
 curl http://localhost:3000/healthz
 ```
-Mở http://localhost:3000, tạo tài khoản và workspace.
+`docker compose up -d` có thể chờ hơn 2 phút, và `/healthz` chỉ trả `ok` sau khoảng 4 phút trên máy thử (24/11/2026, lần chạy đầu của DB mới); chưa lên thì chờ rồi chạy lại `curl`.
+Cổng `3000` cố định và `SERVER_URL`/Origin phải là `http://localhost:3000`: nếu đang chạy một stack Twenty khác ở cổng này, dừng nó trước (`docker compose stop`, không dùng `down -v`).
+
+Mở http://localhost:3000, tạo tài khoản và workspace. Workspace mới thường tự có dữ liệu mẫu (đã thấy 5 People, 5 Companies, 6 Opportunities sau khoảng 20 giây kể từ khi workspace được kích hoạt); xem mục 2 nếu còn trống.
 
 ### Biến môi trường (`docker/.env`)
 | Biến | Giá trị | Ghi chú |

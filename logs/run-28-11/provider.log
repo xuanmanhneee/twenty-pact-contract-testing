@@ -1,0 +1,83 @@
+
+> test:provider
+> vitest run tests/provider.verify.test.js
+
+
+ RUN  v3.2.7 <thu-muc-chay>
+
+(node:23208) [DEP0060] DeprecationWarning: The `util._extend` API is deprecated. Please use Object.assign() instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-28T04:13:15.513261Z  WARN ThreadId(13) pact_matching::metrics: 
+
+Please note:
+We are tracking events anonymously to gather important usage statistics like Pact version and operating system. To disable tracking, set the 'PACT_DO_NOT_TRACK' environment variable to 'true'.
+
+
+
+Verifying a pact between twenty-front and twenty-server
+
+  I-01 FindManyPeople với phiên hợp lệ (2ms loading, 136ms verification)
+     Given workspace có ít nhất 1 Person
+    returns a response which
+      has status code 200 (OK)
+      includes headers
+        "Content-Type" with value "application/json; charset=utf-8" (OK)
+      has a matching body (OK)
+
+  I-02 FindManyCompanies với phiên hợp lệ (2ms loading, 52ms verification)
+     Given workspace có ít nhất 1 Company
+    returns a response which
+      has status code 200 (OK)
+      includes headers
+        "Content-Type" with value "application/json; charset=utf-8" (OK)
+      has a matching body (OK)
+
+  I-03 CreateOnePerson với phiên hợp lệ (2ms loading, 151ms verification)
+     Given workspace sẵn sàng tạo Person I-03
+    returns a response which
+      has status code 200 (OK)
+      includes headers
+        "Content-Type" with value "application/json; charset=utf-8" (OK)
+      has a matching body (OK)
+
+  I-04 FindManyOpportunities với phiên hợp lệ (2ms loading, 68ms verification)
+     Given workspace có ít nhất 1 Opportunity
+    returns a response which
+      has status code 200 (OK)
+      includes headers
+        "Content-Type" with value "application/json; charset=utf-8" (OK)
+      has a matching body (OK)
+
+  I-05 GetCurrentUser với phiên hợp lệ (2ms loading, 85ms verification)
+     Given người dùng đã đăng nhập vào workspace
+    returns a response which
+      has status code 200 (OK)
+      includes headers
+        "Content-Type" with value "application/json; charset=utf-8" (OK)
+      has a matching body (OK)
+
+  I-06 FindManyPeople với phiên sai (2ms loading, 39ms verification)
+     Given phiên không hợp lệ
+    returns a response which
+      has status code 200 (OK)
+      includes headers
+        "Content-Type" with value "application/json; charset=utf-8" (OK)
+      has a matching body (OK)
+
+  I-07 FindManyPeople thiếu Origin (2ms loading, 30ms verification)
+     Given phiên hợp lệ nhưng request thiếu Origin
+    returns a response which
+      has status code 403 (OK)
+      includes headers
+        "Content-Type" with value "application/json; charset=utf-8" (OK)
+      has a matching body (OK)
+
+
+ ✓ tests/provider.verify.test.js (1 test) 875ms
+   ✓ twenty-server thật thỏa mãn hợp đồng của twenty-front > xác minh toàn bộ interaction  872ms
+
+ Test Files  1 passed (1)
+      Tests  1 passed (1)
+   Start at  11:13:11
+   Duration  4.35s (transform 85ms, setup 0ms, collect 2.49s, tests 875ms, environment 0ms, prepare 398ms)
+

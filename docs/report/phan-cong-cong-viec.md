@@ -1,6 +1,6 @@
 # Bảng phân công công việc và checklist hoàn thành
 
-Nhóm 12, đề tài R10 (Twenty CRM) × K04 (Contract Testing, Pact). Cập nhật lần cuối: 21/11/2026.
+Nhóm 12, đề tài R10 (Twenty CRM) × K04 (Contract Testing, Pact). Cập nhật lần cuối: 28/11/2026.
 Đây là bản nháp của "bản phân chia công việc và đóng góp cá nhân" nộp lên LMS; phần peer review ở cuối do cả nhóm điền.
 Quy ước: `[x]` đã xong và có bằng chứng kiểm chứng được; `[ ]` chưa xong. Mỗi người tick và thêm mã commit khi xong việc của mình. Danh sách chi tiết và tiêu chí xong: [`TASKS.md`](../../TASKS.md).
 
@@ -8,18 +8,18 @@ Quy ước: `[x]` đã xong và có bằng chứng kiểm chứng được; `[ ]
 | Họ tên | MSSV | Vai trò chính (theo báo cáo giữa kỳ) | Tài khoản Git |
 |---|---|---|---|
 | Phan Lê Xuân Mạnh | 2312686 | Dựng môi trường Docker, provider verification, tổng hợp báo cáo | `xuanmanhneee` |
-| Liêng Hót Ha Luyến | 2312682 | Phân tích kiến trúc, sơ đồ, luồng dữ liệu, tài liệu on-boarding | (điền) |
+| Liêng Hót Ha Luyến | 2312682 | Phân tích kiến trúc, sơ đồ, luồng dữ liệu, tài liệu on-boarding | `Luyen05` |
 | Mai Quý Phước | 2312716 | Thiết kế scenario, consumer test, thu thập log/metrics | `Phuocmai` |
 
 ## 2. Tóm tắt tiến độ
 | Người | Việc đã xong | Việc còn lại | Commit hiện có |
 |---|---|---|---|
-| Mạnh | 20 | 5 | 12 |
-| Luyến | 0 | 11 | 0 |
+| Mạnh | 20 | 5 | 28 |
+| Luyến | 11 | 0 | 17 |
 | Phước | 9 | 7 | 6 |
 | Cả nhóm | 0 | 3 | 0 |
 
-(Số cập nhật tay khi tick; kiểm tra lại bằng `git shortlog -sn --all`.)
+(Số cập nhật tay khi tick. Số commit đếm ngày 28/11/2026 trên nhánh `2312682_HaLuyen`; kiểm tra lại bằng `git shortlog -sn HEAD`.)
 
 ## 3. Mạnh (2312686)
 ### Đã xong
@@ -58,17 +58,17 @@ Quy ước: `[x]` đã xong và có bằng chứng kiểm chứng được; `[ ]
 ## 4. Luyến (2312682) — chi tiết ở [`TASK_LUYEN.md`](../TASK_LUYEN.md)
 | # | Công việc | TT | Mục TASKS | Sản phẩm | Bằng chứng (commit) |
 |---|---|---|---|---|---|
-| L1 | Clone repo, dựng Twenty bằng Docker, xem được trang People | [ ] | 4.3 | | |
-| L2 | Chạy lại trên máy sạch theo README, ghi lỗi gặp và thời gian | [ ] | 4.3 | `docs/report/clean-run.md`, `logs/clean-run/` | |
-| L3 | A.1 Mục tiêu hệ thống | [ ] | 2.1 | `docs/report/A-he-thong.md` | |
-| L4 | A.2 Actor và use case chính | [ ] | 2.1 | `A-he-thong.md` | |
-| L5 | A.3 `tree -L 2` và bảng dependency | [ ] | 2.2 | `A-he-thong.md` | |
-| L6 | A.4 Luồng dữ liệu (xem People, tạo Person, người dùng hiện tại) | [ ] | 2.3 | `A-he-thong.md` | |
-| L7 | B.1 Sơ đồ kiến trúc dạng ảnh có vị trí Pact; sửa sơ đồ lỗi thời trong `docs/architecture.md` | [ ] | 3.1, 1.5 | `docs/report/img/`, `B-kien-truc.md` | |
-| L8 | B.2 Giải thích 3 đến 5 module liên quan kiểm thử | [ ] | 3.2 | `B-kien-truc.md` | |
-| L9 | Phần D: nguyên lý, vì sao phù hợp, phạm vi, giả định, rủi ro, tiêu chí pass/fail | [ ] | 5.1 | `docs/report/D-ly-thuyet.md` | |
-| L10 | File đóng góp cá nhân (kèm mã commit) | [ ] | 7.4 | `docs/report/dong-gop-luyen.md` | |
-| L11 | Cập nhật tick và ghi chú tiến độ trong `TASK_LUYEN.md` | [ ] | | | |
+| L1 | Clone repo, dựng Twenty bằng Docker, xem được trang People | [x] | 4.3 | | `261a965`, `docs/TASK_LUYEN.md`, `logs/clean-run/` |
+| L2 | Chạy lại trên máy sạch theo README, ghi lỗi gặp và thời gian | [x] | 4.3 | `docs/report/clean-run.md`, `logs/clean-run/` | `0ad3d84`, `7f30b8f` (lượt máy sạch chạy tự động, tạo tài khoản bằng API) |
+| L3 | A.1 Mục tiêu hệ thống | [x] | 2.1 | `docs/report/A-he-thong.md` | `2b19051` |
+| L4 | A.2 Actor và use case chính | [x] | 2.1 | `A-he-thong.md` | `2b19051` |
+| L5 | A.3 `tree -L 2` và bảng dependency | [x] | 2.2 | `A-he-thong.md` | `2b19051`; cây thư mục đầy đủ ở mục A.3 của `bao-cao-cuoi-ky.md` (cập nhật 28/11) |
+| L6 | A.4 Luồng dữ liệu (xem People, tạo Person, người dùng hiện tại) | [x] | 2.3 | `A-he-thong.md` | `2b19051` |
+| L7 | B.1 Sơ đồ kiến trúc dạng ảnh có vị trí Pact; sửa sơ đồ lỗi thời trong `docs/architecture.md` | [x] | 3.1, 1.5 | `docs/report/img/`, `B-kien-truc.md` | `bc99d54`, `1efad54` |
+| L8 | B.2 Giải thích 3 đến 5 module liên quan kiểm thử | [x] | 3.2 | `B-kien-truc.md` | `1efad54` |
+| L9 | Phần D: nguyên lý, vì sao phù hợp, phạm vi, giả định, rủi ro, tiêu chí pass/fail | [x] | 5.1 | `docs/report/D-ly-thuyet.md` | `e4ac3bd`, `a203e65` |
+| L10 | File đóng góp cá nhân (kèm mã commit) | [x] | 7.4 | `docs/report/dong-gop-luyen.md` | `5935da5`; danh sách và mức tham gia cập nhật 28/11 |
+| L11 | Cập nhật tick và ghi chú tiến độ trong `TASK_LUYEN.md` | [x] | | | `261a965` |
 
 ## 5. Phước (2312716) — chi tiết ở [`TASK_PHUOC.md`](../TASK_PHUOC.md)
 ### Đã xong

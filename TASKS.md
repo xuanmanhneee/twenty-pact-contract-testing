@@ -1,7 +1,7 @@
 # Danh sách task chung đến khi hoàn thành (nhóm 12)
 
 Hợp nhất từ `docs/TASK_MANH.md`, `docs/TASK_PHUOC.md` và yêu cầu đề bài (`docs/archive/context-de-tai-kiem-thu.md`).
-Cập nhật lần cuối: 21/11/2026. Hạn nộp báo cáo và mã nguồn: trước buổi bảo vệ 1 tuần (khoảng đầu tháng 12/2026; hỏi giảng viên ngày chính xác).
+Cập nhật lần cuối: 28/11/2026. Hạn nộp báo cáo và mã nguồn: trước buổi bảo vệ 1 tuần (khoảng đầu tháng 12/2026; hỏi giảng viên ngày chính xác).
 Mỗi mục có tiêu chí xong; làm xong thì tick và commit (push thì hỏi trước). `docs/TASK_PHUOC.md` là nhật ký của Phước, không sửa; các mục "chờ Mạnh" trong đó đã xong (xem mục 0).
 
 Người phụ trách theo phân công đề xuất: **M** = Mạnh (môi trường, provider), **L** = Luyến (kiến trúc, sơ đồ, onboarding), **P** = Phước (scenario, consumer, log/metrics). Phân công chính thức cần cả nhóm xác nhận (mục 7).
@@ -24,22 +24,22 @@ Context để viết báo cáo (yêu cầu của thầy, nguồn bằng chứng 
 - [ ] **1.5 Dọn nốt:** `docs/architecture.md` còn vẽ Verifier đi qua auth-proxy `:4002` (sửa theo luồng gọi thẳng; auth-proxy chỉ cho thí nghiệm); kiểm tra không còn chỗ nhắc "token" sai nghĩa trong test và tài liệu mới (M).
 
 ## 2. Phần A: mô tả hệ thống (L)
-- [ ] **2.1** Mục tiêu hệ thống, actor và use case chính của Twenty (A.1, A.2).
-- [ ] **2.2** Cây thư mục `tree -L 2` của repo mã nguồn (A.3) và danh sách dependency chính kèm phiên bản (A.3, nguồn `VERSIONS.md`, `package.json`).
-- [ ] **2.3** Luồng dữ liệu của các nghiệp vụ trọng tâm (A.4): xem People, xem Companies, tạo Person, người dùng hiện tại.
+- [x] **2.1** Mục tiêu hệ thống, actor và use case chính của Twenty (A.1, A.2).
+- [x] **2.2** Cây thư mục `tree -L 2` của repo mã nguồn (A.3) và danh sách dependency chính kèm phiên bản (A.3, nguồn `VERSIONS.md`, `package.json`).
+- [x] **2.3** Luồng dữ liệu của các nghiệp vụ trọng tâm (A.4): xem People, xem Companies, tạo Person, người dùng hiện tại.
 - *Nguồn:* `docs/architecture.md`, `docs/archive/bao_cao_giua_ky_milestone_2.md` mục A. *Xong khi:* nội dung viết sẵn ở dạng dùng được cho báo cáo, có sơ đồ luồng.
 
 ## 3. Phần B: kiến trúc (L)
-- [ ] **3.1** Sơ đồ kiến trúc mức container/component dạng **ảnh** (xuất từ Mermaid trong `docs/architecture.md` hoặc vẽ lại), thể hiện cả vị trí Pact (consumer test, hợp đồng, Verifier, provider).
-- [ ] **3.2** Giải thích 3 đến 5 module liên quan trực tiếp tới kiểm thử (twenty-front, twenty-server GraphQL `/graphql` và `/metadata`, xác thực cookie/CSRF, Postgres/Redis).
+- [x] **3.1** Sơ đồ kiến trúc mức container/component dạng **ảnh** (xuất từ Mermaid trong `docs/architecture.md` hoặc vẽ lại), thể hiện cả vị trí Pact (consumer test, hợp đồng, Verifier, provider).
+- [x] **3.2** Giải thích 3 đến 5 module liên quan trực tiếp tới kiểm thử (twenty-front, twenty-server GraphQL `/graphql` và `/metadata`, xác thực cookie/CSRF, Postgres/Redis).
 
 ## 4. Phần C: môi trường và bằng chứng (M + L)
 - [x] **4.1** Tài liệu môi trường: phiên bản, lệnh build/run, DB/service, seed data (M, từ `docs/setup.md`, `VERSIONS.md`).
 - [ ] **4.2** Bằng chứng hệ thống chạy: ảnh `/healthz`, đăng nhập, **ít nhất 3 luồng nghiệp vụ** (đã có F1, F3, F4 và ảnh `people.png`, `opportunities.png` trong `logs/`; bổ sung nếu thiếu F2) (P + M).
-- [ ] **4.3** **Chạy lại trên máy sạch** theo README bởi Luyến hoặc Phước, ghi từng bước, lỗi gặp và thời gian vào `docs/testing.md` hoặc `docs/clean-run.md`; sửa README/setup theo lỗi gặp (L hoặc P chạy, M sửa tài liệu). Đây là bằng chứng cho D.6 và phần H.
+- [x] **4.3** **Chạy lại trên máy sạch** theo README bởi Luyến hoặc Phước, ghi từng bước, lỗi gặp và thời gian vào `docs/testing.md` hoặc `docs/clean-run.md`; sửa README/setup theo lỗi gặp (L hoặc P chạy, M sửa tài liệu). Đây là bằng chứng cho D.6 và phần H.
 
 ## 5. Phần D và E: lý thuyết và thiết kế test (P + L, rà bởi M)
-- [ ] **5.1** Phần D (nguyên lý, lý do chọn phạm vi, giả định, rủi ro, tiêu chí pass/fail): cập nhật từ `docs/contract-testing.md`, bỏ rủi ro đã xử lý (KI-1, KI-4), thêm kết quả thực tế (L).
+- [x] **5.1** Phần D (nguyên lý, lý do chọn phạm vi, giả định, rủi ro, tiêu chí pass/fail): cập nhật từ `docs/contract-testing.md`, bỏ rủi ro đã xử lý (KI-1, KI-4), thêm kết quả thực tế (L).
 - [ ] **5.2** Phần E: bảng I-01 đến I-07 đủ precondition, input, expected, dữ liệu test, provider state (đã có trong `docs/interactions.md` và `docs/TASK_PHUOC.md` mục 1) (P).
 - [ ] **5.3** Kỹ thuật thiết kế test được áp dụng (phân vùng tương đương, giá trị biên, thử âm: phiên sai I-06, thiếu Origin I-07) và kịch bản phá hợp đồng M-0 đến M-6 (P).
 

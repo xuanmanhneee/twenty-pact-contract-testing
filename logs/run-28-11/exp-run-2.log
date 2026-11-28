@@ -1,0 +1,11 @@
+
+> experiments
+> node tests/experiments.mjs
+
+M-0 KHỚP | fail: - | kỳ vọng: - | 7.56s
+M-2 KHỚP | fail: I-01,I-03 | kỳ vọng: I-01,I-03 | 8.13s
+M-3 KHỚP | fail: I-04 | kỳ vọng: I-04 | 7.55s
+M-4 KHỚP | fail: I-01,I-02,I-04 | kỳ vọng: I-01,I-02,I-04 | 8.00s
+M-6 KHỚP | fail: - | kỳ vọng: - | 7.52s
+
+Đã ghi <thu-muc-chay>\logs\experiments

@@ -1,0 +1,5 @@
+run 1 provider: 21 OK-lines, Tests 1 passed (1), Duration 3.62s (tran
+run 2 provider: 21 OK-lines, Tests 1 passed (1), Duration 4.14s (tran
+run 3 provider: 21 OK-lines, Tests 1 passed (1), Duration 4.69s (tran
+run 4 provider: 21 OK-lines, Tests 1 passed (1), Duration 4.22s (tran
+run 5 provider: 21 OK-lines, Tests 1 passed (1), Duration 4.20s (tran

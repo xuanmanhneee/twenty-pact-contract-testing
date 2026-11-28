@@ -1,0 +1,117 @@
+# M-4: Đổi kiểu totalCount từ số sang chuỗi
+Thời điểm: 2026-11-28T04:17:31.013Z
+Pact 16.5.0, Node v22.18.0, Twenty v2.46.0 (image đã pin, xem VERSIONS.md)
+Proxy: MUTATION=retype FIELD=totalCount TO=-
+Kỳ vọng fail: I-01, I-02, I-04 | Thực tế fail: I-01, I-02, I-04 | Khớp: CÓ
+Thời gian chạy verify: 6.79 s
+
+## Log mutate-proxy
+mutate-proxy :4001 → http://localhost:4002 | MUTATION=retype FIELD=totalCount TO=-
+
+## Log Pact Verifier
+RUN  v3.2.7 <thu-muc-chay>
+
+2026-11-28T04:17:30.548652Z  WARN ThreadId(13) pact_matching::metrics: 
+
+Please note:
+We are tracking events anonymously to gather important usage statistics like Pact version and operating system. To disable tracking, set the 'PACT_DO_NOT_TRACK' environment variable to 'true'.
+
+
+
+Verifying a pact between twenty-front and twenty-server
+
+  I-01 FindManyPeople với phiên hợp lệ (2ms loading, 123ms verification)
+     Given workspace có ít nhất 1 Person
+    returns a response which
+      has status code 200 (OK)
+      includes headers
+        "Content-Type" with value "application/json; charset=utf-8" (OK)
+      has a matching body (FAILED)
+
+  I-02 FindManyCompanies với phiên hợp lệ (2ms loading, 45ms verification)
+     Given workspace có ít nhất 1 Company
+    returns a response which
+      has status code 200 (OK)
+      includes headers
+        "Content-Type" with value "application/json; charset=utf-8" (OK)
+      has a matching body (FAILED)
+
+  I-03 CreateOnePerson với phiên hợp lệ (2ms loading, 146ms verification)
+     Given workspace sẵn sàng tạo Person I-03
+    returns a response which
+      has status code 200 (OK)
+      includes headers
+        "Content-Type" with value "application/json; charset=utf-8" (OK)
+      has a matching body (OK)
+
+  I-04 FindManyOpportunities với phiên hợp lệ (2ms loading, 63ms verification)
+     Given workspace có ít nhất 1 Opportunity
+    returns a response which
+      has status code 200 (OK)
+      includes headers
+        "Content-Type" with value "application/json; charset=utf-8" (OK)
+      has a matching body (FAILED)
+
+  I-05 GetCurrentUser với phiên hợp lệ (2ms loading, 106ms verification)
+     Given người dùng đã đăng nhập vào workspace
+    returns a response which
+      has status code 200 (OK)
+      includes headers
+        "Content-Type" with value "application/json; charset=utf-8" (OK)
+      has a matching body (OK)
+
+  I-06 FindManyPeople với phiên sai (2ms loading, 35ms verification)
+     Given phiên không hợp lệ
+    returns a response which
+      has status code 200 (OK)
+      includes headers
+        "Content-Type" with value "application/json; charset=utf-8" (OK)
+      has a matching body (OK)
+
+  I-07 FindManyPeople thiếu Origin (2ms loading, 29ms verification)
+     Given phiên hợp lệ nhưng request thiếu Origin
+    returns a response which
+      has status code 403 (OK)
+      includes headers
+        "Content-Type" with value "application/json; charset=utf-8" (OK)
+      has a matching body (OK)
+
+
+Failures:
+
+1) Verifying a pact between twenty-front and twenty-server Given workspace có ít nhất 1 Person - I-01 FindManyPeople với phiên hợp lệ
+    1.1) has a matching body
+           $.data.people.totalCount -> Expected '5' (String) to be an integer
+2) Verifying a pact between twenty-front and twenty-server Given workspace có ít nhất 1 Company - I-02 FindManyCompanies với phiên hợp lệ
+    2.1) has a matching body
+           $.data.companies.totalCount -> Expected '5' (String) to be an integer
+3) Verifying a pact between twenty-front and twenty-server Given workspace có ít nhất 1 Opportunity - I-04 FindManyOpportunities với phiên hợp lệ
+    3.1) has a matching body
+           $.data.opportunities.totalCount -> Expected '6' (String) to be an integer
+
+There were 3 pact failures
+
+stdout | tests/provider.verify.test.js > twenty-server thật thỏa mãn hợp đồng của twenty-front > xác minh toàn bộ interaction
+[11:17:30.753] ERROR (17588): pact-core@19.2.0: Verification unsuccessful
+
+
+ ❯ tests/provider.verify.test.js (1 test | 1 failed) 806ms
+   × twenty-server thật thỏa mãn hợp đồng của twenty-front > xác minh toàn bộ interaction 805ms
+     → {"errors":[{"interaction":"Verifying a pact between twenty-front and twenty-server Given workspace có ít nhất 1 Person - I-01 FindManyPeople với phiên hợp lệ","mismatch":{"interactionId":"","mismatches":[{"actual":"\"5\"","expected":"1200","mismatch":"Expected '5' (String) to be an integer","path":"$.data.people.totalCount","type":"BodyMismatch"}],"type":"mismatches"}},{"interaction":"Verifying a pact between twenty-front and twenty-server Given workspace có ít nhất 1 Company - I-02 FindManyCompanies với phiên hợp lệ","mismatch":{"interactionId":"","mismatches":[{"actual":"\"5\"","expected":"5","mismatch":"Expected '5' (String) to be an integer","path":"$.data.companies.totalCount","type":"BodyMismatch"}],"type":"mismatches"}},{"interaction":"Verifying a pact between twenty-front and twenty-server Given workspace có ít nhất 1 Opportunity - I-04 FindManyOpportunities với phiên hợp lệ","mismatch":{"interactionId":"","mismatches":[{"actual":"\"6\"","expected":"6","mismatch":"Expected '6' (String) to be an integer","path":"$.data.opportunities.totalCount","type":"BodyMismatch"}],"type":"mismatches"}}],"interactionResults":[{"description":"I-01 FindManyPeople với phiên hợp lệ","duration":"123ms","result":"Error"},{"description":"I-02 FindManyCompanies với phiên hợp lệ","duration":"45ms","result":"Error"},{"description":"I-03 CreateOnePerson với phiên hợp lệ","duration":"146ms","result":"OK"},{"description":"I-04 FindManyOpportunities với phiên hợp lệ","duration":"63ms","result":"Error"},{"description":"I-05 GetCurrentUser với phiên hợp lệ","duration":"106ms","result":"OK"},{"description":"I-06 FindManyPeople với phiên sai","duration":"35ms","result":"OK"},{"description":"I-07 FindManyPeople thiếu Origin","duration":"29ms","result":"OK"}],"notices":[],"output":["\nVerifying a pact between \u001b[1mtwenty-front\u001b[0m and \u001b[1mtwenty-server\u001b[0m","","  I-01 FindManyPeople với phiên hợp lệ (2ms loading, 123ms verification)","     Given workspace có ít nhất 1 Person","    returns a response which","      has status code \u001b[1m200\u001b[0m (\u001b[32mOK\u001b[0m)","      includes headers","        \"\u001b[1mContent-Type\u001b[0m\" with value \"\u001b[1mapplication/json; charset=utf-8\u001b[0m\" (\u001b[32mOK\u001b[0m)","      has a matching body (\u001b[31mFAILED\u001b[0m)","","  I-02 FindManyCompanies với phiên hợp lệ (2ms loading, 45ms verification)","     Given workspace có ít nhất 1 Company","    returns a response which","      has status code \u001b[1m200\u001b[0m (\u001b[32mOK\u001b[0m)","      includes headers","        \"\u001b[1mContent-Type\u001b[0m\" with value \"\u001b[1mapplication/json; charset=utf-8\u001b[0m\" (\u001b[32mOK\u001b[0m)","      has a matching body (\u001b[31mFAILED\u001b[0m)","","  I-03 CreateOnePerson với phiên hợp lệ (2ms loading, 146ms verification)","     Given workspace sẵn sàng tạo Person I-03","    returns a response which","      has status code \u001b[1m200\u001b[0m (\u001b[32mOK\u001b[0m)","      includes headers","        \"\u001b[1mContent-Type\u001b[0m\" with value \"\u001b[1mapplication/json; charset=utf-8\u001b[0m\" (\u001b[32mOK\u001b[0m)","      has a matching body (\u001b[32mOK\u001b[0m)","","  I-04 FindManyOpportunities với phiên hợp lệ (2ms loading, 63ms verification)","     Given workspace có ít nhất 1 Opportunity","    returns a response which","      has status code \u001b[1m200\u001b[0m (\u001b[32mOK\u001b[0m)","      includes headers","        \"\u001b[1mContent-Type\u001b[0m\" with value \"\u001b[1mapplication/json; charset=utf-8\u001b[0m\" (\u001b[32mOK\u001b[0m)","      has a matching body (\u001b[31mFAILED\u001b[0m)","","  I-05 GetCurrentUser với phiên hợp lệ (2ms loading, 106ms verification)","     Given người dùng đã đăng nhập vào workspace","    returns a response which","      has status code \u001b[1m200\u001b[0m (\u001b[32mOK\u001b[0m)","      includes headers","        \"\u001b[1mContent-Type\u001b[0m\" with value \"\u001b[1mapplication/json; charset=utf-8\u001b[0m\" (\u001b[32mOK\u001b[0m)","      has a matching body (\u001b[32mOK\u001b[0m)","","  I-06 FindManyPeople với phiên sai (2ms loading, 35ms verification)","     Given phiên không hợp lệ","    returns a response which","      has status code \u001b[1m200\u001b[0m (\u001b[32mOK\u001b[0m)","      includes headers","        \"\u001b[1mContent-Type\u001b[0m\" with value \"\u001b[1mapplication/json; charset=utf-8\u001b[0m\" (\u001b[32mOK\u001b[0m)","      has a matching body (\u001b[32mOK\u001b[0m)","","  I-07 FindManyPeople thiếu Origin (2ms loading, 29ms verification)","     Given phiên hợp lệ nhưng request thiếu Origin","    returns a response which","      has status code \u001b[1m403\u001b[0m (\u001b[32mOK\u001b[0m)","      includes headers","        \"\u001b[1mContent-Type\u001b[0m\" with value \"\u001b[1mapplication/json; charset=utf-8\u001b[0m\" (\u001b[32mOK\u001b[0m)","      has a matching body (\u001b[32mOK\u001b[0m)","","\nFailures:\n","1) Verifying a pact between twenty-front and twenty-server Given workspace có ít nhất 1 Person - I-01 FindManyPeople với phiên hợp lệ","    1.1) has a matching body","           \u001b[1m$.data.people.totalCount\u001b[0m -> Expected '5' (String) to be an integer","2) Verifying a pact between twenty-front and twenty-server Given workspace có ít nhất 1 Company - I-02 FindManyCompanies với phiên hợp lệ","    2.1) has a matching body","           \u001b[1m$.data.companies.totalCount\u001b[0m -> Expected '5' (String) to be an integer","3) Verifying a pact between twenty-front and twenty-server Given workspace có ít nhất 1 Opportunity - I-04 FindManyOpportunities với phiên hợp lệ","    3.1) has a matching body","           \u001b[1m$.data.opportunities.totalCount\u001b[0m -> Expected '6' (String) to be an integer","\nThere were 3 pact failures\n"],"pendingErrors":[],"result":false}
+
+ Test Files  1 failed (1)
+      Tests  1 failed (1)
+   Start at  11:17:27
+   Duration  3.46s (transform 70ms, setup 0ms, collect 1.75s, tests 806ms, environment 0ms, prepare 344ms)
+
+
+(node:17588) [DEP0060] DeprecationWarning: The `util._extend` API is deprecated. Please use Object.assign() instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/provider.verify.test.js > twenty-server thật thỏa mãn hợp đồng của twenty-front > xác minh toàn bộ interaction
+Error: {"errors":[{"interaction":"Verifying a pact between twenty-front and twenty-server Given workspace có ít nhất 1 Person - I-01 FindManyPeople với phiên hợp lệ","mismatch":{"interactionId":"","mismatches":[{"actual":"\"5\"","expected":"1200","mismatch":"Expected '5' (String) to be an integer","path":"$.data.people.totalCount","type":"BodyMismatch"}],"type":"mismatches"}},{"interaction":"Verifying a pact between twenty-front and twenty-server Given workspace có ít nhất 1 Company - I-02 FindManyCompanies với phiên hợp lệ","mismatch":{"interactionId":"","mismatches":[{"actual":"\"5\"","expected":"5","mismatch":"Expected '5' (String) to be an integer","path":"$.data.companies.totalCount","type":"BodyMismatch"}],"type":"mismatches"}},{"interaction":"Verifying a pact between twenty-front and twenty-server Given workspace có ít nhất 1 Opportunity - I-04 FindManyOpportunities với phiên hợp lệ","mismatch":{"interactionId":"","mismatches":[{"actual":"\"6\"","expected":"6","mismatch":"Expected '6' (String) to be an integer","path":"$.data.opportunities.totalCount","type":"BodyMismatch"}],"type":"mismatches"}}],"interactionResults":[{"description":"I-01 FindManyPeople với phiên hợp lệ","duration":"123ms","result":"Error"},{"description":"I-02 FindManyCompanies với phiên hợp lệ","duration":"45ms","result":"Error"},{"description":"I-03 CreateOnePerson với phiên hợp lệ","duration":"146ms","result":"OK"},{"description":"I-04 FindManyOpportunities với phiên hợp lệ","duration":"63ms","result":"Error"},{"description":"I-05 GetCurrentUser với phiên hợp lệ","duration":"106ms","result":"OK"},{"description":"I-06 FindManyPeople với phiên sai","duration":"35ms","result":"OK"},{"description":"I-07 FindManyPeople thiếu Origin","duration":"29ms","result":"OK"}],"notices":[],"output":["\nVerifying a pact between \u001b[1mtwenty-front\u001b[0m and \u001b[1mtwenty-server\u001b[0m","","  I-01 FindManyPeople với phiên hợp lệ (2ms loading, 123ms verification)","     Given workspace có ít nhất 1 Person","    returns a response which","      has status code \u001b[1m200\u001b[0m (\u001b[32mOK\u001b[0m)","      includes headers","        \"\u001b[1mContent-Type\u001b[0m\" with value \"\u001b[1mapplication/json; charset=utf-8\u001b[0m\" (\u001b[32mOK\u001b[0m)","      has a matching body (\u001b[31mFAILED\u001b[0m)","","  I-02 FindManyCompanies với phiên hợp lệ (2ms loading, 45ms verification)","     Given workspace có ít nhất 1 Company","    returns a response which","      has status code \u001b[1m200\u001b[0m (\u001b[32mOK\u001b[0m)","      includes headers","        \"\u001b[1mContent-Type\u001b[0m\" with value \"\u001b[1mapplication/json; charset=utf-8\u001b[0m\" (\u001b[32mOK\u001b[0m)","      has a matching body (\u001b[31mFAILED\u001b[0m)","","  I-03 CreateOnePerson với phiên hợp lệ (2ms loading, 146ms verification)","     Given workspace sẵn sàng tạo Person I-03","    returns a response which","      has status code \u001b[1m200\u001b[0m (\u001b[32mOK\u001b[0m)","      includes headers","        \"\u001b[1mContent-Type\u001b[0m\" with value \"\u001b[1mapplication/json; charset=utf-8\u001b[0m\" (\u001b[32mOK\u001b[0m)","      has a matching body (\u001b[32mOK\u001b[0m)","","  I-04 FindManyOpportunities với phiên hợp lệ (2ms loading, 63ms verification)","     Given workspace có ít nhất 1 Opportunity","    returns a response which","      has status code \u001b[1m200\u001b[0m (\u001b[32mOK\u001b[0m)","      includes headers","        \"\u001b[1mContent-Type\u001b[0m\" with value \"\u001b[1mapplication/json; charset=utf-8\u001b[0m\" (\u001b[32mOK\u001b[0m)","      has a matching body (\u001b[31mFAILED\u001b[0m)","","  I-05 GetCurrentUser với phiên hợp lệ (2ms loading, 106ms verification)","     Given người dùng đã đăng nhập vào workspace","    returns a response which","      has status code \u001b[1m200\u001b[0m (\u001b[32mOK\u001b[0m)","      includes headers","        \"\u001b[1mContent-Type\u001b[0m\" with value \"\u001b[1mapplication/json; charset=utf-8\u001b[0m\" (\u001b[32mOK\u001b[0m)","      has a matching body (\u001b[32mOK\u001b[0m)","","  I-06 FindManyPeople với phiên sai (2ms loading, 35ms verification)","     Given phiên không hợp lệ","    returns a response which","      has status code \u001b[1m200\u001b[0m (\u001b[32mOK\u001b[0m)","      includes headers","        \"\u001b[1mContent-Type\u001b[0m\" with value \"\u001b[1mapplication/json; charset=utf-8\u001b[0m\" (\u001b[32mOK\u001b[0m)","      has a matching body (\u001b[32mOK\u001b[0m)","","  I-07 FindManyPeople thiếu Origin (2ms loading, 29ms verification)","     Given phiên hợp lệ nhưng request thiếu Origin","    returns a response which","      has status code \u001b[1m403\u001b[0m (\u001b[32mOK\u001b[0m)","      includes headers","        \"\u001b[1mContent-Type\u001b[0m\" with value \"\u001b[1mapplication/json; charset=utf-8\u001b[0m\" (\u001b[32mOK\u001b[0m)","      has a matching body (\u001b[32mOK\u001b[0m)","","\nFailures:\n","1) Verifying a pact between twenty-front and twenty-server Given workspace có ít nhất 1 Person - I-01 FindManyPeople với phiên hợp lệ","    1.1) has a matching body","           \u001b[1m$.data.people.totalCount\u001b[0m -> Expected '5' (String) to be an integer","2) Verifying a pact between twenty-front and twenty-server Given workspace có ít nhất 1 Company - I-02 FindManyCompanies với phiên hợp lệ","    2.1) has a matching body","           \u001b[1m$.data.companies.totalCount\u001b[0m -> Expected '5' (String) to be an integer","3) Verifying a pact between twenty-front and twenty-server Given workspace có ít nhất 1 Opportunity - I-04 FindManyOpportunities với phiên hợp lệ","    3.1) has a matching body","           \u001b[1m$.data.opportunities.totalCount\u001b[0m -> Expected '6' (String) to be an integer","\nThere were 3 pact failures\n"],"pendingErrors":[],"result":false}
+ ❯ node_modules/@pact-foundation/pact-core/src/verifier/nativeVerifier.ts:53:20
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯

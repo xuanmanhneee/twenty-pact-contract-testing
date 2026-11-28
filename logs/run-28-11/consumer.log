@@ -1,0 +1,20 @@
+
+> test:consumer
+> rimraf pacts && vitest run tests/consumer.test.js
+
+
+ RUN  v3.2.7 <thu-muc-chay>
+
+2026-11-28T04:13:09.008115Z  WARN ThreadId(01) pact_models::pact: Note: Existing pact is an older specification version (V3), and will be upgraded
+2026-11-28T04:13:09.019046Z  WARN ThreadId(01) pact_models::pact: Note: Existing pact is an older specification version (V3), and will be upgraded
+2026-11-28T04:13:09.030715Z  WARN ThreadId(01) pact_models::pact: Note: Existing pact is an older specification version (V3), and will be upgraded
+2026-11-28T04:13:09.044862Z  WARN ThreadId(01) pact_models::pact: Note: Existing pact is an older specification version (V3), and will be upgraded
+2026-11-28T04:13:09.058838Z  WARN ThreadId(01) pact_models::pact: Note: Existing pact is an older specification version (V3), and will be upgraded
+2026-11-28T04:13:09.077883Z  WARN ThreadId(01) pact_models::pact: Note: Existing pact is an older specification version (V3), and will be upgraded
+ ✓ tests/consumer.test.js (7 tests) 125ms
+
+ Test Files  1 passed (1)
+      Tests  7 passed (7)
+   Start at  11:13:06
+   Duration  2.73s (transform 68ms, setup 0ms, collect 1.96s, tests 125ms, environment 0ms, prepare 304ms)
+

@@ -1,0 +1,125 @@
+
+> break:rename-field
+> rimraf pacts && cross-env BREAK=1 vitest run tests/consumer.test.js && vitest run tests/provider.verify.test.js
+
+
+ RUN  v3.2.7 <thu-muc-chay>
+
+2026-11-28T04:13:21.716009Z  WARN ThreadId(01) pact_models::pact: Note: Existing pact is an older specification version (V3), and will be upgraded
+2026-11-28T04:13:21.724818Z  WARN ThreadId(01) pact_models::pact: Note: Existing pact is an older specification version (V3), and will be upgraded
+2026-11-28T04:13:21.734904Z  WARN ThreadId(01) pact_models::pact: Note: Existing pact is an older specification version (V3), and will be upgraded
+2026-11-28T04:13:21.745372Z  WARN ThreadId(01) pact_models::pact: Note: Existing pact is an older specification version (V3), and will be upgraded
+2026-11-28T04:13:21.754491Z  WARN ThreadId(01) pact_models::pact: Note: Existing pact is an older specification version (V3), and will be upgraded
+2026-11-28T04:13:21.764342Z  WARN ThreadId(01) pact_models::pact: Note: Existing pact is an older specification version (V3), and will be upgraded
+ ✓ tests/consumer.test.js (7 tests) 98ms
+
+ Test Files  1 passed (1)
+      Tests  7 passed (7)
+   Start at  11:13:19
+   Duration  2.71s (transform 91ms, setup 0ms, collect 1.72s, tests 98ms, environment 0ms, prepare 348ms)
+
+
+ RUN  v3.2.7 <thu-muc-chay>
+
+(node:12712) [DEP0060] DeprecationWarning: The `util._extend` API is deprecated. Please use Object.assign() instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-28T04:13:27.326211Z  WARN ThreadId(13) pact_matching::metrics: 
+
+Please note:
+We are tracking events anonymously to gather important usage statistics like Pact version and operating system. To disable tracking, set the 'PACT_DO_NOT_TRACK' environment variable to 'true'.
+
+
+
+Verifying a pact between twenty-front and twenty-server
+
+  I-01 FindManyPeople với phiên hợp lệ (3ms loading, 155ms verification)
+     Given workspace có ít nhất 1 Person
+    returns a response which
+      has status code 200 (OK)
+      includes headers
+        "Content-Type" with value "application/json; charset=utf-8" (OK)
+      has a matching body (FAILED)
+
+  I-02 FindManyCompanies với phiên hợp lệ (3ms loading, 76ms verification)
+     Given workspace có ít nhất 1 Company
+    returns a response which
+      has status code 200 (OK)
+      includes headers
+        "Content-Type" with value "application/json; charset=utf-8" (OK)
+      has a matching body (OK)
+
+  I-03 CreateOnePerson với phiên hợp lệ (3ms loading, 334ms verification)
+     Given workspace sẵn sàng tạo Person I-03
+    returns a response which
+      has status code 200 (OK)
+      includes headers
+        "Content-Type" with value "application/json; charset=utf-8" (OK)
+      has a matching body (OK)
+
+  I-04 FindManyOpportunities với phiên hợp lệ (3ms loading, 135ms verification)
+     Given workspace có ít nhất 1 Opportunity
+    returns a response which
+      has status code 200 (OK)
+      includes headers
+        "Content-Type" with value "application/json; charset=utf-8" (OK)
+      has a matching body (OK)
+
+  I-05 GetCurrentUser với phiên hợp lệ (3ms loading, 197ms verification)
+     Given người dùng đã đăng nhập vào workspace
+    returns a response which
+      has status code 200 (OK)
+      includes headers
+        "Content-Type" with value "application/json; charset=utf-8" (OK)
+      has a matching body (OK)
+
+  I-06 FindManyPeople với phiên sai (3ms loading, 54ms verification)
+     Given phiên không hợp lệ
+    returns a response which
+      has status code 200 (OK)
+      includes headers
+        "Content-Type" with value "application/json; charset=utf-8" (OK)
+      has a matching body (OK)
+
+  I-07 FindManyPeople thiếu Origin (3ms loading, 45ms verification)
+     Given phiên hợp lệ nhưng request thiếu Origin
+    returns a response which
+      has status code 403 (OK)
+      includes headers
+        "Content-Type" with value "application/json; charset=utf-8" (OK)
+      has a matching body (OK)
+
+
+Failures:
+
+1) Verifying a pact between twenty-front and twenty-server Given workspace có ít nhất 1 Person - I-01 FindManyPeople với phiên hợp lệ
+    1.1) has a matching body
+           $.data.people.edges[0].node -> Actual map is missing the following keys: jobTitleName
+           $.data.people.edges[1].node -> Actual map is missing the following keys: jobTitleName
+           $.data.people.edges[2].node -> Actual map is missing the following keys: jobTitleName
+           $.data.people.edges[3].node -> Actual map is missing the following keys: jobTitleName
+           $.data.people.edges[4].node -> Actual map is missing the following keys: jobTitleName
+
+There were 1 pact failures
+
+stdout | tests/provider.verify.test.js > twenty-server thật thỏa mãn hợp đồng của twenty-front > xác minh toàn bộ interaction
+[11:13:27.596] ERROR (12712): pact-core@19.2.0: Verification unsuccessful
+
+
+ ❯ tests/provider.verify.test.js (1 test | 1 failed) 1350ms
+   × twenty-server thật thỏa mãn hợp đồng của twenty-front > xác minh toàn bộ interaction 1348ms
+     → {"errors":[{"interaction":"Verifying a pact between twenty-front and twenty-server Given workspace có ít nhất 1 Person - I-01 FindManyPeople với phiên hợp lệ","mismatch":{"interactionId":"","mismatches":[{"actual":"[\"__typename\",\"avatarFile\",\"company\",\"companyId\",\"createdAt\",\"createdBy\",\"deletedAt\",\"emails\",\"id\",\"jobTitle\",\"linkedinLink\",\"name\",\"phones\",\"position\",\"updatedAt\"]","expected":"[\"emails\",\"id\",\"jobTitleName\",\"name\"]","mismatch":"Actual map is missing the following keys: jobTitleName","path":"$.data.people.edges[0].node","type":"BodyMismatch"},{"actual":"[\"__typename\",\"avatarFile\",\"company\",\"companyId\",\"createdAt\",\"createdBy\",\"deletedAt\",\"emails\",\"id\",\"jobTitle\",\"linkedinLink\",\"name\",\"phones\",\"position\",\"updatedAt\"]","expected":"[\"emails\",\"id\",\"jobTitleName\",\"name\"]","mismatch":"Actual map is missing the following keys: jobTitleName","path":"$.data.people.edges[1].node","type":"BodyMismatch"},{"actual":"[\"__typename\",\"avatarFile\",\"company\",\"companyId\",\"createdAt\",\"createdBy\",\"deletedAt\",\"emails\",\"id\",\"jobTitle\",\"linkedinLink\",\"name\",\"phones\",\"position\",\"updatedAt\"]","expected":"[\"emails\",\"id\",\"jobTitleName\",\"name\"]","mismatch":"Actual map is missing the following keys: jobTitleName","path":"$.data.people.edges[3].node","type":"BodyMismatch"},{"actual":"[\"__typename\",\"avatarFile\",\"company\",\"companyId\",\"createdAt\",\"createdBy\",\"deletedAt\",\"emails\",\"id\",\"jobTitle\",\"linkedinLink\",\"name\",\"phones\",\"position\",\"updatedAt\"]","expected":"[\"emails\",\"id\",\"jobTitleName\",\"name\"]","mismatch":"Actual map is missing the following keys: jobTitleName","path":"$.data.people.edges[4].node","type":"BodyMismatch"},{"actual":"[\"__typename\",\"avatarFile\",\"company\",\"companyId\",\"createdAt\",\"createdBy\",\"deletedAt\",\"emails\",\"id\",\"jobTitle\",\"linkedinLink\",\"name\",\"phones\",\"position\",\"updatedAt\"]","expected":"[\"emails\",\"id\",\"jobTitleName\",\"name\"]","mismatch":"Actual map is missing the following keys: jobTitleName","path":"$.data.people.edges[2].node","type":"BodyMismatch"}],"type":"mismatches"}}],"interactionResults":[{"description":"I-01 FindManyPeople với phiên hợp lệ","duration":"155ms","result":"Error"},{"description":"I-02 FindManyCompanies với phiên hợp lệ","duration":"76ms","result":"OK"},{"description":"I-03 CreateOnePerson với phiên hợp lệ","duration":"334ms","result":"OK"},{"description":"I-04 FindManyOpportunities với phiên hợp lệ","duration":"135ms","result":"OK"},{"description":"I-05 GetCurrentUser với phiên hợp lệ","duration":"197ms","result":"OK"},{"description":"I-06 FindManyPeople với phiên sai","duration":"54ms","result":"OK"},{"description":"I-07 FindManyPeople thiếu Origin","duration":"45ms","result":"OK"}],"notices":[],"output":["\nVerifying a pact between \u001b[1mtwenty-front\u001b[0m and \u001b[1mtwenty-server\u001b[0m","","  I-01 FindManyPeople với phiên hợp lệ (3ms loading, 155ms verification)","     Given workspace có ít nhất 1 Person","    returns a response which","      has status code \u001b[1m200\u001b[0m (\u001b[32mOK\u001b[0m)","      includes headers","        \"\u001b[1mContent-Type\u001b[0m\" with value \"\u001b[1mapplication/json; charset=utf-8\u001b[0m\" (\u001b[32mOK\u001b[0m)","      has a matching body (\u001b[31mFAILED\u001b[0m)","","  I-02 FindManyCompanies với phiên hợp lệ (3ms loading, 76ms verification)","     Given workspace có ít nhất 1 Company","    returns a response which","      has status code \u001b[1m200\u001b[0m (\u001b[32mOK\u001b[0m)","      includes headers","        \"\u001b[1mContent-Type\u001b[0m\" with value \"\u001b[1mapplication/json; charset=utf-8\u001b[0m\" (\u001b[32mOK\u001b[0m)","      has a matching body (\u001b[32mOK\u001b[0m)","","  I-03 CreateOnePerson với phiên hợp lệ (3ms loading, 334ms verification)","     Given workspace sẵn sàng tạo Person I-03","    returns a response which","      has status code \u001b[1m200\u001b[0m (\u001b[32mOK\u001b[0m)","      includes headers","        \"\u001b[1mContent-Type\u001b[0m\" with value \"\u001b[1mapplication/json; charset=utf-8\u001b[0m\" (\u001b[32mOK\u001b[0m)","      has a matching body (\u001b[32mOK\u001b[0m)","","  I-04 FindManyOpportunities với phiên hợp lệ (3ms loading, 135ms verification)","     Given workspace có ít nhất 1 Opportunity","    returns a response which","      has status code \u001b[1m200\u001b[0m (\u001b[32mOK\u001b[0m)","      includes headers","        \"\u001b[1mContent-Type\u001b[0m\" with value \"\u001b[1mapplication/json; charset=utf-8\u001b[0m\" (\u001b[32mOK\u001b[0m)","      has a matching body (\u001b[32mOK\u001b[0m)","","  I-05 GetCurrentUser với phiên hợp lệ (3ms loading, 197ms verification)","     Given người dùng đã đăng nhập vào workspace","    returns a response which","      has status code \u001b[1m200\u001b[0m (\u001b[32mOK\u001b[0m)","      includes headers","        \"\u001b[1mContent-Type\u001b[0m\" with value \"\u001b[1mapplication/json; charset=utf-8\u001b[0m\" (\u001b[32mOK\u001b[0m)","      has a matching body (\u001b[32mOK\u001b[0m)","","  I-06 FindManyPeople với phiên sai (3ms loading, 54ms verification)","     Given phiên không hợp lệ","    returns a response which","      has status code \u001b[1m200\u001b[0m (\u001b[32mOK\u001b[0m)","      includes headers","        \"\u001b[1mContent-Type\u001b[0m\" with value \"\u001b[1mapplication/json; charset=utf-8\u001b[0m\" (\u001b[32mOK\u001b[0m)","      has a matching body (\u001b[32mOK\u001b[0m)","","  I-07 FindManyPeople thiếu Origin (3ms loading, 45ms verification)","     Given phiên hợp lệ nhưng request thiếu Origin","    returns a response which","      has status code \u001b[1m403\u001b[0m (\u001b[32mOK\u001b[0m)","      includes headers","        \"\u001b[1mContent-Type\u001b[0m\" with value \"\u001b[1mapplication/json; charset=utf-8\u001b[0m\" (\u001b[32mOK\u001b[0m)","      has a matching body (\u001b[32mOK\u001b[0m)","","\nFailures:\n","1) Verifying a pact between twenty-front and twenty-server Given workspace có ít nhất 1 Person - I-01 FindManyPeople với phiên hợp lệ","    1.1) has a matching body","           \u001b[1m$.data.people.edges[0].node\u001b[0m -> Actual map is missing the following keys: jobTitleName","           \u001b[1m$.data.people.edges[1].node\u001b[0m -> Actual map is missing the following keys: jobTitleName","           \u001b[1m$.data.people.edges[2].node\u001b[0m -> Actual map is missing the following keys: jobTitleName","           \u001b[1m$.data.people.edges[3].node\u001b[0m -> Actual map is missing the following keys: jobTitleName","           \u001b[1m$.data.people.edges[4].node\u001b[0m -> Actual map is missing the following keys: jobTitleName","\nThere were 1 pact failures\n"],"pendingErrors":[],"result":false}
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/provider.verify.test.js > twenty-server thật thỏa mãn hợp đồng của twenty-front > xác minh toàn bộ interaction
+Error: {"errors":[{"interaction":"Verifying a pact between twenty-front and twenty-server Given workspace có ít nhất 1 Person - I-01 FindManyPeople với phiên hợp lệ","mismatch":{"interactionId":"","mismatches":[{"actual":"[\"__typename\",\"avatarFile\",\"company\",\"companyId\",\"createdAt\",\"createdBy\",\"deletedAt\",\"emails\",\"id\",\"jobTitle\",\"linkedinLink\",\"name\",\"phones\",\"position\",\"updatedAt\"]","expected":"[\"emails\",\"id\",\"jobTitleName\",\"name\"]","mismatch":"Actual map is missing the following keys: jobTitleName","path":"$.data.people.edges[0].node","type":"BodyMismatch"},{"actual":"[\"__typename\",\"avatarFile\",\"company\",\"companyId\",\"createdAt\",\"createdBy\",\"deletedAt\",\"emails\",\"id\",\"jobTitle\",\"linkedinLink\",\"name\",\"phones\",\"position\",\"updatedAt\"]","expected":"[\"emails\",\"id\",\"jobTitleName\",\"name\"]","mismatch":"Actual map is missing the following keys: jobTitleName","path":"$.data.people.edges[1].node","type":"BodyMismatch"},{"actual":"[\"__typename\",\"avatarFile\",\"company\",\"companyId\",\"createdAt\",\"createdBy\",\"deletedAt\",\"emails\",\"id\",\"jobTitle\",\"linkedinLink\",\"name\",\"phones\",\"position\",\"updatedAt\"]","expected":"[\"emails\",\"id\",\"jobTitleName\",\"name\"]","mismatch":"Actual map is missing the following keys: jobTitleName","path":"$.data.people.edges[3].node","type":"BodyMismatch"},{"actual":"[\"__typename\",\"avatarFile\",\"company\",\"companyId\",\"createdAt\",\"createdBy\",\"deletedAt\",\"emails\",\"id\",\"jobTitle\",\"linkedinLink\",\"name\",\"phones\",\"position\",\"updatedAt\"]","expected":"[\"emails\",\"id\",\"jobTitleName\",\"name\"]","mismatch":"Actual map is missing the following keys: jobTitleName","path":"$.data.people.edges[4].node","type":"BodyMismatch"},{"actual":"[\"__typename\",\"avatarFile\",\"company\",\"companyId\",\"createdAt\",\"createdBy\",\"deletedAt\",\"emails\",\"id\",\"jobTitle\",\"linkedinLink\",\"name\",\"phones\",\"position\",\"updatedAt\"]","expected":"[\"emails\",\"id\",\"jobTitleName\",\"name\"]","mismatch":"Actual map is missing the following keys: jobTitleName","path":"$.data.people.edges[2].node","type":"BodyMismatch"}],"type":"mismatches"}}],"interactionResults":[{"description":"I-01 FindManyPeople với phiên hợp lệ","duration":"155ms","result":"Error"},{"description":"I-02 FindManyCompanies với phiên hợp lệ","duration":"76ms","result":"OK"},{"description":"I-03 CreateOnePerson với phiên hợp lệ","duration":"334ms","result":"OK"},{"description":"I-04 FindManyOpportunities với phiên hợp lệ","duration":"135ms","result":"OK"},{"description":"I-05 GetCurrentUser với phiên hợp lệ","duration":"197ms","result":"OK"},{"description":"I-06 FindManyPeople với phiên sai","duration":"54ms","result":"OK"},{"description":"I-07 FindManyPeople thiếu Origin","duration":"45ms","result":"OK"}],"notices":[],"output":["\nVerifying a pact between \u001b[1mtwenty-front\u001b[0m and \u001b[1mtwenty-server\u001b[0m","","  I-01 FindManyPeople với phiên hợp lệ (3ms loading, 155ms verification)","     Given workspace có ít nhất 1 Person","    returns a response which","      has status code \u001b[1m200\u001b[0m (\u001b[32mOK\u001b[0m)","      includes headers","        \"\u001b[1mContent-Type\u001b[0m\" with value \"\u001b[1mapplication/json; charset=utf-8\u001b[0m\" (\u001b[32mOK\u001b[0m)","      has a matching body (\u001b[31mFAILED\u001b[0m)","","  I-02 FindManyCompanies với phiên hợp lệ (3ms loading, 76ms verification)","     Given workspace có ít nhất 1 Company","    returns a response which","      has status code \u001b[1m200\u001b[0m (\u001b[32mOK\u001b[0m)","      includes headers","        \"\u001b[1mContent-Type\u001b[0m\" with value \"\u001b[1mapplication/json; charset=utf-8\u001b[0m\" (\u001b[32mOK\u001b[0m)","      has a matching body (\u001b[32mOK\u001b[0m)","","  I-03 CreateOnePerson với phiên hợp lệ (3ms loading, 334ms verification)","     Given workspace sẵn sàng tạo Person I-03","    returns a response which","      has status code \u001b[1m200\u001b[0m (\u001b[32mOK\u001b[0m)","      includes headers","        \"\u001b[1mContent-Type\u001b[0m\" with value \"\u001b[1mapplication/json; charset=utf-8\u001b[0m\" (\u001b[32mOK\u001b[0m)","      has a matching body (\u001b[32mOK\u001b[0m)","","  I-04 FindManyOpportunities với phiên hợp lệ (3ms loading, 135ms verification)","     Given workspace có ít nhất 1 Opportunity","    returns a response which","      has status code \u001b[1m200\u001b[0m (\u001b[32mOK\u001b[0m)","      includes headers","        \"\u001b[1mContent-Type\u001b[0m\" with value \"\u001b[1mapplication/json; charset=utf-8\u001b[0m\" (\u001b[32mOK\u001b[0m)","      has a matching body (\u001b[32mOK\u001b[0m)","","  I-05 GetCurrentUser với phiên hợp lệ (3ms loading, 197ms verification)","     Given người dùng đã đăng nhập vào workspace","    returns a response which","      has status code \u001b[1m200\u001b[0m (\u001b[32mOK\u001b[0m)","      includes headers","        \"\u001b[1mContent-Type\u001b[0m\" with value \"\u001b[1mapplication/json; charset=utf-8\u001b[0m\" (\u001b[32mOK\u001b[0m)","      has a matching body (\u001b[32mOK\u001b[0m)","","  I-06 FindManyPeople với phiên sai (3ms loading, 54ms verification)","     Given phiên không hợp lệ","    returns a response which","      has status code \u001b[1m200\u001b[0m (\u001b[32mOK\u001b[0m)","      includes headers","        \"\u001b[1mContent-Type\u001b[0m\" with value \"\u001b[1mapplication/json; charset=utf-8\u001b[0m\" (\u001b[32mOK\u001b[0m)","      has a matching body (\u001b[32mOK\u001b[0m)","","  I-07 FindManyPeople thiếu Origin (3ms loading, 45ms verification)","     Given phiên hợp lệ nhưng request thiếu Origin","    returns a response which","      has status code \u001b[1m403\u001b[0m (\u001b[32mOK\u001b[0m)","      includes headers","        \"\u001b[1mContent-Type\u001b[0m\" with value \"\u001b[1mapplication/json; charset=utf-8\u001b[0m\" (\u001b[32mOK\u001b[0m)","      has a matching body (\u001b[32mOK\u001b[0m)","","\nFailures:\n","1) Verifying a pact between twenty-front and twenty-server Given workspace có ít nhất 1 Person - I-01 FindManyPeople với phiên hợp lệ","    1.1) has a matching body","           \u001b[1m$.data.people.edges[0].node\u001b[0m -> Actual map is missing the following keys: jobTitleName","           \u001b[1m$.data.people.edges[1].node\u001b[0m -> Actual map is missing the following keys: jobTitleName","           \u001b[1m$.data.people.edges[2].node\u001b[0m -> Actual map is missing the following keys: jobTitleName","           \u001b[1m$.data.people.edges[3].node\u001b[0m -> Actual map is missing the following keys: jobTitleName","           \u001b[1m$.data.people.edges[4].node\u001b[0m -> Actual map is missing the following keys: jobTitleName","\nThere were 1 pact failures\n"],"pendingErrors":[],"result":false}
+ ❯ node_modules/@pact-foundation/pact-core/src/verifier/nativeVerifier.ts:53:20
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed (1)
+   Start at  11:13:22
+   Duration  4.95s (transform 56ms, setup 0ms, collect 2.66s, tests 1.35s, environment 1ms, prepare 336ms)
+

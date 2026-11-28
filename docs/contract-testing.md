@@ -10,7 +10,7 @@ và khi fail thì chỉ rõ bên nào vi phạm.
 
 ## Vì sao phù hợp
 Twenty tách rõ `twenty-front` và `twenty-server` qua GraphQL. Rủi ro thật: server đổi tên hoặc bỏ field thì front hỏng mà không test nào báo trước.
-GraphQL còn trả `null` cho field không tồn tại thay vì báo lỗi, nên việc đổi tên field có thể làm hỏng front một cách âm thầm.
+Theo đặc tả GraphQL, truy vấn field không có trong schema bị lỗi validate (`Cannot query field ...`); lỗi này có thể đi kèm HTTP 200 và `errors[]` (đã quan sát ở I-06), nên chỉ kiểm status code sẽ không phát hiện.
 
 ## Phạm vi
 **Trong phạm vi**

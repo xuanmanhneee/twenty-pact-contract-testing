@@ -12,13 +12,13 @@ Với **consumer-driven contract testing** (Pact), bên dùng dịch vụ (consu
 |---|---|---|
 | Integration test | Chạy cả hai bên cùng lúc và kiểm hành vi tổng | Chậm, nặng; khi fail khó biết bên nào sai |
 | End-to-end (E2E) | Thao tác trên giao diện thật, đi qua mọi tầng | Chậm, dễ chập chờn; không chỉ rõ chỗ vỡ |
-| Contract test | Kiểm riêng điểm nối giữa consumer và provider qua hợp đồng | Nhanh, không cần dựng cả hệ thống; fail chỉ rõ bên nào vi phạm |
+| Contract test | Kiểm riêng điểm nối giữa consumer và provider qua hợp đồng | Phạm vi hẹp nên nhanh, không cần giao diện thật; pha consumer không cần server, pha provider vẫn cần provider chạy thật (ở đây: Twenty, PostgreSQL, Redis); fail chỉ rõ interaction bị vi phạm |
 
 Hợp đồng chỉ chứa phần consumer **thực sự dùng**, nên provider vẫn tự do đổi phần không ai dùng mà không báo động giả.
 
 ## D.2 Vì sao phù hợp với Twenty
 - `twenty-front` và `twenty-server` tách rời hoàn toàn (không phụ thuộc trực tiếp vào nhau), chỉ giao tiếp qua GraphQL và cookie phiên. Đó chính là điểm nối mà Pact kiểm tra.
-- Rủi ro thật: server đổi tên hoặc bỏ một field thì front hỏng mà không test nào báo trước. GraphQL còn có thể trả `null` cho field không tồn tại thay vì báo lỗi, nên việc đổi tên field có thể làm hỏng front **một cách âm thầm**.
+- Rủi ro thật: server đổi tên hoặc bỏ một field thì front hỏng mà không test nào báo trước. Theo đặc tả GraphQL, truy vấn field không có trong schema bị lỗi validate (`Cannot query field ...`), nên cả truy vấn cũ của front sẽ hỏng. Lỗi này có thể đi kèm HTTP 200 và `errors[]` (đã quan sát ở I-06), nên chỉ kiểm status code sẽ không phát hiện.
 - Hai nhóm làm việc độc lập (giao diện, máy chủ) rất cần một "hợp đồng" rõ ràng để thay đổi một bên mà biết ngay có ảnh hưởng bên kia hay không.
 - Truy vấn của front được sinh từ metadata của workspace nên dễ lệch; hợp đồng chốt lại hình dạng dữ liệu mà front thật sự cần.
 
@@ -60,7 +60,8 @@ Chi tiết nguyên nhân và cách sửa từng lỗi: [`docs/known-issues.md`](
 |---|---|---|
 | Số interaction | ≥ 5 | 7 |
 | Verify trên server nguyên bản | 100% interaction pass | 7/7 (gọi thẳng `:3000`, 21/11/2026) |
-| Phát hiện breaking change | Mỗi loại thay đổi (đổi tên, xóa field, đổi kiểu, thiếu Origin/phiên) làm ít nhất 1 interaction liên quan fail | M-2 đổi tên: I-01, I-03 fail; M-3 xóa field: I-04 fail; M-4 đổi kiểu: I-01, I-02, I-04 fail; I-07 khóa hành vi 403 khi thiếu Origin |
+| Phát hiện breaking change | Mỗi loại thay đổi (đổi tên, xóa field, đổi kiểu) làm ít nhất 1 interaction liên quan fail | M-2 đổi tên: I-01, I-03 fail; M-3 xóa field: I-04 fail; M-4 đổi kiểu: I-01, I-02, I-04 fail |
+| Ca âm xác thực | Response thật khớp hành vi từ chối đã ghi trong hợp đồng | I-06 (phiên sai: 200 kèm `errors[]`) và I-07 (thiếu Origin: 403) đều pass |
 | Báo động giả | 0 | 0: M-0 (đối chứng) và M-6 (chỉ thêm field) đều 7/7 OK |
 | Tái chạy | Người khác chạy lại theo README trên máy mới ra cùng kết quả | Đạt trên môi trường mới (clone, volume Docker, tài khoản mới, 24/11/2026): consumer 7/7, provider 7/7. Hạn chế: lượt này do công cụ AI chạy trên máy của Luyến, tạo tài khoản bằng API, chạy một lần ([`clean-run.md`](clean-run.md)) |
 
@@ -70,4 +71,5 @@ Kết luận chung cho bộ hợp đồng: đạt khi toàn bộ interaction pas
 ## Giới hạn của kỹ thuật
 - Chỉ kiểm hình dạng dữ liệu, không kiểm nghiệp vụ hay hiệu năng.
 - Không thay thế E2E; chỉ phủ điểm nối consumer–provider.
+- Thí nghiệm chỉ sửa response ở lớp proxy. Nếu server thật đổi tên hoặc xóa field trong schema, truy vấn cũ sẽ bị lỗi validate, nên log lỗi sẽ khác log của thí nghiệm.
 - Kết quả thí nghiệm là mô phỏng, mỗi lượt chạy một lần (chưa đo độ ổn định qua nhiều lần chạy).

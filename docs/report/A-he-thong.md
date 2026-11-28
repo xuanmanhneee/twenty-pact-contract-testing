@@ -82,7 +82,7 @@ Dependency bên trong Twenty (NestJS 11, GraphQL Yoga, TypeORM, BullMQ, React 19
 
 ## A.4 Luồng dữ liệu của các nghiệp vụ trọng tâm
 
-### F1. Xem danh sách People (I-01)
+### Xem danh sách People (I-01)
 ![Luồng xem danh sách People](img/luong-xem-danh-sach.png)
 
 Tóm tắt từng bước:
@@ -93,7 +93,7 @@ Tóm tắt từng bước:
 
 Xem Companies (I-02) và Opportunities (I-04) đi theo đúng luồng này, chỉ khác tên truy vấn (`FindManyCompanies`, `FindManyOpportunities`).
 
-### F2. Tạo Person (I-03)
+### Tạo Person (I-03)
 ![Luồng tạo bản ghi](img/luong-tao-ban-ghi.png)
 
 Tóm tắt từng bước:
@@ -104,7 +104,7 @@ Tóm tắt từng bước:
 
 Vì I-03 ghi dữ liệu thật nên provider state phải dọn fixture trước và sau mỗi lượt verify ([`docs/interactions.md`](../interactions.md)).
 
-### F3. Lấy người dùng hiện tại (I-05)
+### Lấy người dùng hiện tại (I-05)
 ```mermaid
 sequenceDiagram
     participant U as Trình duyệt
@@ -119,9 +119,9 @@ sequenceDiagram
     S-->>F: 200, data.currentUser (id, email, currentWorkspace, workspaceMember)
     F-->>U: Hiển thị tên, workspace
 ```
-Khác với F1, F2, luồng này đi qua endpoint `/metadata` thay vì `/graphql`.
+Khác với hai luồng trên, luồng này đi qua endpoint `/metadata` thay vì `/graphql`.
 
-### F4. Phiên sai và thiếu Origin (I-06, I-07)
+### Phiên sai và thiếu Origin (I-06, I-07)
 | Tình huống | Hành vi thật của Twenty v2.46.0 | Interaction |
 |---|---|---|
 | Cookie phiên sai | HTTP **200** kèm `errors[]` (không phải 401) | I-06 |
